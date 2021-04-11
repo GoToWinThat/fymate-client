@@ -3,15 +3,10 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
-export default Login = ({ navigation }) => {
-  const onClickSingIn = () => {
+export default Register = ({ navigation }) => {
+  const onClickSingUp = () => {
     navigation.navigate("Board", {
       screen: "Board",
-    });
-  };
-  const onClickSingUp = () => {
-    navigation.navigate("Register", {
-      screen: "Register",
     });
   };
   return (
@@ -19,10 +14,11 @@ export default Login = ({ navigation }) => {
       <Content contentContainerStyle={{ justifyContent: "center", flex: 1 }}>
         <View style={styles.screen}>
           <View>
-            <Text style={styles.title}>Find</Text>
-            <Text style={styles.title}>Your</Text>
-            <Text style={styles.title}>Mates</Text>
+            <Text style={styles.title}>Join</Text>
+            <Text style={styles.title}>Fymate</Text>
+            <Text>Find your first job with us</Text>
           </View>
+          
 
           <View style={styles.marginHor}>
             <View style={styles.input}>
@@ -35,16 +31,27 @@ export default Login = ({ navigation }) => {
 
             <View style={styles.input}>
               <View style={styles.icon}>
+              <FontAwesome5 name="envelope" size={24} color="black" />
+              </View>
+
+              <Input placeholder="Email" />
+            </View>
+            <View style={styles.input}>
+              <View style={styles.icon}>
                 <FontAwesome5 name="lock" size={24} color="black" />
               </View>
 
               <Input placeholder="Password" />
             </View>
+            <View style={styles.input}>
+              <View style={styles.icon}>
+                <FontAwesome5 name="lock" size={24} color="black" />
+              </View>
+
+              <Input placeholder="Repeat Password" />
+            </View>
           </View>
           <View style={styles.marginHor}>
-            <Button style={styles.btn} onPress={() => onClickSingIn()}>
-              <Text style={styles.btnText}>Sign In</Text>
-            </Button>
             <Button style={styles.btn} onPress={() => onClickSingUp()}>
               <Text style={styles.btnText}>Sign Up</Text>
             </Button>
