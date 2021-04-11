@@ -1,11 +1,20 @@
+import { Container, Content } from 'native-base'
 import React from 'react'
 import { View, Text } from 'react-native'
+import Accountheader from '../components/atoms/accountheader'
 
-export default Account = () => {
+export default Account = ({ navigation }) => {
     
+    const onClickGoBack = () => {
+        navigation.goBack();
+    }
+
     return (
-        <View>
-            <Text></Text>
-        </View>
+        <Container>
+            <Accountheader onClickGoBack={onClickGoBack}/>
+            <Content>
+
+            </Content>
+        </Container>
     )
 }

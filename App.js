@@ -19,11 +19,11 @@ export default function App() {
       <Stack.Navigator headerMode='none'>
         <Stack.Screen name="Loading" component={Loading}/>
         <Stack.Screen name="Onboarding" component={Onboarding} options={{headerTitleAlign:'center'}}/>
-        <Stack.Screen name="Offert" component={Offert} />
+        <Stack.Screen name="Offert" component={Offert} options={{headerTitleAlign:'center'}}/>
         <Stack.Screen name="Login" component={Login} options={{headerTitleAlign:'center'}}/>
-        <Stack.Screen name="Favorite" component={Favorite}/>
-        <Stack.Screen name="Account" component={Account}/>
-        <Stack.Screen name="Board" component={Board}/>
+        <Stack.Screen name="Favorite" component={Favorite} options={{headerTitleAlign:'center'}}/>
+        <Stack.Screen name="Account" component={Account} options={{headerTitleAlign:'center'}}/>
+        <Stack.Screen name="Board" component={Board} options={{headerTitleAlign:'center'}}/>
       </Stack.Navigator>
     )
   }
