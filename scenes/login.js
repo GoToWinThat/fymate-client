@@ -1,4 +1,4 @@
-import { Button } from 'native-base'
+import { Button, Container, Content, Header, Left, Title } from 'native-base'
 import React from 'react'
 import { View, Text } from 'react-native'
 
@@ -11,9 +11,14 @@ export default Login = ({ navigation }) => {
     }
 
     return (
-        <View>
-            <Button onPress={() => onClickSingIn()}><Text>Sign In</Text></Button>
-            <Button><Text>Sign Up</Text></Button>
-        </View>
+        <Container>
+            <Header>
+                <Title>Login</Title>
+            </Header>
+            <Content>
+                <Button onPress={() => onClickSingIn()}><Text>Sign In</Text></Button>
+                <Button><Text>Sign Up</Text></Button>
+            </Content>
+        </Container>
     )
 }

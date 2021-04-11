@@ -9,30 +9,30 @@ import Offert from './scenes/offert';
 import Login from './scenes/login';
 import Favorite from './scenes/favorite';
 import Account from './scenes/account';
-
+import Loading from './scenes/loading';
 export default function App() {
 
   const Stack = createStackNavigator();
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Onboarding">
-        <Stack.Screen name="Onboarding" component={Onboarding}/>
-        <Stack.Screen name="Offert" component={Offert}/>
-        <Stack.Screen name="Login" component={Login}/>
+  const AppStack = () => {
+    return(
+      <Stack.Navigator headerMode='none'>
+        <Stack.Screen name="Loading" component={Loading}/>
+        <Stack.Screen name="Onboarding" component={Onboarding} options={{headerTitleAlign:'center'}}/>
+        <Stack.Screen name="Offert" component={Offert} />
+        <Stack.Screen name="Login" component={Login} options={{headerTitleAlign:'center'}}/>
         <Stack.Screen name="Favorite" component={Favorite}/>
         <Stack.Screen name="Account" component={Account}/>
         <Stack.Screen name="Board" component={Board}/>
       </Stack.Navigator>
+    )
+  }
+
+  return (
+    <NavigationContainer>
+      <AppStack/>
     </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
