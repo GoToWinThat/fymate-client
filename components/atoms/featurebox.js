@@ -19,13 +19,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   screen: {
-    justifyContent: "center",
-    marginHorizontal: 20,
+
+    //marginHorizontal: 40,
     flexDirection: "row",
-    marginVertical: 10,
+    //marginVertical: 10,
+    paddingLeft: '10%',
+    paddingRight: '30%',
+    paddingBottom: '10%',
   },
   icon: {
     paddingRight: 25,
+    //paddingLeft: 25,
     justifyContent: "center",
   },
   featureTitle: {

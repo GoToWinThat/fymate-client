@@ -12,9 +12,6 @@ export default Login = ({ navigation }) => {
 
     return (
         <Container>
-            <Header>
-                <Title>Login</Title>
-            </Header>
             <Content>
                 <Button onPress={() => onClickSingIn()}><Text>Sign In</Text></Button>
                 <Button><Text>Sign Up</Text></Button>
