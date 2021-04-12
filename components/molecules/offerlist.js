@@ -1,16 +1,5 @@
 import React from "react";
-import {
-  Body,
-  Button,
-  Container,
-  Left,
-  Right,
-  Header,
-  Title,
-  Content,
-  List,
-} from "native-base";
-import UserListbox from "../atoms/userlistbox";
+import { List } from "native-base";
 import OfferListBox from "../atoms/offerlistbox";
 
 const exampleJSON = [
