@@ -1,7 +1,8 @@
 import React from "react";
-import TagList from '../components/molecules/tagList';
 import { Body, Button, Container, Left, Right, Header, Title, Content } from "native-base";
 import Boardheader from '../components/atoms/boardheader'
+import OfferList from "../components/molecules/offerlist";
+import TagFilter from "../components/organisms/tagfilter";
 
 export default Board = ({ navigation }) => {
 
@@ -22,9 +23,10 @@ export default Board = ({ navigation }) => {
     <Container >
       <Boardheader onClickGoToAccount={onClickChangeViewAccount}/>
       <Content>
-
+        <TagFilter/> 
+        
       </Content>
     </Container>
   );
 };
-
+//<OfferList/>

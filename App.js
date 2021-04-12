@@ -10,6 +10,7 @@ import Login from './scenes/login';
 import Favorite from './scenes/favorite';
 import Account from './scenes/account';
 import Loading from './scenes/loading';
+import Register from './scenes/register'
 export default function App() {
 
   const Stack = createStackNavigator();
@@ -24,6 +25,7 @@ export default function App() {
         <Stack.Screen name="Favorite" component={Favorite} options={{headerTitleAlign:'center'}}/>
         <Stack.Screen name="Account" component={Account} options={{headerTitleAlign:'center'}}/>
         <Stack.Screen name="Board" component={Board} options={{headerTitleAlign:'center'}}/>
+        <Stack.Screen name="Register" component={Register} options={{headerTitleAlign:'center'}}/>
       </Stack.Navigator>
     )
   }
