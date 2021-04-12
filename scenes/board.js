@@ -3,7 +3,6 @@ import TagList from '../components/molecules/tagList';
 import { Body, Button, Container, Left, Right, Header, Title, Content } from "native-base";
 import Boardheader from '../components/atoms/boardheader'
 
-
 export default Board = ({ navigation }) => {
 
   //Put in props after create list of offert
@@ -20,10 +19,10 @@ export default Board = ({ navigation }) => {
   }
 
   return (
-    <Container>
+    <Container >
       <Boardheader onClickGoToAccount={onClickChangeViewAccount}/>
       <Content>
-        <TagList/> 
+
       </Content>
     </Container>
   );

@@ -1,11 +1,19 @@
-import { Button, Icon } from 'native-base'
+import { Button, Container, Content, Icon, Text } from 'native-base'
 import React from 'react'
-import { View, Text } from 'react-native'
+import Offertheader from '../components/atoms/offertheader'
 
 export default Offert = ({ navigation }) => {
     
+    const onClickGoBack = () => {
+        navigation.goBack();
+    }
+
     return (
-        <View>
-        </View>
+        <Container>
+            <Offertheader onClickGoBack={onClickGoBack}/>
+            <Content>
+                <Text>There is content of offert</Text>
+            </Content>
+        </Container>
     )
 }

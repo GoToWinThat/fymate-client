@@ -3,11 +3,9 @@ import React from 'react'
 import {Platform } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import Searchbar from '../molecules/searchbar';
 
-export default Accountheader = ({ onClickGoBack }) => {
+export default Offertheader = ({ onClickGoBack }) => {
     return (
-        <>
         <Header>
             <Left> 
                 <Button onPress={() => onClickGoBack()} transparent>
@@ -16,18 +14,13 @@ export default Accountheader = ({ onClickGoBack }) => {
                 </Button>
             </Left>
             <Body>
-                <Title>Account</Title>
+                <Title>Offert</Title>
             </Body>
             <Right>
                 <Button>
-                    <Ionicons name="heart-sharp" size={24} color="black" />
-                </Button>
-                <Button>
-                    <MaterialCommunityIcons name="clipboard-text" size={24} color="black" />
+                    <Ionicons name="md-paper-plane-sharp" size={24} color="black" />
                 </Button>
             </Right>
         </Header>
-        <Searchbar/>
-        </>
     )
 }
