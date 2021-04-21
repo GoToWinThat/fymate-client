@@ -1,7 +1,6 @@
 import { Container, Content, Spinner } from 'native-base'
 import React, {useEffect, useState} from 'react'
 import { StyleSheet } from 'react-native'
-import * as Location from 'expo-location';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -14,9 +13,17 @@ export default Loading = ({navigation}) => {
           Roboto: require('native-base/Fonts/Roboto.ttf'),
           Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
           ...Ionicons.font,
+        }).then(() => {
+            setFontIsReady(true);
         });
-        setFontIsReady(true);
       },[])
+
+    // useEffect(() => {
+    //     (async () => await Font.loadAsync({
+    //       Roboto: require('native-base/Fonts/Roboto.ttf'),
+    //       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+    //     }))();
+    // }, [])
 
       if(fontIsReady){
         navigation.reset({

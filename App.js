@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useEffect} from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Board from './scenes/board'
 import { NavigationContainer } from '@react-navigation/native';
