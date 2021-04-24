@@ -2,8 +2,10 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Tagbox from "../atoms/tagbox";
 
-const TagList = ({ tags, color, title }) => {
-  const list = tags.map((tag) => <Tagbox key={tag} text={tag} color={color} />);
+const TagList = ({ tags, color, title, clickable }) => {
+  const list = tags.map((tag) => (
+    <Tagbox key={tag} text={tag} color={color} clickable={clickable} />
+  ));
 
   return (
     <View style={styles.tagList}>
