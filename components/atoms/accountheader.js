@@ -27,7 +27,6 @@ export default Accountheader = ({ onClickGoBack }) => {
                 </Button>
             </Right>
         </Header>
-        <Searchbar/>
         </>
     )
 }

@@ -3,8 +3,24 @@ import { Thumbnail, ListItem, Text } from "native-base";
 import { StyleSheet, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-export default OfferListBox = ({ title, location, payment, url, company }) => {
+export default OfferListBox = ({ title, location, payment, url, company, time }) => {
   const mode = company === undefined ? false : true;
+  const timemode = time === undefined ? false : true;
+  const paymentmode = payment === undefined ? false : true;
+  const locationmode = location === undefined ? false : true;
+
+  const paymentItem = paymentmode ? (
+    <View style={styles.row}>
+      <Ionicons
+        style={styles.icon}
+        name="ios-card-outline"
+        size={24}
+        color="gray"
+      />
+      <Text note>{payment}</Text>
+    </View>
+  ) : null
+
   const listItem = mode ? (
     <View style={styles.row}>
       <Ionicons
@@ -17,6 +33,31 @@ export default OfferListBox = ({ title, location, payment, url, company }) => {
     </View>
   ) : null;
 
+  const lenghtOfWork = timemode ? (
+    <View style={styles.row}>
+      <Ionicons
+        style={styles.icon}
+        name="md-time-outline"
+        size={24}
+        color="gray"
+      />
+      <Text note>{time}</Text>
+    </View>
+  ) : null;
+
+  const locationItem = locationmode ? (
+    <View style={styles.row}>
+      <Ionicons
+        style={styles.icon}
+        name="location-sharp"
+        size={24}
+        color="gray"
+      />
+      <Text note>{location}</Text>
+    </View>
+
+  ) : null;
+
   return (
     <ListItem>
       <Thumbnail
@@ -27,26 +68,11 @@ export default OfferListBox = ({ title, location, payment, url, company }) => {
       <View style={styles.details}>
         <Text style={styles.title}>{title}</Text>
 
+        {lenghtOfWork}
         {listItem}
-        <View style={styles.row}>
-          <Ionicons
-            style={styles.icon}
-            name="location-sharp"
-            size={24}
-            color="gray"
-          />
-          <Text note>{location}</Text>
-        </View>
+        {locationItem}
+        {paymentItem}
 
-        <View style={styles.row}>
-          <Ionicons
-            style={styles.icon}
-            name="ios-card-outline"
-            size={24}
-            color="gray"
-          />
-          <Text note>{payment}</Text>
-        </View>
       </View>
     </ListItem>
   );

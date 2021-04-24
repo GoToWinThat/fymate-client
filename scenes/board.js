@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Body, Button, Container, Left, Right, Header, Title, Content } from "native-base";
+import { Body, Button, Container, Left, Right, Header, Title, Content, ActionSheet } from "native-base";
 import Boardheader from '../components/atoms/boardheader'
 import OfferList from "../components/molecules/offerlist";
 import TagFilter from "../components/organisms/tagfilter";
@@ -28,6 +28,11 @@ export default Board = ({ navigation }) => {
   const onClickChangeActivePage = (page) => {
     setActivePage(page);
     console.log(activePage);
+  }
+
+  //Show there tag list
+  const onClickShowTagList = () => {
+
   }
 
   return (
