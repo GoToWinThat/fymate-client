@@ -4,7 +4,6 @@ import { View, Text } from "react-native";
 import Accountheader from "../components/atoms/accountheader";
 import ImgProfile from "../components/atoms/imgprofile";
 
-
 export default Account = ({ navigation }) => {
   const onClickGoBack = () => {
     navigation.goBack();
