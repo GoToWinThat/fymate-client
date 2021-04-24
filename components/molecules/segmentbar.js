@@ -1,15 +1,28 @@
 import { Button, Header, Segment } from 'native-base'
-import React from 'react'
+import React, {useState} from 'react'
 import { Text, StyleSheet } from 'react-native'
 
-export default Segmentbar = () => {
+export default Segmentbar = ({onClickChangeActivePage}) => {
+
+    const [activePage, setActivePage] = useState("Company");
+
     return (
       <Header>
         <Segment >
-          <Button style={style.buttons} first>
+          <Button style={style.buttons} first Users
+                  active={activePage === "Users"}
+                  onPress={() => {
+                      onClickChangeActivePage("Users")
+                      setActivePage("Users")
+                      }}>
             <Text>User</Text>
           </Button>
-          <Button style={style.buttons} last active>
+          <Button style={style.buttons} last Company
+                  active={activePage === "Company"}
+                  onPress={() => {
+                    onClickChangeActivePage("Company");    
+                    setActivePage("Company");
+                    }}>
             <Text>Company</Text>
           </Button>
         </Segment>

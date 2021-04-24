@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Searchbar from '../molecules/searchbar';
 import Segment from '../molecules/segmentbar';
 
-export default Boardheader = ({onClickGoToAccount}) => {
+export default Boardheader = ({onClickGoToAccount, onClickChangeActivePage}) => {
     return (
         <>
         <Header hasSegment>
@@ -27,7 +27,7 @@ export default Boardheader = ({onClickGoToAccount}) => {
             </Right>
       </Header>
       <Searchbar/>
-      <Segmentbar/>
+      <Segmentbar onClickChangeActivePage={onClickChangeActivePage}/>
       </>
     )
 }
