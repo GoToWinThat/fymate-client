@@ -14,9 +14,10 @@ export default Login = ({ navigation }) => {
 
   const onClickSignIn = () => {
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(() => {
+      .then((results) => {
         navigation.navigate("Board", {
           screen: "Board",
+          uid: results.user.uid,
         });
       })
       .catch(function (error) {

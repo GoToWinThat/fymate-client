@@ -20,19 +20,20 @@ export default Register = ({ navigation }) => {
 
         const userUid = results.user.uid;
 
-        // set account doc  
+        //TODO: Finish account schema
         const account = {
           about: "",
           firstName: "",
           lastName: "",
           location: "",
+          company: "",
         }
-
 
         firebase.firestore().collection("users").doc(userUid).set(account)
           .then(() => {
             navigation.navigate("Board", {
               screen: "Board",
+              uid: userUid,
             });
           })
           .catch((error) => {
@@ -59,8 +60,6 @@ export default Register = ({ navigation }) => {
         }
         console.log(error);
       });
-
-
 
   };
 

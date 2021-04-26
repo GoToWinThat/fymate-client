@@ -13,6 +13,10 @@ import Loading from './scenes/loading';
 import Register from './scenes/register';
 import firebaseConfig from './firebaseConfig';
 
+
+
+
+
 export default function App() {
 
   const Stack = createStackNavigator();
