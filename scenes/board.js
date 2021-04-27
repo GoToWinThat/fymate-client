@@ -7,7 +7,7 @@ import TagFilter from "../components/organisms/tagfilter";
 import UsersList from '../components/organisms/usersList'
 import CompanyList from '../components/organisms/companyList'
 
-export default Board = ({ navigation }) => {
+export default Board = ({ route, navigation }) => {
 
   //State for changing content list /User /Company
   const [activePage, setActivePage] = useState('User');
@@ -21,7 +21,8 @@ export default Board = ({ navigation }) => {
   }
   const onClickChangeViewAccount = () => {
     navigation.navigate('Account', {
-        screen: 'Account'
+        screen: 'Account',
+        uid: route.params.uid,
     })
   }
 

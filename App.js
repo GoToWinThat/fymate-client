@@ -10,7 +10,13 @@ import Login from './scenes/login';
 import Favorite from './scenes/favorite';
 import Account from './scenes/account';
 import Loading from './scenes/loading';
-import Register from './scenes/register'
+import Register from './scenes/register';
+import firebaseConfig from './firebaseConfig';
+
+
+
+
+
 export default function App() {
 
   const Stack = createStackNavigator();

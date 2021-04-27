@@ -2,18 +2,44 @@ import { Button, Container, Content, Text, View, Input } from "native-base";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
+import * as firebase from 'firebase'
+import { useState } from "react";
 
+
+//TODO: Handle login failure
 export default Login = ({ navigation }) => {
-  const onClickSingIn = () => {
-    navigation.navigate("Board", {
-      screen: "Board",
-    });
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onClickSignIn = () => {
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then((results) => {
+        navigation.navigate("Board", {
+          screen: "Board",
+          uid: results.user.uid,
+        });
+      })
+      .catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode === 'auth/wrong-password') {
+          alert('Wrong password.');
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+      });
   };
-  const onClickSingUp = () => {
+
+  const onClickSignUp = () => {
     navigation.navigate("Register", {
       screen: "Register",
     });
   };
+
+
   return (
     <Container>
       <Content contentContainerStyle={{ justifyContent: "center", flex: 1 }}>
@@ -30,7 +56,7 @@ export default Login = ({ navigation }) => {
                 <FontAwesome5 name="user-circle" size={24} color="black" />
               </View>
 
-              <Input placeholder="Username" />
+              <Input onChangeText={setEmail} placeholder="Email" />
             </View>
 
             <View style={styles.input}>
@@ -38,14 +64,14 @@ export default Login = ({ navigation }) => {
                 <FontAwesome5 name="lock" size={24} color="black" />
               </View>
 
-              <Input placeholder="Password" />
+              <Input onChangeText={setPassword} placeholder="Password" />
             </View>
           </View>
           <View style={styles.marginHor}>
-            <Button style={styles.btn} onPress={() => onClickSingIn()}>
+            <Button style={styles.btn} onPress={() => onClickSignIn()}>
               <Text style={styles.btnText}>Sign In</Text>
             </Button>
-            <Button style={styles.btn} onPress={() => onClickSingUp()}>
+            <Button style={styles.btn} onPress={() => onClickSignUp()}>
               <Text style={styles.btnText}>Sign Up</Text>
             </Button>
           </View>

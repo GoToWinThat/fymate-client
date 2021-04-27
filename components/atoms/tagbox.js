@@ -3,8 +3,12 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { TAG } from "../../styles/colors";
 import { FONT_SIZE_REGULAR } from "../../styles/typography";
 
-const Tagbox = ({ color, text }) => {
+const Tagbox = ({ color, text, clickable }) => {
   const [active, setActive] = useState(false);
+
+  const tagClick = () => {
+    if(clickable === true) setActive(!active);
+  }
 
   const themeColor = color === undefined ? TAG : color;
   const textStyle = [
@@ -20,7 +24,7 @@ const Tagbox = ({ color, text }) => {
   ];
 
   return (
-    <TouchableOpacity onPress={() => setActive(!active)}>
+    <TouchableOpacity onPress={() => tagClick()}>
       <View style={boxStyle}>
         <Text style={textStyle}>{text}</Text>
       </View>
