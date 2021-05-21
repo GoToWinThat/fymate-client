@@ -15,8 +15,8 @@ export default Login = ({ navigation }) => {
   const onClickSignIn = () => {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((results) => {
-        navigation.navigate("Board", {
-          screen: "Board",
+        navigation.navigate("MainTab", {
+          screen: "MainTab",
           uid: results.user.uid,
         });
       })

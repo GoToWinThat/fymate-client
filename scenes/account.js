@@ -1,7 +1,6 @@
 import { Container, Content } from "native-base";
 import  React, {useEffect, useState } from "react";
 import { View, Text } from "react-native";
-import Accountheader from "../components/atoms/accountheader";
 import ImgProfile from "../components/atoms/imgprofile";
 import About from '../components/molecules/about';
 import Experience from '../components/atoms/experience';
@@ -111,7 +110,6 @@ const education = [
   //Tag list or  tech stack ? ?  tag list is clickable
   return (
     <Container>
-      <Accountheader onClickGoBack={onClickGoBack} />
       <Content>
         <ImgProfile
           title={accountInfo.firstName + " " + accountInfo.lastName}

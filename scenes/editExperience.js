@@ -1,7 +1,7 @@
 import { Button, Container, Content, Icon, Text } from 'native-base'
 import React from 'react'
 
-export default Offert = ({ navigation }) => {
+export default EditExperience = ({ navigation }) => {
     
     const onClickGoBack = () => {
         navigation.goBack();
@@ -10,7 +10,7 @@ export default Offert = ({ navigation }) => {
     return (
         <Container>
             <Content>
-                <Text>There is content of offert</Text>
+                <Text>There is content of Edit Experience</Text>
             </Content>
         </Container>
     )

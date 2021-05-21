@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import { Body, Button, Container, Left, Right, Header, Title, Content, ActionSheet } from "native-base";
-import Boardheader from '../components/atoms/boardheader'
 import OfferList from "../components/molecules/offerlist";
 import TagFilter from "../components/organisms/tagfilter";
-
+import TopBar from '../components/atoms/topbar'
 import UsersList from '../components/organisms/usersList'
 import CompanyList from '../components/organisms/companyList'
+import Searchbar from '../components/molecules/searchbar'
 
 export default Board = ({ route, navigation }) => {
 
@@ -19,6 +19,13 @@ export default Board = ({ route, navigation }) => {
       screen: 'Offert'
     })
   }
+
+  const onClickNavigateFilters = () => {
+    navigation.navigate('Filters', {
+      screen: 'Filters'
+    })
+  }
+
   const onClickChangeViewAccount = () => {
     navigation.navigate('Account', {
         screen: 'Account',
@@ -38,8 +45,11 @@ export default Board = ({ route, navigation }) => {
 
   return (
     <Container >
-      <Boardheader  onClickGoToAccount={onClickChangeViewAccount} 
-                    onClickChangeActivePage={onClickChangeActivePage}/>
+      <Header>
+        <TopBar title="Fymate" onClickRightIcon={onClickNavigateFilters} rightIcon="filter"/>
+      </Header>
+      <Searchbar/>
+
       <Content>
         {activePage === "Users" ? <UsersList/> : <CompanyList/> }
       </Content>

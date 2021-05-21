@@ -1,11 +1,23 @@
+import { Button, Container, Content, Header, Icon, Text } from 'native-base'
 import React from 'react'
-import { View, Text } from 'react-native'
+import TopBar from '../components/atoms/topbar'
 
-export default Favorite = () => {
+export default Favorite = ({ navigation }) => {
     
+    const onClickNavigateFilters = () => {
+        navigation.navigate('Filters', {
+            screen: 'Filters'
+        })
+    }
+
     return (
-        <View>
-            <Text></Text>
-        </View>
+        <Container>
+            <Header>
+                <TopBar title="Fymate" onClickRightIcon={onClickNavigateFilters} rightIcon="filter"/>
+            </Header>
+            <Content>
+                <Text>There is content of Favorite There is a list</Text>
+            </Content>
+        </Container>
     )
 }
