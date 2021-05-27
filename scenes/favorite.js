@@ -1,6 +1,8 @@
-import { Button, Container, Content, Header, Icon, Text } from 'native-base'
+import { Button, Container, Content, Header, Icon, Text, View } from 'native-base'
+import {StyleSheet} from 'react-native'
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
+
 
 export default Favorite = ({ navigation }) => {
     
@@ -21,3 +23,5 @@ export default Favorite = ({ navigation }) => {
         </Container>
     )
 }
+
+
