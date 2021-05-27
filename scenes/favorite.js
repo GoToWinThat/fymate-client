@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native'
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
 
-
 export default Favorite = ({ navigation }) => {
     
     const onClickNavigateFilters = () => {
