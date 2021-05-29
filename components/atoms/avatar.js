@@ -43,7 +43,7 @@ export default Avatar = ({url}) => {
         <View style={styles.view}>
             <TouchableOpacity onPress={PickImage}>
                 <ImageBackground source={{uri: image}} 
-                    style={{width: 100, height: 100}} imageStyle={{borderRadius: 100}}>
+                    style={{width: 120, height: 120}} imageStyle={{borderRadius: 100}}>
                         <View style={styles.icon}>
                             <Icon name="add-circle-sharp" style={{color: 'blue'}} />
                         </View>
