@@ -15,9 +15,9 @@ export default function App() {
     return(
       <Stack.Navigator headerMode='none'>
 
-        <Stack.Screen name="Loading" component={Loading}/>
-
         <Stack.Screen name="MainTab" component={MainTab} />
+
+        <Stack.Screen name="Loading" component={Loading}/>
 
         <Stack.Screen name="Onboarding" component={Onboarding} />
         <Stack.Screen name="Login" component={Login} />

@@ -1,4 +1,4 @@
-import { Container, Content } from "native-base";
+import { Container, Content, Header } from "native-base";
 import  React, {useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import ImgProfile from "../components/atoms/imgprofile";
@@ -8,22 +8,29 @@ import Projects from '../components/atoms/projects';
 import Educations from '../components/atoms/educations';
 import Contact from '../components/atoms/contact';
 import TagList from '../components/molecules/tagList';
+import DetailsList from '../components/molecules/detailList';
+import TopBar from '../components/atoms/topbar';
+import ImgInfo from '../components/atoms/imginfo';
 import * as firebase from 'firebase'
 
 export default Account = ({ route, navigation }) => {
-  const uid = route.params.uid
+  // const uid = route.params.uid
   const [accountInfo, setAccountInfo] = useState({
     firstName: "",
     lastName: ""
   })
 
-  useEffect(() => {
-    firebase.firestore().collection('users').doc(uid).get().then((data) => {
-      console.log(data.data);
-      setAccountInfo(data.data());
-    }
-    )
-  }, []);
+  const onClickGoBack = () => {
+    navigation.goBack();
+  }
+
+  // useEffect(() => {
+  //   firebase.firestore().collection('users').doc(uid).get().then((data) => {
+  //     console.log(data.data);
+  //     setAccountInfo(data.data());
+  //   }
+  //   )
+  // }, []);
 
 const contacts = [
   {
@@ -103,26 +110,44 @@ const education = [
   },
 ]
 
-  const onClickGoBack = () => {
-    navigation.goBack();
-  };
+const details = {
+    contract: "Umowa - B2B",
+    position: "Junior",
+    worktype: "Remote",
+    starttime: "06.07.2021.r",
+    jobtime: "1/4 etatu"
+}
+
+
 
   //Tag list or  tech stack ? ?  tag list is clickable
   return (
     <Container>
       <Content>
-        <ImgProfile
+        <Header>
+          <TopBar onClickGoBack={onClickGoBack} title="Account" rightIcon="heart" onClickRightIcon={() => console.log("Added to favorites !! TODO")}/>
+        </Header>
+        <ImgInfo
+            solary='8000 - 9000 PLN'
+            location="Warsaw"
+            url="https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png"
+            title={accountInfo.firstName + " " + accountInfo.lastName}
+            job="UX/UI Designer"
+        />
+        {/* <ImgProfile
           title={accountInfo.firstName + " " + accountInfo.lastName}
           url="https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png"
           solary='8000 - 9000 PLN'
           location='Warsaw'
           size='2444'
           company='Ubisoft'
-        />
+        /> */}
+
         <About desciption={"Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi"}/>
         <View style={{padding: 20}}>
           <TagList tags={['C#', "JavaScript", "C++"]} title={"Tech Stack"} color={'blue'}/>
         </View>
+        <DetailsList details={details}/>
         <Experience experience={experience}/>
         <Projects projects={projects}/>
         <Educations education={education}/>

@@ -15,7 +15,8 @@ export default Detail = ({text="None", icon}) => {
 const styles = StyleSheet.create({
     view: {
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        margin: 6,
     },
     text: {
         paddingLeft: "2%",
