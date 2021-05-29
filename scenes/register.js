@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as firebase from 'firebase';
 import { useState } from "react";
+import Segmentbar from '../components/molecules/segmentbar';
 
 //TODO: Repeat password UI state handling
 export default Register = ({ navigation }) => {
@@ -11,7 +12,7 @@ export default Register = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [type, setType] = useState("Employee");
 
   const onClickSignUp = () => {
 
@@ -76,13 +77,6 @@ export default Register = ({ navigation }) => {
 
 
           <View style={styles.marginHor}>
-            <View style={styles.input}>
-              <View style={styles.icon}>
-                <FontAwesome5 name="user-circle" size={24} color="black" />
-              </View>
-
-              <Input onChangeText={setUsername} placeholder="Username" />
-            </View>
 
             <View style={styles.input}>
               <View style={styles.icon}>
@@ -102,8 +96,11 @@ export default Register = ({ navigation }) => {
               <View style={styles.icon}>
                 <FontAwesome5 name="lock" size={24} color="black" />
               </View>
-
               <Input placeholder="Repeat Password" />
+            </View>
+
+            <View>
+              <Segmentbar onClickChange={setType}/>
             </View>
           </View>
           <View style={styles.marginHor}>

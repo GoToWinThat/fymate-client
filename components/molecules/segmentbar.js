@@ -2,37 +2,38 @@ import { Button, Header, Segment } from 'native-base'
 import React, {useState} from 'react'
 import { Text, StyleSheet } from 'react-native'
 
-export default Segmentbar = ({onClickChangeActivePage}) => {
+export default Segmentbar = ({onClickChange}) => {
 
-    const [activePage, setActivePage] = useState("Company");
+    const [active, setActive] = useState("Company");
 
     return (
-      <Header>
-        <Segment >
-          <Button style={style.buttons} first Users
-                  active={activePage === "Users"}
-                  onPress={() => {
-                      onClickChangeActivePage("Users")
-                      setActivePage("Users")
-                      }}>
-            <Text>User</Text>
-          </Button>
-          <Button style={style.buttons} last Company
-                  active={activePage === "Company"}
-                  onPress={() => {
-                    onClickChangeActivePage("Company");    
-                    setActivePage("Company");
+      <Segment style={styles.segment}>
+        <Button style={styles.buttons} first Employee
+                active={active === "Employee"}
+                onPress={() => {
+                    onClickChange("Employee")
+                    setActive("Employee")
                     }}>
-            <Text>Company</Text>
-          </Button>
-        </Segment>
-      </Header>
+          <Text>Employee</Text>
+        </Button>
+        <Button style={styles.buttons} last Company
+                active={active === "Company"}
+                onPress={() => {
+                  onClickChange("Company");    
+                  setActive("Company");
+                  }}>
+          <Text>Company</Text>
+        </Button>
+      </Segment>
     )
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   buttons: {
     width: '50%',
+    height: '100%',
     justifyContent: 'center',
-  }
+    borderWidth: 3,
+    borderColor: 'black', 
+  },
 })
