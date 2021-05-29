@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 import Featurebox from "../components/atoms/featurebox";
 import { Entypo } from "@expo/vector-icons";
 import { Header } from "react-native/Libraries/NewAppScreen";
+import Btn from '../components/atoms/btn'
 
 export default Onboarding = ({ navigation }) => {
   const onClickChangeView = () => {
@@ -35,9 +36,10 @@ export default Onboarding = ({ navigation }) => {
             text={tt}
             icon={<Entypo name="back-in-time" size={50} color="black" />}
           />
-          <Button style={styles.next} onPress={() => onClickChangeView()}>
+          {/* <Button style={styles.next} onPress={() => onClickChangeView()}>
             <Text style={styles.text}>Next</Text>
-          </Button>
+          </Button> */}
+          <Btn onPress={onClickChangeView} text="Next"></Btn>
         </View>
       </Content>
     </Container>

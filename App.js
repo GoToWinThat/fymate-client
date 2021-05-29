@@ -14,9 +14,11 @@ export default function App() {
   const AppStack = () => {
     return(
       <Stack.Navigator headerMode='none'>
-        <Stack.Screen name="MainTab" component={MainTab} />
 
         <Stack.Screen name="Loading" component={Loading}/>
+
+        <Stack.Screen name="MainTab" component={MainTab} />
+
         <Stack.Screen name="Onboarding" component={Onboarding} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />

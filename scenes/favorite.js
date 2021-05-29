@@ -20,7 +20,6 @@ export default Favorite = ({ navigation }) => {
             </Header>
             <Content>
                 <Text>There is content of Favorite There is a list</Text>
-                <Btn icon="add" text="Sing up!" onPress={() => console.log("Nice Button")}></Btn>
             </Content>
         </Container>
     )

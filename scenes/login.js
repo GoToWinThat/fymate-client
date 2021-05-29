@@ -1,10 +1,10 @@
 import { Button, Container, Content, Text, View, Input } from "native-base";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as firebase from 'firebase'
 import { useState } from "react";
-
+import Btn from '../components/atoms/btn'
 
 //TODO: Handle login failure
 export default Login = ({ navigation }) => {
@@ -66,14 +66,13 @@ export default Login = ({ navigation }) => {
 
               <Input onChangeText={setPassword} placeholder="Password" />
             </View>
+
+            <TouchableOpacity onPress={() => onClickSignUp()}>
+              <Text style={styles.touchableText}>Don't have an account? Click here</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.marginHor}>
-            <Button style={styles.btn} onPress={() => onClickSignIn()}>
-              <Text style={styles.btnText}>Sign In</Text>
-            </Button>
-            <Button style={styles.btn} onPress={() => onClickSignUp()}>
-              <Text style={styles.btnText}>Sign Up</Text>
-            </Button>
+              <Btn text="Sign In" onPress={onClickSignIn}/>
           </View>
         </View>
       </Content>
@@ -82,11 +81,18 @@ export default Login = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  touchableText: {
+    fontStyle: 'italic',
+    fontSize: 16,
+    color: 'gray',
+    alignSelf: 'center',
+  },
   title: {
     fontSize: 55,
   },
   marginHor: {
     width: "100%",
+    justifyContent: 'space-around',
   },
   screen: {
     justifyContent: "space-evenly",

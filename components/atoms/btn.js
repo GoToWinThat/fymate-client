@@ -4,7 +4,7 @@ import { Button, Icon } from 'native-base'
 
 export default Btn = ({text, icon, onPress}) => {
     return (
-        <Button style={styles.btn} onPress={onPress !== undefined ? () => onPress : null }>
+        <Button style={styles.btn} onPress={onPress !== undefined ? () => onPress() : null }>
             {icon !== undefined ? <Icon style={styles.icon} name={icon} size={12} color="white" ></Icon> : null}
             <Text style={styles.text}>{text}</Text>
         </Button>

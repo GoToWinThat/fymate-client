@@ -5,6 +5,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import * as firebase from 'firebase';
 import { useState } from "react";
 import Segmentbar from '../components/molecules/segmentbar';
+import Btn from '../components/atoms/btn'
 
 //TODO: Repeat password UI state handling
 export default Register = ({ navigation }) => {
@@ -104,9 +105,10 @@ export default Register = ({ navigation }) => {
             </View>
           </View>
           <View style={styles.marginHor}>
-            <Button style={styles.btn} onPress={() => onClickSignUp()}>
+            <Btn text="Sign Up" onPress={onClickSignUp}/>
+            {/* <Button style={styles.btn} onPress={() => onClickSignUp()}>
               <Text style={styles.btnText}>Sign Up</Text>
-            </Button>
+            </Button> */}
           </View>
         </View>
       </Content>
