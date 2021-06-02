@@ -1,21 +1,30 @@
-import { Button, Container, Content, Header, Icon, Text } from 'native-base'
-import React from 'react'
-import TopBar from '../components/atoms/topbar'
+import { Button, Container, Content, Header, Icon, Text } from "native-base";
+import React from "react";
+import TopBar from "../components/atoms/topbar";
+import BaseForm from "../components/molecules/baseform";
 
-export default EditPortfolio = ({ navigation }) => {
-    
-    const onClickGoBack = () => {
-        navigation.goBack();
-    }
+export default EditPortfolio = ({ navigation, route }) => {
+  const { type } = route.params;
 
-    return (
-        <Container>
-            <Header>
-                <TopBar onClickGoBack={onClickGoBack} title="Edit"/>
-            </Header>
-            <Content>
-                <Text>There is content of Edit Portfolio</Text>
-            </Content>
-        </Container>
-    )
-}
+  const onClickGoBack = () => {
+    navigation.goBack();
+  };
+
+  const form =
+    type === "project" ? (
+      <BaseForm placeholders={["Name", "Tags", "Tags"]} />
+    ) : type === "education" ? (
+      <BaseForm placeholders={["School/University", "Localization", "Date","Interesting facts..."]} />
+    ) : (
+      <BaseForm placeholders={["Position", "Company", "Date","Job description..."]} />
+    );
+
+  return (
+    <Container>
+      <Header>
+        <TopBar onClickGoBack={onClickGoBack} title="Edit" />
+      </Header>
+      <Content>{form}</Content>
+    </Container>
+  );
+};

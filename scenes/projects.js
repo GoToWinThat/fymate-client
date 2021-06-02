@@ -12,7 +12,7 @@ export default Projects = ({ navigation }) => {
     }
 
     const onClickAdd = () => {
-        navigation.navigate("EditPortfolio")
+        navigation.navigate("EditPortfolio", { type: "project" })
     }
 
     const projects = [
