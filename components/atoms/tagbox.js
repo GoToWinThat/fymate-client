@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { TAG } from "../../styles/colors";
-import { FONT_SIZE_REGULAR } from "../../styles/typography";
 
-const Tagbox = ({ color, text, clickable }) => {
+const Tagbox = ({ color, text, clickable, selectTag }) => {
   const [active, setActive] = useState(false);
 
   const tagClick = () => {
-    if(clickable === true) setActive(!active);
+    if(clickable === true) {
+      setActive(!active);
+      selectTag(text);
+    }
   }
 
   const themeColor = color === undefined ? TAG : color;
@@ -35,14 +37,13 @@ export default Tagbox;
 
 const styles = StyleSheet.create({
   box: {
-    padding: 6,
-    borderWidth: 2,
-    borderRadius: 18,
+    padding: 5,
+    borderWidth: 1.3,
+    borderRadius: 20,
     margin: 5,
   },
   text: {
     marginHorizontal: 10,
-    fontWeight: "bold",
-    fontSize: FONT_SIZE_REGULAR,
+    fontSize: 14,
   },
 });

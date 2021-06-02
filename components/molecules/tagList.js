@@ -1,11 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Tagbox from "../atoms/tagbox";
 
-const TagList = ({ tags, color, title, clickable }) => {
-  const list = tags.map((tag) => (
-    <Tagbox key={tag} text={tag} color={color} clickable={clickable} />
-  ));
+const setTags = (tags) => {
+  console.log("New Tags")
+  let dict = {};
+  tags.map((tag) => (dict[tag] = false));
+  return dict;
+};
+
+const TagList = ({ tags, color, title, clickable}) => {
+
+const [activeTags, setActiveTags] = useState([])
+
+const AddRemoveFromActiveList = (tag) => {
+  let arr = activeTags;
+  if(arr.includes(tag)){
+    const index = arr.indexOf(tag);
+    arr.splice(index, 1);
+  }  else {
+    arr.push(tag);
+  }
+  setActiveTags(arr);
+  console.log(activeTags)
+}
+
+ const list = tags.map((tag) => {
+   return (
+    <Tagbox
+      key={tag}
+      text={tag}
+      color={color}
+      clickable={clickable}
+      selectTag={AddRemoveFromActiveList}
+    />
+  )
+ });
 
   return (
     <View style={styles.tagList}>
@@ -26,6 +56,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   tagList: {
-    marginBottom: 10,
+    paddingHorizontal: 15,
+    paddingTop: 5
   },
 });
