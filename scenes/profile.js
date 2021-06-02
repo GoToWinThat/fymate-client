@@ -11,6 +11,7 @@ export default Profile = ({ navigation }) => {
         navigation.goBack();
     }
 
+    //Employee , Company
     const userOrCompany = {
         type: 'Company',
         title: 'Billennium',
@@ -22,7 +23,7 @@ export default Profile = ({ navigation }) => {
         avatarUrl: "https://cont4.naekranie.pl/media%2Fcache%2Farticle-cover%2F2016%2F07%2Fneytiri-avatar-5824.jpg"
     }
 
-
+    
     const companyContent = userOrCompany.type === "Company" ? 
         <>
             <View style={styles.view}>
