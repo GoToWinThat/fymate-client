@@ -11,7 +11,7 @@ export default Experience = ({ navigation }) => {
     }
 
     const onClickAdd = () =>{
-        console.log("Add exp click")
+        navigation.navigate("EditPortfolio")
     }
 
     const experience = [

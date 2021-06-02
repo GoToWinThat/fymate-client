@@ -11,7 +11,7 @@ export default MyOfferts = ({ navigation }) => {
     }
 
     const onClickAdd = () => {
-        console.log("Add new offert");
+        navigation.navigate("EditOffert");
     }
 
     return (

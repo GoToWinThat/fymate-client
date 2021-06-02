@@ -12,7 +12,7 @@ export default Education = ({ navigation }) => {
     }
 
     const onClickAdd = () => {
-        console.log("Add education");
+        navigation.navigate("EditPortfolio")
     }
     const education = [
         {

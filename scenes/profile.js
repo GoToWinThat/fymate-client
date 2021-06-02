@@ -13,7 +13,7 @@ export default Profile = ({ navigation }) => {
 
     //Employee , Company
     const userOrCompany = {
-        type: 'Employee',
+        type: 'Company',
         title: 'Billennium',
         name: 'Dariusz',
         surname: 'Momot',
