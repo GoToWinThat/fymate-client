@@ -1,6 +1,7 @@
 import { Button,Header, Container, Content, Icon, Text } from 'native-base'
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
+import BaseForm from "../components/molecules/baseform"
 
 export default General = ({ navigation }) => {
     
@@ -14,7 +15,7 @@ export default General = ({ navigation }) => {
                 <TopBar title="General" onClickGoBack={onClickGoBack}/>
             </Header>
             <Content>
-                <Text>There is content of General</Text>
+                <BaseForm placeholders={["Position","Date","Company","About You"]}/>
             </Content>
         </Container>
     )
