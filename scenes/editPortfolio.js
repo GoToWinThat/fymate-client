@@ -2,6 +2,7 @@ import { Button, Container, Content, Header, Icon, Text } from "native-base";
 import React from "react";
 import TopBar from "../components/atoms/topbar";
 import BaseForm from "../components/molecules/baseform";
+import ProjectForm from "../components/molecules/projectform";
 
 export default EditPortfolio = ({ navigation, route }) => {
   const { type } = route.params;
@@ -12,11 +13,11 @@ export default EditPortfolio = ({ navigation, route }) => {
 
   const form =
     type === "project" ? (
-      <BaseForm placeholders={["Name", "Tags", "Tags"]} />
+      <ProjectForm />
     ) : type === "education" ? (
-      <BaseForm placeholders={["School/University", "Localization", "Date","Interesting facts..."]} />
+      <BaseForm placeholders={["School/University", "Localization","Interesting facts..."]} />
     ) : (
-      <BaseForm placeholders={["Position", "Company", "Date","Job description..."]} />
+      <BaseForm placeholders={["Position", "Company","Job description..."]} />
     );
 
   return (

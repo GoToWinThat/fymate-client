@@ -17,7 +17,7 @@ import {
   import TagFilter from "../components/organisms/tagfilter";
   import BenefitsForm from "../components/organisms/benefitsForm";
   import Btn from "../components/atoms/btn";
-  
+  import DateTimePicker from "@react-native-community/datetimepicker";
 
 export default EditOffert = ({ navigation }) => {
     
@@ -35,11 +35,24 @@ export default EditOffert = ({ navigation }) => {
       "No free days",
       "Challanges at work",
     ]);
+    const [show, setShow] = useState(false);
+    const [date, setDate] = useState(new Date(1598051730000));
   
     const addBenefit = (benefit) => {
       let arr = benefites;
       arr.push(benefit);
       setBenefites(arr);
+    };
+
+    const onChange = (event, selectedDate) => {
+      const currentDate = selectedDate || date;
+      setShow(Platform.OS === "ios");
+      setDate(currentDate);
+    };
+  
+    const showDatepicker = () => {
+      setShow(true);
+      console.log(date);
     };
 
     return (
@@ -73,9 +86,7 @@ export default EditOffert = ({ navigation }) => {
             onChangeText={setSolary}
           />
         </View>
-        <View style={styles.input}>
-          <Input placeholder={"Time"} value={time} onChangeText={setTime} />
-        </View>
+        <Btn text={date.toDateString()} onPress={showDatepicker} />
         <ListItem itemDivider>
           <Text>TAGS</Text>
         </ListItem>
@@ -111,6 +122,19 @@ export default EditOffert = ({ navigation }) => {
           />
         </View>
         <Btn text={"Apply"} />
+
+        {show && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode={"date"}
+          is24Hour={true}
+          display="default"
+          onChange={onChange}
+        />
+      )}
+
+
             </Content>
         </Container>
     )

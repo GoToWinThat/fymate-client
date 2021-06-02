@@ -11,25 +11,13 @@ import {
   Button,
 } from "native-base";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import TagList from "./tagList";
 
-export default BaseForm = ({ placeholders, submit }) => {
+export default ProjectForm = ({ submit }) => {
 
   const [first, setFirst] = useState("");
-  const [second, setSecond] = useState("");
   const [desc, setDesc] = useState("");
-  const [show, setShow] = useState(false);
-  const [date, setDate] = useState(new Date(1598051730000));
   
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === "ios");
-    setDate(currentDate);
-  };
-
-  const showDatepicker = () => {
-    setShow(true);
-    console.log(date);
-  };
 
   return (
     <Form>
@@ -38,20 +26,20 @@ export default BaseForm = ({ placeholders, submit }) => {
       </ListItem>
       <View style={styles.input}>
         <Input
-          placeholder={placeholders[0]}
+          placeholder={"Project Name"}
           value={first}
           onChangeText={setFirst}
         />
       </View>
-      <View style={styles.input}>
-        <Input
-          placeholder={placeholders[1]}
-          value={second}
-          onChangeText={setSecond}
-        />
-      </View>
-
-      <Btn text={date.toDateString()} onPress={showDatepicker} />
+      <ListItem itemDivider>
+        <Text>TAGS</Text>
+      </ListItem>
+      <TagList
+        tags={["SQL", "Oracle", "C#", "Python", "Javascript", "Ruby", "Linux"]}
+        color='blue'
+        clickable={true}
+        title={'Tech Stack'}
+      />
 
       <ListItem itemDivider>
         <Text>DESCRIPTION</Text>
@@ -60,24 +48,13 @@ export default BaseForm = ({ placeholders, submit }) => {
         <Textarea
           style={styles.text}
           rowSpan={7}
-          placeholder={placeholders[2]}
+          placeholder={"Project Description..."}
           value={desc}
           onChangeText={setDesc}
         />
       </View>
 
-      {show && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode={"date"}
-          is24Hour={true}
-          display="default"
-          onChange={onChange}
-        />
-      )}
-
-      <Btn text="Submit" onPress={() => submit([first, second, date, desc])} />
+      <Btn text="Submit" onPress={() => submit([first, desc])} />
     </Form>
   );
 };

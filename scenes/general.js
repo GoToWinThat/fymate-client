@@ -15,7 +15,7 @@ export default General = ({ navigation }) => {
                 <TopBar title="General" onClickGoBack={onClickGoBack}/>
             </Header>
             <Content>
-                <BaseForm placeholders={["Position","Date","Company","About You"]}/>
+                <BaseForm placeholders={["Position","Company","About You"]}/>
             </Content>
         </Container>
     )
