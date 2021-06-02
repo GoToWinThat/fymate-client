@@ -1,4 +1,7 @@
-import { Button,Header, Container, Content, Icon, Text } from 'native-base'
+import { Button,Header, Container, Content, Icon, Text , View} from 'native-base'
+import { StyleSheet } from 'react-native'
+import {default as ExperienceList} from '../components/atoms/experience'
+import Btn from '../components/atoms/btn'
 import React from 'react'
 
 export default Experience = ({ navigation }) => {
@@ -7,14 +10,51 @@ export default Experience = ({ navigation }) => {
         navigation.goBack();
     }
 
+    const onClickAdd = () =>{
+        console.log("Add exp click")
+    }
+
+    const experience = [
+        {
+          id: 0,
+          title: "Java Developer",
+          location: "Berlin",
+          company: "Ubisoft",
+          time: "07.12-04.13",
+          url:
+            "https://www.gry-online.pl/galeria/kontakty/344743037.png",
+          description:"Lorem Ipsum some description and some random words. So don't blame me if someone forget to remove this."
+        },
+        {
+          id: 1,
+          title: "Java Developer",
+          location: "Berlin",
+          company: "Ubisoft",
+          time: "07.12-04.13",
+          url:
+            "https://www.gry-online.pl/galeria/kontakty/344743037.png",
+          description:"Lorem Ipsum some description and some random words. So don't blame me if someone forget to remove this."
+        },
+      ]
+
     return (
         <Container>
             <Header>
                 <TopBar title="Experience" onClickGoBack={onClickGoBack}/>
             </Header>
             <Content>
-                <Text>There is content of Experience  TODO: add nav to edit experience screen</Text>
+                <ExperienceList experience={experience}/>
+                <View style={styles.btnView}>
+                    <Btn icon="add" text="Add New" onPress={onClickAdd}/>
+                </View>
             </Content>
         </Container>
     )
 }
+
+const styles = StyleSheet.create({
+    btnView:{
+        paddingVertical: 20,
+        paddingHorizontal: 10
+    }
+})
