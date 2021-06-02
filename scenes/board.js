@@ -9,8 +9,8 @@ import Searchbar from '../components/molecules/searchbar'
 
 export default Board = ({ route, navigation }) => {
 
-  //State for changing content list /User /Company
-  const [activePage, setActivePage] = useState('User');
+  //State for changing content list /Users /Company
+  const [activePage, setActivePage] = useState('Users');
 
 
   //Put in props after create list of offert
@@ -42,6 +42,7 @@ export default Board = ({ route, navigation }) => {
   const onClickShowTagList = () => {
 
   }
+
 
   return (
     <Container >

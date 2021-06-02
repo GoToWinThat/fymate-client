@@ -134,14 +134,6 @@ const details = {
             title={accountInfo.firstName + " " + accountInfo.lastName}
             job="UX/UI Designer"
         />
-        {/* <ImgProfile
-          title={accountInfo.firstName + " " + accountInfo.lastName}
-          url="https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png"
-          solary='8000 - 9000 PLN'
-          location='Warsaw'
-          size='2444'
-          company='Ubisoft'
-        /> */}
 
         <About desciption={"Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi"}/>
         <View style={{padding: 20}}>

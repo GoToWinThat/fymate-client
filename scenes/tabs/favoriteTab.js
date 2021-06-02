@@ -11,8 +11,9 @@ export default FavoriteTab = ({ navigation }) => {
     
     return (
         <Stack.Navigator headerMode='none'>
-            <Stack.Screen name="Favorite" component={Favorite}/>
             <Stack.Screen name="Offert" component={Offert}/>
+
+            <Stack.Screen name="Favorite" component={Favorite}/>
             <Stack.Screen name="Filters" component={Filters}/>
         </Stack.Navigator>
     )
