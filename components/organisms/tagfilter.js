@@ -1,34 +1,40 @@
 import React from "react";
 import { View } from "native-base";
-import { StyleSheet } from "react-native";
 import TagList from "../molecules/tagList";
 
 export default TagFilter = () => {
-  const tech = [
-    "React",
-    "SQL",
-    "Python",
-    "Java",
-    "Angular",
-    "HTML",
-    "Ruby",
-    "JIRA",
+
+  const tagsArr = [
+    ["SQL", "Oracle", "C#", "Python", "Javascript", "Ruby", "Linux"],
+    ["Full", "Office", "Partly"],
+    ["Junior", "Mid", "Senior"],
+    ["1/4", "1/8", "1/2", "Full"],
+    ["B2B", "Job"],
   ];
-  const exp = ["Junior", "Mid", "Senior"];
-  const remote = ["Remote", "Partly Remote", "Office"];
-  const time = ["1/8", "1/4", "1/2", "Full"];
+  const colors = ["blue", "purple", "green", "orange", "red"];
+  const labels = [
+    "Tech Stack",
+    "Work Remote",
+    "Experience",
+    "Work Time",
+    "Agreement",
+  ];
+  const allTags = tagsArr.map((list, index) => {
+    return (
+      <TagList
+        key={index}
+        tags={list}
+        color={colors[index]}
+        clickable={true}
+        title={labels[index]}
+      />
+    );
+  });
 
   return (
-    <View style={styles.filters}>
-      <TagList tags={tech} color="blue" title="Technology" />
-      <TagList tags={exp} color="green" title="Experince" />
-      <TagList tags={time} color="red" title="Working Time" />
-      <TagList tags={remote} color="purple" title="Location" />
+    <View>
+      {allTags}
     </View>
   );
 };
-const styles = StyleSheet.create({
-  filters: {
-    paddingHorizontal: 10,
-  },
-});
+

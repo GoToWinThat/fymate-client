@@ -4,38 +4,12 @@ import { StyleSheet } from "react-native";
 import TopBar from "../components/atoms/topbar";
 import Segmentbar from "../components/molecules/segmentbar";
 import TagList from "../components/molecules/tagList";
+import TagFilter from "../components/organisms/tagfilter";
 
 export default Filters = ({ navigation }) => {
   const onClickGoBack = () => {
     navigation.goBack();
   };
-
-  const tagsArr = [
-    ["SQL", "Oracle", "C#", "Python", "Javascript", "Ruby", "Linux"],
-    ["Full", "Office", "Partly"],
-    ["Junior", "Mid", "Senior"],
-    ["1/4", "1/8", "1/2", "Full"],
-    ["B2B", "Job"],
-  ];
-  const colors = ["blue", "purple", "green", "orange", "red"];
-  const labels = [
-    "Tech Stack",
-    "Work Remote",
-    "Experience",
-    "Work Time",
-    "Agreement",
-  ];
-  const allTags = tagsArr.map((list, index) => {
-    return (
-      <TagList
-        key={index}
-        tags={list}
-        color={colors[index]}
-        clickable={true}
-        title={labels[index]}
-      />
-    );
-  });
 
   return (
     <Container>
@@ -47,7 +21,7 @@ export default Filters = ({ navigation }) => {
             <Text style={styles.title}>Range:</Text>
             <Segmentbar/>
           </View>
-          {allTags}
+          <TagFilter/>
           </Content>
     </Container>
   );
