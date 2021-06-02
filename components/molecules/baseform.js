@@ -8,14 +8,31 @@ import {
   Textarea,
   Input,
   Form,
+  Button
 } from "native-base";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default BaseForm = ({ placeholders, submit }) => {
 
+  const [date, setDate] = useState(new Date(1598051730000));
   const [first, setFirst] = useState("");
   const [second, setSecond] = useState("");
   const [third, setThird] = useState("");
   const [desc, setDesc] = useState("");
+  const [show, setShow] = useState(false);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+  };
+
+  const showDatepicker = () => {
+    setShow(true);
+    console.log(date)
+  };
+
+
 
   return (
     <Form>
@@ -36,13 +53,8 @@ export default BaseForm = ({ placeholders, submit }) => {
           onChangeText={setSecond}
         />
       </View>
-      <View style={styles.input}>
-        <Input
-          placeholder={placeholders[2]}
-          value={third}
-          onChangeText={setThird}
-        />
-      </View>
+
+      <Btn text={date.toDateString()} onPress={showDatepicker}/>
 
       <ListItem itemDivider>
         <Text>DESCRIPTION</Text>
@@ -56,6 +68,22 @@ export default BaseForm = ({ placeholders, submit }) => {
           onChangeText={setDesc}
         />
       </View>
+
+      {show && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode={'date'}
+          is24Hour={true}
+          display="default"
+          onChange={onChange}
+        />
+      )}
+
+
+
+
+
       <Btn text="Submit" onPress={() => submit([first,second,third,desc])}/>
     </Form>
   );
