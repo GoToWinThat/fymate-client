@@ -11,6 +11,7 @@ export default OfferList = ({ list, onClick }) => {
       payment={user.payment}
       location={user.location}
       url={user.url}
+      time={user.time}
       onClick={onClick}
     />
   ));

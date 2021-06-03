@@ -9,9 +9,9 @@ export default Contact = ({contacts, color}) => {
     return (
         <View>
             <Text style={styles.title}>Contact</Text>
-            {contacts.map((e, key) => {
-                return <ContactItem key={key} description={e.description} icon={e.icon} color={color}/>
-            })}
+            {contacts.phone != undefined ? <ContactItem description={contacts.phone} icon="call" color={color}/> : null}
+            {contacts.mail != undefined ? <ContactItem description={contacts.mail} icon="mail-sharp" color={color}/> : null}
+            {contacts.github != undefined ? <ContactItem description={contacts.github} icon="logo-github" color={color}/> : null}
         </View>
     )
 }

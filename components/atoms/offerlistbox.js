@@ -28,6 +28,7 @@ export default OfferListBox = ({
           company={company}
           solary={payment}
           location={location}
+          time={time}
         />
       </ListItem>
     </TouchableOpacity>

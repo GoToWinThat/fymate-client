@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import { Text, View } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 
-const TitleInfo = ({ title, company, solary, location, email, web, phone }) => {
+const TitleInfo = ({ title, company, solary, location, email, web, phone, time }) => {
   const iconSize = 18;
   const color = "gray";
 
@@ -80,6 +80,18 @@ const TitleInfo = ({ title, company, solary, location, email, web, phone }) => {
             color={color}
           />
           <Text style={styles.text}>{location}</Text>
+        </View>
+      ) : null}
+
+      {time !== undefined ? (
+        <View style={styles.row}>
+          <Ionicons
+            style={styles.icon}
+            name="time-outline"
+            size={iconSize}
+            color={color}
+          />
+          <Text style={styles.text}>{time}</Text>
         </View>
       ) : null}
     </View>

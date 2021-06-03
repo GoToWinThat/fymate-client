@@ -30,24 +30,11 @@ export default Account = ({ route, navigation }) => {
   //   )
   // }, []);
 
-  const contacts = [
-    {
-      icon: "call",
-      description: "213 533 213",
-    },
-    {
-      icon: "mail-sharp",
-      description: "wieczorek@gmail.com",
-    },
-    {
-      icon: "logo-facebook",
-      description: "wieczorek Wieczorem",
-    },
-    {
-      icon: "logo-linkedin",
-      description: "Tomek Wieczorek",
-    },
-  ];
+  const contacts = {
+    phone: "+48 517 952 221",
+    mail: "michal.wieczorek@gmail.com",
+    github: "michwiecz.github.com"
+  };
 
   const experience = [
     {
