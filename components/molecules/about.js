@@ -1,6 +1,8 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import { View, Text } from 'react-native';
+import {FONT_SIZE_LABEL} from '../../styles/typography'
+import {ELEMENT_PADDING,SCREEN_PADDING} from '../../styles/spacing'
 
 export default About = ({desciption}) => {
     return (
@@ -13,13 +15,14 @@ export default About = ({desciption}) => {
 
 const styles = StyleSheet.create({
     aboutView: {
-        padding: 20,
+        paddingVertical: ELEMENT_PADDING,
+        paddingHorizontal: SCREEN_PADDING
     },
     title: {
-        fontSize: 22,
+        fontSize: FONT_SIZE_LABEL,
         fontWeight: 'bold',
     },
     desciptionText: {
-        fontSize: 16,
+        // fontSize: 16,
     }
 })

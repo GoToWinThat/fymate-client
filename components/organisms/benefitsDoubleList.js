@@ -2,7 +2,8 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import BenefitsList from '../molecules/benefitsList'
 import { Icon } from 'native-base'
-
+import {SCREEN_PADDING, ELEMENT_PADDING} from '../../styles/spacing'
+import {FONT_SIZE_LABEL} from '../../styles/typography'
 export default BenefitsDoubleList = ({benefits}) => {
 
     //Split array into 2 
@@ -25,11 +26,12 @@ const styles = StyleSheet.create({
     view: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        paddingVertical: ELEMENT_PADDING
     },
     title: {
-        fontSize: 24,
+        fontSize: FONT_SIZE_LABEL,
         fontWeight: 'bold',
-        paddingLeft: 12,
+        paddingLeft: SCREEN_PADDING,
     }
 })

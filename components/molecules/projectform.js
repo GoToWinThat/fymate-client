@@ -8,10 +8,9 @@ import {
   Textarea,
   Input,
   Form,
-  Button,
 } from "native-base";
-import DateTimePicker from "@react-native-community/datetimepicker";
 import TagList from "./tagList";
+import {SCREEN_PADDING} from '../../styles/spacing'
 
 export default ProjectForm = ({ submit }) => {
 
@@ -76,7 +75,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderColor: "gray",
     marginVertical: 10,
-    marginHorizontal: 20,
+    marginHorizontal: SCREEN_PADDING,
     fontSize: 10,
   },
   textArea: {

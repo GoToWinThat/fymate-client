@@ -1,9 +1,8 @@
 import React from "react";
 import { List } from "native-base";
 import OfferListBox from "../atoms/offerlistbox";
-import TitleInfo from '../atoms/titleinfo'
 
-export default OfferList = ({list}) => {
+export default OfferList = ({ list, onClick }) => {
   const offerList = list.map((user) => (
     <OfferListBox
       key={user.id}
@@ -12,6 +11,7 @@ export default OfferList = ({list}) => {
       payment={user.payment}
       location={user.location}
       url={user.url}
+      onClick={onClick}
     />
   ));
 

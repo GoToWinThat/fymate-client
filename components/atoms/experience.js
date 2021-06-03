@@ -1,16 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import OfferListBox from '../atoms/offerlistbox';
+import {FONT_SIZE_LABEL} from '../../styles/typography'
+import {ELEMENT_PADDING,SCREEN_PADDING} from '../../styles/spacing'
 
 //Add company item
 export default Experience = ({experience}) => {
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.title}>Experience</Text>
-            {experience.map((e) => {
+            {experience.map((e, index) => {
                 return (
                     <View>
                         <OfferListBox
+                            key={index}
                             title={e.title}
                             company={e.company}
                             url={e.url}
@@ -26,13 +29,16 @@ export default Experience = ({experience}) => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        paddingVertical: ELEMENT_PADDING
+    },
     title: {
-        fontSize: 22,
+        fontSize: FONT_SIZE_LABEL,
         fontWeight: 'bold',
-        paddingLeft: 20,
+        paddingLeft: SCREEN_PADDING,
     },
     description: {
-        textAlign: 'center',
-        padding: 20,
+        padding: 10,
+        paddingLeft: SCREEN_PADDING,
     }
 })

@@ -26,7 +26,7 @@ const Tagbox = ({ color, text, clickable, selectTag }) => {
   ];
 
   return (
-    <TouchableOpacity onPress={() => tagClick()}>
+    <TouchableOpacity onPress={() => tagClick()} activeOpacity={1}>
       <View style={boxStyle}>
         <Text style={textStyle}>{text}</Text>
       </View>

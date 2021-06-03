@@ -11,15 +11,17 @@ import {
   Button,
 } from "native-base";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import {SCREEN_PADDING} from '../../styles/spacing'
 
 export default BaseForm = ({ placeholders, submit }) => {
 
   const [first, setFirst] = useState("");
   const [second, setSecond] = useState("");
   const [desc, setDesc] = useState("");
-  const [show, setShow] = useState(false);
   const [date, setDate] = useState(new Date(1598051730000));
-  
+
+  const [show, setShow] = useState(false);
+
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === "ios");
@@ -88,9 +90,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   text: {
-    fontSize: 17,
     paddingVertical: 20,
     width: "100%",
+    fontSize: 17,
   },
   input: {
     flexDirection: "row",
@@ -99,8 +101,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderColor: "gray",
     marginVertical: 10,
-    marginHorizontal: 20,
-    fontSize: 10,
+    marginHorizontal: SCREEN_PADDING,
+    fontSize: 5,
   },
   textArea: {
     flexDirection: "row",
@@ -108,8 +110,8 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     padding: 20,
     borderColor: "gray",
-    marginVertical: 10,
-    marginHorizontal: 20,
+    marginVertical: 20,
+    marginHorizontal: SCREEN_PADDING,
     width: Dimensions.get("window").width - 40,
   },
 });

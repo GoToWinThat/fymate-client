@@ -6,9 +6,9 @@ import Benefit from '../atoms/benefit'
 export default BenefitsList = ({benefits}) => {
     return (
         <View>
-           {benefits.map((e) =>{
+           {benefits.map((e, index) =>{
                return (
-                   <Benefit text={e}/>
+                   <Benefit key={index} text={e}/>
                )
            })}
         </View>

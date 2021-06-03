@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Tagbox from "../atoms/tagbox";
-
-const setTags = (tags) => {
-  console.log("New Tags")
-  let dict = {};
-  tags.map((tag) => (dict[tag] = false));
-  return dict;
-};
+import {FONT_SIZE_LABEL} from '../../styles/typography'
+import {SCREEN_PADDING} from '../../styles/spacing'
 
 const TagList = ({ tags, color, title, clickable}) => {
 
@@ -49,14 +44,14 @@ export default TagList;
 const styles = StyleSheet.create({
   list: {
     flexDirection: "row",
-    flexWrap: "wrap",
+    flexWrap: "wrap"
   },
   title: {
-    fontSize: 22,
+    fontSize: FONT_SIZE_LABEL,
     fontWeight: "bold",
   },
   tagList: {
-    paddingHorizontal: 15,
-    paddingTop: 5
+    paddingVertical: 5,
+    paddingHorizontal: SCREEN_PADDING
   },
 });

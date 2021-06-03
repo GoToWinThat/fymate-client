@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import ContactItem from '../molecules/contactItem';
+import {FONT_SIZE_LABEL} from '../../styles/typography'
+import {ELEMENT_PADDING,SCREEN_PADDING} from '../../styles/spacing'
 
 //Add contact item
 export default Contact = ({contacts, color}) => {
@@ -16,8 +18,9 @@ export default Contact = ({contacts, color}) => {
 
 const styles = StyleSheet.create({
     title: {
-        paddingLeft: 20,
-        fontSize: 22,
+        paddingHorizontal: SCREEN_PADDING,
+        paddingVertical: ELEMENT_PADDING ,
+        fontSize: FONT_SIZE_LABEL,
         fontWeight: 'bold',
     },
 })

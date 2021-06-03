@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import Detail from '../atoms/detail'
+import {FONT_SIZE_LABEL} from '../../styles/typography'
+import {ELEMENT_PADDING,SCREEN_PADDING} from '../../styles/spacing'
 
 //Example Json :
 // const details = {
@@ -34,11 +36,12 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        paddingVertical: ELEMENT_PADDING,
     },
     title: {
-        paddingLeft: '6%',
-        fontSize: 24,
-        fontWeight: 'bold'
+        fontSize: FONT_SIZE_LABEL,
+        fontWeight: 'bold',
+        paddingHorizontal: SCREEN_PADDING
     }
 })

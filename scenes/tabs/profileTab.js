@@ -5,7 +5,6 @@ import Profile from '../profile'
 import Account from '../account'
 import General from '../general'
 import Experience from '../experience'
-import EditExperience from '../editExperience'
 import Projects from '../projects'
 import Education from '../education'
 import Filters from '../filters'
@@ -24,7 +23,6 @@ export default ProfileTab = ({ navigation }) => {
             <Stack.Screen name="Account" component={Account}/>
             <Stack.Screen name="General" component={General}/>
             <Stack.Screen name="Experience" component={Experience}/>
-            <Stack.Screen name="EditExperience" component={EditExperience}/>
             <Stack.Screen name="Projects" component={Projects}/>
             <Stack.Screen name="Education" component={Education}/>
             <Stack.Screen name="Filters" component={Filters}/>

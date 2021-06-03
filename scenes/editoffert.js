@@ -1,67 +1,67 @@
 import {
-    Button,
-    Container,
-    Content,
-    Header,
-    Icon,
-    Text,
-    View,
-    ListItem,
-    Textarea,
-    Input,
-    Form,
-  } from "native-base";
-  import React, { useState } from "react";
-  import TopBar from "../components/atoms/topbar";
-  import { Dimensions, StyleSheet } from "react-native";
-  import TagFilter from "../components/organisms/tagfilter";
-  import BenefitsForm from "../components/organisms/benefitsForm";
-  import Btn from "../components/atoms/btn";
-  import DateTimePicker from "@react-native-community/datetimepicker";
+  Button,
+  Container,
+  Content,
+  Header,
+  Icon,
+  Text,
+  View,
+  ListItem,
+  Textarea,
+  Input,
+  Form,
+} from "native-base";
+import React, { useState } from "react";
+import TopBar from "../components/atoms/topbar";
+import { Dimensions, StyleSheet } from "react-native";
+import TagFilter from "../components/organisms/tagfilter";
+import BenefitsForm from "../components/organisms/benefitsForm";
+import Btn from "../components/atoms/btn";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import {SCREEN_PADDING} from '../styles/spacing'
 
 export default EditOffert = ({ navigation }) => {
-    
-    const onClickGoBack = () => {
-        navigation.goBack();
-    }
+  const onClickGoBack = () => {
+    navigation.goBack();
+  };
 
-    const [position, setPosition] = useState("");
-    const [place, setPlace] = useState("");
-    const [solary, setSolary] = useState("");
-    const [time, setTime] = useState("");
-    const [desc, setDesc] = useState("");
-    const [howTo, setHowTo] = useState("");
-    const [benefites, setBenefites] = useState([
-      "No free days",
-      "Challanges at work",
-    ]);
-    const [show, setShow] = useState(false);
-    const [date, setDate] = useState(new Date(1598051730000));
-  
-    const addBenefit = (benefit) => {
-      let arr = benefites;
-      arr.push(benefit);
-      setBenefites(arr);
-    };
+  const [position, setPosition] = useState("");
+  const [place, setPlace] = useState("");
+  const [solary, setSolary] = useState("");
+  const [time, setTime] = useState("");
+  const [desc, setDesc] = useState("");
+  const [howTo, setHowTo] = useState("");
+  const [benefites, setBenefites] = useState([
+    "No free days",
+    "Challanges at work",
+  ]);
+  const [show, setShow] = useState(false);
+  const [date, setDate] = useState(new Date(1598051730000));
 
-    const onChange = (event, selectedDate) => {
-      const currentDate = selectedDate || date;
-      setShow(Platform.OS === "ios");
-      setDate(currentDate);
-    };
-  
-    const showDatepicker = () => {
-      setShow(true);
-      console.log(date);
-    };
+  const addBenefit = (benefit) => {
+    let arr = benefites;
+    arr.push(benefit);
+    setBenefites(arr);
+  };
 
-    return (
-        <Container>
-            <Header>
-                <TopBar title="Edit Offert" onClickGoBack={onClickGoBack}/>
-            </Header>
-            <Content>
-            <ListItem itemDivider>
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === "ios");
+    setDate(currentDate);
+  };
+
+  const showDatepicker = () => {
+    setShow(true);
+    console.log(date);
+  };
+
+  return (
+    <Container>
+      <Header>
+        <TopBar title="Edit Offert" onClickGoBack={onClickGoBack} />
+      </Header>
+      <Content>
+        <ListItem itemDivider>
           <Text>GENERAL</Text>
         </ListItem>
 
@@ -124,21 +124,19 @@ export default EditOffert = ({ navigation }) => {
         <Btn text={"Apply"} />
 
         {show && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode={"date"}
-          is24Hour={true}
-          display="default"
-          onChange={onChange}
-        />
-      )}
-
-
-            </Content>
-        </Container>
-    )
-}
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={date}
+            mode={"date"}
+            is24Hour={true}
+            display="default"
+            onChange={onChange}
+          />
+        )}
+      </Content>
+    </Container>
+  );
+};
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
@@ -157,8 +155,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderColor: "gray",
     marginVertical: 10,
-    marginHorizontal: 20,
-    fontSize: 10,
+    marginHorizontal: SCREEN_PADDING,
+    fontSize: 5,
   },
   textArea: {
     flexDirection: "row",
@@ -167,7 +165,7 @@ const styles = StyleSheet.create({
     padding: 20,
     borderColor: "gray",
     marginVertical: 10,
-    marginHorizontal: 20,
+    marginHorizontal: SCREEN_PADDING,
     width: Dimensions.get("window").width - 40,
   },
 });

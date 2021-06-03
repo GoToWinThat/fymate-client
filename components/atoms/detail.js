@@ -16,9 +16,9 @@ const styles = StyleSheet.create({
     view: {
         flexDirection: 'row',
         alignItems: 'center',
-        margin: 6,
+        margin: 5,
     },
     text: {
-        paddingLeft: "2%",
+        paddingLeft: 10,
     }
 })

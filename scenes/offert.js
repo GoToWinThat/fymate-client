@@ -36,9 +36,10 @@ export default Offert = ({ navigation }) => {
                 <ImgInfo 
                     solary='8000 - 9000 PLN'
                     location="Warsaw"
-                    url="https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png"
-                    title="Junior Front-end Developer"
-                    job="UX/UI Designer"
+                    url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCtJrLLTxjKNbvNxJGA3Id6_at43-0cWYglUKoAukqoyqTnv_KwnX34tDM2rISSZchc70&usqp=CAU"
+                    title="Front-end Developer"
+                    company="IBM corp."
+                    size={30000}
                 />
                 <About desciption={howtoapply}/>
                 <TagList tags={['C#', "JavaScript", "C++", "React"]} title={"Tech Stack"} color={'blue'}/>

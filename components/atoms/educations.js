@@ -1,11 +1,12 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import OfferListBox from '../atoms/offerlistbox';
+import {FONT_SIZE_LABEL} from '../../styles/typography'
+import {ELEMENT_PADDING,SCREEN_PADDING} from '../../styles/spacing'
 
-//add educations item
 export default Educations = ({education}) => {
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.title}>Education</Text>
             {education.map((e) => {
                 return <OfferListBox
@@ -21,9 +22,12 @@ export default Educations = ({education}) => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        paddingVertical: ELEMENT_PADDING
+    },
     title: {
-        fontSize: 22,
+        fontSize: FONT_SIZE_LABEL,
         fontWeight: 'bold',
-        paddingLeft: 20,
+        paddingLeft: SCREEN_PADDING,
     }
 })

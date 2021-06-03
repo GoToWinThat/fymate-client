@@ -1,11 +1,13 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import TagList from '../molecules/tagList'
+import {FONT_SIZE_LABEL} from '../../styles/typography'
+import {ELEMENT_PADDING,SCREEN_PADDING} from '../../styles/spacing'
 
 //Add project item
 export default Projects = ({projects}) => {
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.title}>Projects</Text>
             {projects.map((e) => {
                 return(
@@ -20,15 +22,18 @@ export default Projects = ({projects}) => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        paddingVertical: ELEMENT_PADDING
+    },
     title: {
-        fontSize: 22,
+        fontSize: FONT_SIZE_LABEL,
         fontWeight: 'bold',
-        paddingLeft: 20,
+        paddingLeft: SCREEN_PADDING,
     },
     view: {
-        padding:20,
+        paddingVertical: ELEMENT_PADDING
     },
     description: {
-        textAlign: 'center',
+        paddingHorizontal: SCREEN_PADDING,
     }
 })

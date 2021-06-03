@@ -1,25 +1,36 @@
 import React from "react";
-import { Thumbnail, ListItem, Text } from "native-base";
-import { StyleSheet, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import TitleInfo from '../atoms/titleinfo';
+import { Thumbnail, ListItem } from "native-base";
+import { StyleSheet } from "react-native";
+import TitleInfo from "../atoms/titleinfo";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default OfferListBox = ({ title, location, payment, url, company, time }) => {
+export default OfferListBox = ({
+  title,
+  location,
+  payment,
+  url,
+  company,
+  time,
+  onClick,
+}) => {
   const mode = company === undefined ? false : true;
+  const navigateToOffer = onClick === undefined ? null : onClick;
 
   return (
-    <ListItem>
-      <Thumbnail
-        source={{ uri: url }}
-        style={mode ? styles.thumbnailSquare : styles.thumbnail}
-      />
-        <TitleInfo 
+    <TouchableOpacity onPress={navigateToOffer} activeOpacity={0.5}>
+      <ListItem>
+        <Thumbnail
+          source={{ uri: url }}
+          style={mode ? styles.thumbnailSquare : styles.thumbnail}
+        />
+        <TitleInfo
           title={title}
           company={company}
           solary={payment}
           location={location}
         />
-    </ListItem>
+      </ListItem>
+    </TouchableOpacity>
   );
 };
 const styles = StyleSheet.create({
