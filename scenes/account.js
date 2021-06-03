@@ -30,6 +30,9 @@ export default Account = ({ route, navigation }) => {
   //   )
   // }, []);
 
+  //Employee , Company
+  const userOrCompany = "Company"
+
   const contacts = {
     phone: "+48 517 952 221",
     mail: "michal.wieczorek@gmail.com",
@@ -106,11 +109,9 @@ export default Account = ({ route, navigation }) => {
     jobtime: "1/4 etatu",
   };
 
-  //Tag list or  tech stack ? ?  tag list is clickable
-  return (
-    <Container>
-      <Content>
-        <Header>
+  const userContent = userOrCompany === "Employee" ? 
+    <>
+      <Header>
           <TopBar
             onClickGoBack={onClickGoBack}
             title="Account"
@@ -144,6 +145,57 @@ export default Account = ({ route, navigation }) => {
         <ProjectList projects={projects} />
         <EducationList education={education} />
         <Contact contacts={contacts} color="black" />
+    </> : null
+
+  const companyContent = userOrCompany === "Company" ? 
+  <>
+    <Header>
+      <TopBar
+        onClickGoBack={onClickGoBack}
+        title="Company"
+        rightIcon="heart"
+        onClickRightIcon={() => console.log("Added to favorites !! TODO")}
+      />
+    </Header>
+    <ImgInfo
+      location="Warsaw, Kraków, Poznań"
+      company="1500"
+      url="https://www.gry-online.pl/galeria/kontakty/344743037.png"
+      title="Ubisoft"
+    />
+
+    <About
+      title="About"
+      desciption={
+        "Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi"
+      }
+    />
+
+    <About
+      title="Our Company"
+      desciption={
+        "Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi"
+      }
+      img="https://i.insider.com/5faede1a402d49001924ee13?format=jpeg"
+      desciption2={
+        "Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi"
+      }
+    />
+
+    <TagList
+      tags={["C#", "JavaScript", "C++"]}
+      title={"Tech Stack"}
+      color={"blue"}
+    />
+
+    <Contact contacts={contacts} color="black" />
+  </> : null
+  //Tag list or  tech stack ? ?  tag list is clickable
+  return (
+    <Container>
+      <Content>
+        {userContent}
+        {companyContent}
       </Content>
     </Container>
   );
