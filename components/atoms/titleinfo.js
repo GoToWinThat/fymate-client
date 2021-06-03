@@ -3,13 +3,6 @@ import { StyleSheet } from "react-native";
 import { Text, View } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 
-// email
-// phone
-// location
-// web
-// solary
-// company
-
 const TitleInfo = ({ title, company, solary, location, email, web, phone }) => {
   const iconSize = 18;
   const color = "gray";

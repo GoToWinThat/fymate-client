@@ -1,12 +1,11 @@
 import { Button, Container, Content, Header, Icon, Text } from 'native-base'
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
-import About from '../components/molecules/about'
+import About from '../components/atoms/about'
 import TagList from '../components/molecules/tagList'
 import DetailsList from '../components/molecules/detailList'
 import BenefitsDoubleList from '../components/organisms/benefitsDoubleList'
-import HowToApply from '../components/atoms/howtoapply'
-import ImgInfo from '../components/atoms/imginfo'
+import ImgInfo from '../components/atoms/imgInfo'
 
 export default Offert = ({ navigation }) => {
     
@@ -41,11 +40,11 @@ export default Offert = ({ navigation }) => {
                     company="IBM corp."
                     size={30000}
                 />
-                <About desciption={howtoapply}/>
+                <About title="About" desciption={howtoapply}/>
                 <TagList tags={['C#', "JavaScript", "C++", "React"]} title={"Tech Stack"} color={'blue'}/>
                 <DetailsList details={details}/>
                 <BenefitsDoubleList benefits={benefits}/>
-                <HowToApply desciption={howtoapply}/>
+                <About title="How To Aplly" desciption={howtoapply}/>
 
             </Content>
         </Container>

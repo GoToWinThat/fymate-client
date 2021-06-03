@@ -1,7 +1,7 @@
 import { Container, Content, Header } from "native-base";
 import React from "react";
 import TopBar from "../components/atoms/topbar";
-import Offerlist from "../components/molecules/offerlist";
+import Offerlist from "../components/molecules/offerList";
 
 export default Favorite = ({ navigation }) => {
   const accountType = "Company"; //Employee , Company

@@ -1,6 +1,6 @@
 import { Button,Header, Container, Content, Icon, Text , View} from 'native-base'
 import { StyleSheet } from 'react-native'
-import {default as ExperienceList} from '../components/atoms/experience'
+import ExperienceList from '../components/organisms/experienceList'
 import Btn from '../components/atoms/btn'
 import React from 'react'
 

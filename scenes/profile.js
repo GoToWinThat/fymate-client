@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
 import Avatar from '../components/atoms/avatar'
-import TitleInfo from '../components/atoms/titleinfo'
+import TitleInfo from '../components/atoms/titleInfo'
 
 export default Profile = ({ navigation }) => {
     
@@ -13,7 +13,7 @@ export default Profile = ({ navigation }) => {
 
     //Employee , Company
     const userOrCompany = {
-        type: 'Company',
+        type: 'Employee',
         title: 'Billennium',
         name: 'Dariusz',
         surname: 'Momot',

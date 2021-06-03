@@ -1,6 +1,6 @@
 import { Button, Header ,Container, Content, Icon, Text, View } from 'native-base'
 import { StyleSheet } from 'react-native'
-import {default as EducationList} from '../components/atoms/educations'
+import EducationList from '../components/organisms/educationList'
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
 import Btn from '../components/atoms/btn'

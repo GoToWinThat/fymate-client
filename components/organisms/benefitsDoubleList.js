@@ -1,9 +1,9 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import BenefitsList from '../molecules/benefitsList'
-import { Icon } from 'native-base'
 import {SCREEN_PADDING, ELEMENT_PADDING} from '../../styles/spacing'
 import {FONT_SIZE_LABEL} from '../../styles/typography'
+
 export default BenefitsDoubleList = ({benefits}) => {
 
     //Split array into 2 

@@ -5,7 +5,7 @@ import {FONT_SIZE_LABEL} from '../../styles/typography'
 import {ELEMENT_PADDING,SCREEN_PADDING} from '../../styles/spacing'
 
 //Add project item
-export default Projects = ({projects}) => {
+export default ProjectList = ({projects}) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Projects</Text>

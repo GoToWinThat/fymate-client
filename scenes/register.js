@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as firebase from 'firebase';
 import { useState } from "react";
-import Segmentbar from '../components/molecules/segmentbar';
+import Segmentbar from '../components/atoms/segmentbar';
 import Btn from '../components/atoms/btn'
 
 //TODO: Repeat password UI state handling

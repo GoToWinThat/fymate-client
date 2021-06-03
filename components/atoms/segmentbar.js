@@ -1,4 +1,4 @@
-import { Button, Header, Segment } from 'native-base'
+import { Button, Segment } from 'native-base'
 import React, {useState} from 'react'
 import { Text, StyleSheet } from 'react-native'
 

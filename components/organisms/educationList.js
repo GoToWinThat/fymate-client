@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import OfferListBox from '../atoms/offerlistbox';
+import OfferListBox from '../atoms/offerListBox';
 import {FONT_SIZE_LABEL} from '../../styles/typography'
 import {ELEMENT_PADDING,SCREEN_PADDING} from '../../styles/spacing'
 
-export default Educations = ({education}) => {
+export default EducationList = ({education}) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Education</Text>

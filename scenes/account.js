@@ -1,16 +1,14 @@
 import { Container, Content, Header } from "native-base";
-import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
-import ImgProfile from "../components/atoms/imgprofile";
-import About from "../components/molecules/about";
-import Experience from "../components/atoms/experience";
-import Projects from "../components/atoms/projects";
-import Educations from "../components/atoms/educations";
-import Contact from "../components/atoms/contact";
+import React from "react";
+import About from "../components/atoms/about";
+import ExperienceList from "../components/organisms/experienceList";
+import ProjectList from "../components/organisms/projectList";
+import EducationList from "../components/organisms/educationList";
+import Contact from "../components/molecules/contact";
 import TagList from "../components/molecules/tagList";
 import DetailsList from "../components/molecules/detailList";
 import TopBar from "../components/atoms/topbar";
-import ImgInfo from "../components/atoms/imginfo";
+import ImgInfo from "../components/atoms/imgInfo";
 import * as firebase from "firebase";
 
 export default Account = ({ route, navigation }) => {
@@ -142,6 +140,7 @@ export default Account = ({ route, navigation }) => {
         />
 
         <About
+          title="About"
           desciption={
             "Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi"
           }
@@ -154,9 +153,9 @@ export default Account = ({ route, navigation }) => {
         />
 
         <DetailsList details={details} />
-        <Experience experience={experience} />
-        <Projects projects={projects} />
-        <Educations education={education} />
+        <ExperienceList experience={experience} />
+        <ProjectList projects={projects} />
+        <EducationList education={education} />
         <Contact contacts={contacts} color="black" />
       </Content>
     </Container>

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
 import Btn from '../components/atoms/btn'
-import Offerlist from '../components/molecules/offerlist'
+import Offerlist from '../components/molecules/offerList'
 
 export default MyOfferts = ({ navigation }) => {
     

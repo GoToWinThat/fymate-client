@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Header, Content } from "native-base";
 import TopBar from "../components/atoms/topbar";
-import Searchbar from "../components/molecules/searchbar";
-import Offerlist from "../components/molecules/offerlist";
+import Searchbar from "../components/atoms/searchbar";
+import Offerlist from "../components/molecules/offerList";
 
 export default Board = ({ navigation }) => {
 

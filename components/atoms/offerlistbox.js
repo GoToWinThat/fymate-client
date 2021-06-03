@@ -1,7 +1,7 @@
 import React from "react";
 import { Thumbnail, ListItem } from "native-base";
 import { StyleSheet } from "react-native";
-import TitleInfo from "../atoms/titleinfo";
+import TitleInfo from "./titleInfo";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default OfferListBox = ({

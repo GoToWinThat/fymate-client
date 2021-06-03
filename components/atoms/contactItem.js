@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { Body, Left, ListItem, Icon } from 'native-base';
+import { Icon } from 'native-base';
 
 export default ContactItem = ({icon , description, color}) => {
     return (

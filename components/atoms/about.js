@@ -4,10 +4,10 @@ import { View, Text } from 'react-native';
 import {FONT_SIZE_LABEL} from '../../styles/typography'
 import {ELEMENT_PADDING,SCREEN_PADDING} from '../../styles/spacing'
 
-export default About = ({desciption}) => {
+export default About = ({desciption, title}) => {
     return (
         <View style={styles.aboutView}>
-            <Text style={styles.title}>About</Text>
+            <Text style={styles.title}>{title}</Text>
             <Text style={styles.desciptionText} >{desciption}</Text>
         </View>
     )

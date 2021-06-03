@@ -1,7 +1,7 @@
 import { Button,Header, Container, Content, Icon, Text } from 'native-base'
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
-import BaseForm from "../components/molecules/baseform"
+import BaseForm from "../components/molecules/baseForm"
 
 export default General = ({ navigation }) => {
     

@@ -1,9 +1,8 @@
 import { Button, Container, Content, Text, View } from "native-base";
 import React from "react";
 import { StyleSheet } from "react-native";
-import Featurebox from "../components/atoms/featurebox";
+import Featurebox from "../components/atoms/featureBox";
 import { Entypo } from "@expo/vector-icons";
-import { Header } from "react-native/Libraries/NewAppScreen";
 import Btn from '../components/atoms/btn'
 
 export default Onboarding = ({ navigation }) => {

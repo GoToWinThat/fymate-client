@@ -1,6 +1,5 @@
 import { Header, Icon, Input, Item } from 'native-base'
 import React, {useState} from 'react'
-import { View, Text } from 'react-native'
 
 export default Searchbar = ({ handler }) => {
 

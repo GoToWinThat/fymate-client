@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import ContactItem from '../molecules/contactItem';
+import ContactItem from '../atoms/contactItem'
 import {FONT_SIZE_LABEL} from '../../styles/typography'
 import {ELEMENT_PADDING,SCREEN_PADDING} from '../../styles/spacing'
 

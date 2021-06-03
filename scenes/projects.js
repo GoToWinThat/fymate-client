@@ -2,7 +2,7 @@ import { Button, Header, Container, Content, Icon, Text, View } from 'native-bas
 import { StyleSheet } from 'react-native'
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
-import {default as ProjectList} from '../components/atoms/projects'
+import ProjectList from '../components/organisms/projectList'
 import Btn from '../components/atoms/btn'
 
 export default Projects = ({ navigation }) => {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Item, Input } from "native-base";
+import { View, StyleSheet } from "react-native";
+import { Input } from "native-base";
 import BenefitsList from "../molecules/benefitsList";
 import {SCREEN_PADDING, ELEMENT_PADDING} from '../../styles/spacing'
 //In props add array of benefits ["" , "" , ""] , and in onClickAddBenefit return String
