@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
 import Avatar from '../components/atoms/avatar'
-import TitleInfo from '../components/atoms/titleInfo'
+import TitleInfo from '../components/atoms/titleinfo'
 
 export default Profile = ({ navigation }) => {
     

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import OfferListBox from '../atoms/offerListBox';
+import OfferListBox from '../atoms/offerlistbox';
 import {FONT_SIZE_LABEL} from '../../styles/typography'
 import {ELEMENT_PADDING,SCREEN_PADDING} from '../../styles/spacing'
 

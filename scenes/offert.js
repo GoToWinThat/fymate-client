@@ -5,7 +5,7 @@ import About from '../components/atoms/about'
 import TagList from '../components/molecules/tagList'
 import DetailsList from '../components/molecules/detailList'
 import BenefitsDoubleList from '../components/organisms/benefitsDoubleList'
-import ImgInfo from '../components/atoms/imgInfo'
+import ImgInfo from '../components/atoms/imginfo'
 
 export default Offert = ({ navigation }) => {
     

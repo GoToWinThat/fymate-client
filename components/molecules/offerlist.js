@@ -1,6 +1,6 @@
 import React from "react";
 import { List } from "native-base";
-import OfferListBox from "../atoms/offerListBox";
+import OfferListBox from "../atoms/offerlistbox";
 
 export default OfferList = ({ list, onClick }) => {
   const offerList = list.map((user) => (

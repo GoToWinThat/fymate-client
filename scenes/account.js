@@ -8,7 +8,7 @@ import Contact from "../components/molecules/contact";
 import TagList from "../components/molecules/tagList";
 import DetailsList from "../components/molecules/detailList";
 import TopBar from "../components/atoms/topbar";
-import ImgInfo from "../components/atoms/imgInfo";
+import ImgInfo from "../components/atoms/imginfo";
 import * as firebase from "firebase";
 
 export default Account = ({ route, navigation }) => {

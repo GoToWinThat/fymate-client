@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Header, Content } from "native-base";
 import TopBar from "../components/atoms/topbar";
 import Searchbar from "../components/atoms/searchbar";
-import Offerlist from "../components/molecules/offerList";
+import OfferList from "../components/molecules/offerlist";
 
 export default Board = ({ navigation }) => {
 
@@ -114,9 +114,9 @@ export default Board = ({ navigation }) => {
 
       <Content>
         {accountType === "Company" ? (
-          <Offerlist onClick={onClickNavigateOffer} list={userList} />
+          <OfferList onClick={onClickNavigateOffer} list={userList} />
         ) : (
-          <Offerlist onClick={onClickNavigateOffer} list={companyList} />
+          <OfferList onClick={onClickNavigateOffer} list={companyList} />
         )}
       </Content>
     </Container>

@@ -9,8 +9,8 @@ import Projects from '../projects'
 import Education from '../education'
 import Filters from '../filters'
 import ChangePassword from '../changePassword'
-import MyOfferts from '../myOfferts'
-import EditOffert from '../editOffert'
+import MyOfferts from '../myofferts'
+import EditOffert from '../editoffert'
 import EditPortfolio from '../editPortfolio'
 
 export default ProfileTab = ({ navigation }) => {
