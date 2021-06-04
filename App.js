@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Onboarding from './scenes/onboarding';
@@ -7,11 +7,19 @@ import Loading from './scenes/loading';
 import Register from './scenes/register';
 import MainTab from './scenes/tabs/mainTabs';
 
-export default function App() {
+import getTheme from './native-base-theme/components';
+import material from './native-base-theme/variables/material';
+import materialDark from './native-base-theme/variables/materialDark';
+import { StyleProvider } from 'native-base'
+
+
+//TODO: Create and update state with darkmode. Update hould bo in Profile screen in switch.
+export default function App({ navigation }) {
 
   const Stack = createStackNavigator();
 
   const AppStack = () => {
+
     return(
       <Stack.Navigator headerMode='none'>
 
@@ -27,9 +35,11 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <AppStack/>
-    </NavigationContainer>
+    <StyleProvider style={darkmode ? getTheme(materialDark) : getTheme(material)}>
+      <NavigationContainer>
+        <AppStack/>
+      </NavigationContainer>
+    </StyleProvider>
   );
 }
 
