@@ -7,7 +7,7 @@ import {ELEMENT_PADDING,SCREEN_PADDING} from '../../styles/spacing'
 //Add contact item
 export default Contact = ({contacts, color}) => {
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.title}>Contact</Text>
             {contacts.phone != undefined ? <ContactItem description={contacts.phone} icon="call" color={color}/> : null}
             {contacts.mail != undefined ? <ContactItem description={contacts.mail} icon="mail-sharp" color={color}/> : null}
@@ -18,9 +18,11 @@ export default Contact = ({contacts, color}) => {
 
 const styles = StyleSheet.create({
     title: {
-        paddingHorizontal: SCREEN_PADDING,
-        paddingVertical: ELEMENT_PADDING ,
         fontSize: FONT_SIZE_LABEL,
         fontWeight: 'bold',
     },
+    container: {
+        paddingHorizontal: SCREEN_PADDING,
+        paddingVertical: ELEMENT_PADDING ,
+    }
 })

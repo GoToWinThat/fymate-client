@@ -12,7 +12,6 @@ export default About = ({desciption, title, img, desciption2}) => {
             <Text style={styles.desciptionText} >{desciption}</Text>
             {img !== undefined ? <Thumbnail square style={styles.thumbnail} source={{uri: img}} /> : null}
             {desciption !== undefined ? <Text style={styles.desciptionText}>{desciption2}</Text> : null}
-
         </View>
     )
 }

@@ -1,6 +1,7 @@
-import { Header ,Container, Content, Icon, Text, View } from 'native-base'
+import { Header ,Container, Content } from 'native-base'
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
+import TagFilter from '../components/organisms/tagfilter'
 
 export default ProfileTags = ({ navigation }) => {
     
@@ -14,7 +15,7 @@ export default ProfileTags = ({ navigation }) => {
                 <TopBar title="Tags" onClickGoBack={onClickGoBack}/>
             </Header>
             <Content>
-                <Text>There is content of Profile Tags</Text>
+                <TagFilter/>
             </Content>
         </Container>
     )
