@@ -1,14 +1,30 @@
-import { Container, Header,Left,Right,Icon, Content, List, ListItem, Text, Switch, View } from 'native-base';
+import { Container, Header, Left, Right, Icon, Content, List, ListItem, Text, Switch, View } from 'native-base';
 import { StyleSheet } from 'react-native';
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
 import Avatar from '../components/atoms/avatar'
 import TitleInfo from '../components/atoms/titleinfo'
+import * as firebase from 'firebase';
+
 
 export default Profile = ({ navigation }) => {
-    
+
     const onClickGoBack = () => {
         navigation.goBack();
+    }
+
+
+    const onClickLogOut = () => {
+        firebase.auth().signOut().then(() => {
+            navigation.navigate("Login", {
+                screen: "Login",
+            });
+        })
+        .catch(() => {
+            //TODO: inform user about failure
+            console.log("error while signing out");
+        });
+        
     }
 
     //Employee , Company
@@ -23,11 +39,11 @@ export default Profile = ({ navigation }) => {
         avatarUrl: "https://cont4.naekranie.pl/media%2Fcache%2Farticle-cover%2F2016%2F07%2Fneytiri-avatar-5824.jpg"
     }
 
-    
-    const companyContent = userOrCompany.type === "Company" ? 
+
+    const companyContent = userOrCompany.type === "Company" ?
         <>
             <View style={styles.view}>
-                <Avatar url={userOrCompany.avatarUrl}/>
+                <Avatar url={userOrCompany.avatarUrl} />
                 <TitleInfo
                     title={userOrCompany.title}
                     email={userOrCompany.email}
@@ -63,7 +79,7 @@ export default Profile = ({ navigation }) => {
 
                 <ListItem itemDivider>
                     <Text>OFFERS</Text>
-                </ListItem> 
+                </ListItem>
 
                 <ListItem onPress={() => navigation.navigate("MyOfferts")}>
                     <Left><Text>Your Offers</Text></Left>
@@ -77,7 +93,7 @@ export default Profile = ({ navigation }) => {
 
                 <ListItem itemDivider>
                     <Text>ACCOUNT</Text>
-                </ListItem> 
+                </ListItem>
 
                 <ListItem onPress={() => navigation.navigate("ChangePassword")}>
                     <Left><Text>Change Password</Text></Left>
@@ -88,20 +104,25 @@ export default Profile = ({ navigation }) => {
                     <Left><Text>Delete Account</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
-                
+
+                <ListItem onPress={onClickLogOut}>
+                    <Left><Text>Log out</Text></Left>
+                    <Right><Icon name="arrow-forward" /></Right>
+                </ListItem>
+
                 <ListItem>
                     <Left><Text>Dark Mode</Text></Left>
                     <Right><Switch value={false} /></Right>
                 </ListItem>
             </List>
         </>
-    : null
+        : null
 
 
-    const userContent = userOrCompany.type === 'Employee' ? 
+    const userContent = userOrCompany.type === 'Employee' ?
         <>
             <View style={styles.view}>
-                <Avatar url={userOrCompany.avatarUrl}/>
+                <Avatar url={userOrCompany.avatarUrl} />
                 <TitleInfo
                     title={`${userOrCompany.name} ${userOrCompany.surname}`}
                     email={userOrCompany.email}
@@ -147,7 +168,7 @@ export default Profile = ({ navigation }) => {
 
                 <ListItem itemDivider>
                     <Text>ACCOUNT</Text>
-                </ListItem> 
+                </ListItem>
 
                 <ListItem onPress={() => navigation.navigate("ChangePassword")}>
                     <Left><Text>Change Password</Text></Left>
@@ -158,19 +179,24 @@ export default Profile = ({ navigation }) => {
                     <Left><Text>Delete Account</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
-                
+
+                <ListItem onPress={onClickLogOut}>
+                    <Left><Text>Log out</Text></Left>
+                    <Right><Icon name="arrow-forward" /></Right>
+                </ListItem>
+
                 <ListItem>
                     <Left><Text>Dark Mode</Text></Left>
                     <Right><Switch value={false} /></Right>
                 </ListItem>
             </List>
         </>
-     : null
+        : null
 
     return (
         <Container>
             <Header>
-                <TopBar title="Fymate"/>
+                <TopBar title="Fymate" />
             </Header>
             <Content>
                 {userOrCompany.type === 'Company' ? companyContent : userContent}

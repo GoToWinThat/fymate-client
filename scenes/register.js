@@ -13,7 +13,7 @@ export default Register = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [type, setType] = useState("Employee");
+  const [type, setType] = useState("Employee"); //TODO: add company account creation
 
   const onClickSignUp = () => {
 
