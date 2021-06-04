@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Header, Content } from "native-base";
 import TopBar from "../components/atoms/topbar";
 import Searchbar from "../components/atoms/searchbar";
-import Offerlist from "../components/molecules/offerList";
+import OfferList from "../components/molecules/offerlist";
 
 export default Board = ({ navigation }) => {
 
@@ -72,6 +72,7 @@ export default Board = ({ navigation }) => {
       location: "New York",
       payment: "9000 - 14000 USD",
       url: "https://freelancersinternational.com/wp-content/uploads/2020/11/webguru.jpg",
+      time: "Full",
     },
     {
       id: 3,
@@ -86,6 +87,7 @@ export default Board = ({ navigation }) => {
       location: "Nigeria",
       payment: "100 - 200 USD",
       url: "https://i.pinimg.com/originals/73/16/f5/7316f550de9ca0045e3d8d98a5bb5e44.png",
+      time: "1/4",
     },
   ];
 
@@ -114,9 +116,9 @@ export default Board = ({ navigation }) => {
 
       <Content>
         {accountType === "Company" ? (
-          <Offerlist onClick={onClickNavigateOffer} list={userList} />
+          <OfferList onClick={onClickNavigateOffer} list={userList} />
         ) : (
-          <Offerlist onClick={onClickNavigateOffer} list={companyList} />
+          <OfferList onClick={onClickNavigateOffer} list={companyList} />
         )}
       </Content>
     </Container>

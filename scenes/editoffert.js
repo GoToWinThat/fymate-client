@@ -14,7 +14,7 @@ import {
 import React, { useState } from "react";
 import TopBar from "../components/atoms/topbar";
 import { Dimensions, StyleSheet } from "react-native";
-import TagFilter from "../components/organisms/tagFilter";
+import TagFilter from "../components/organisms/tagfilter";
 import BenefitsForm from "../components/organisms/benefitsForm";
 import Btn from "../components/atoms/btn";
 import DateTimePicker from "@react-native-community/datetimepicker";

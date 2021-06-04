@@ -1,7 +1,7 @@
 import React from "react";
 import { Thumbnail, ListItem } from "native-base";
 import { StyleSheet } from "react-native";
-import TitleInfo from "./titleInfo";
+import TitleInfo from "./titleinfo";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default OfferListBox = ({
@@ -28,6 +28,7 @@ export default OfferListBox = ({
           company={company}
           solary={payment}
           location={location}
+          time={time}
         />
       </ListItem>
     </TouchableOpacity>

@@ -1,7 +1,7 @@
 import { Button, Container, Content, Text, View } from "native-base";
 import React from "react";
 import { StyleSheet } from "react-native";
-import Featurebox from "../components/atoms/featureBox";
+import Featurebox from '../components/atoms/featurebox'
 import { Entypo } from "@expo/vector-icons";
 import Btn from '../components/atoms/btn'
 

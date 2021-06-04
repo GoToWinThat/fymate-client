@@ -1,7 +1,7 @@
 import { Container, Content, Header } from "native-base";
 import React from "react";
 import TopBar from "../components/atoms/topbar";
-import Offerlist from "../components/molecules/offerList";
+import Offerlist from "../components/molecules/offerlist";
 
 export default Favorite = ({ navigation }) => {
   const accountType = "Company"; //Employee , Company
@@ -93,6 +93,12 @@ export default Favorite = ({ navigation }) => {
     });
   };
 
+  const onClickNavigateOffer = () => {
+    navigation.navigate("Offert", {
+      screen: "Offert",
+    });
+  };
+
   return (
     <Container>
       <Header>
@@ -104,9 +110,9 @@ export default Favorite = ({ navigation }) => {
       </Header>
       <Content>
         {accountType === "Company" ? (
-          <Offerlist list={userList} />
+          <Offerlist onClick={onClickNavigateOffer} list={userList} />
         ) : (
-          <Offerlist list={companyList} />
+          <Offerlist onClick={onClickNavigateOffer} list={companyList} />
         )}
       </Content>
     </Container>

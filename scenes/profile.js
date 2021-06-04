@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
 import Avatar from '../components/atoms/avatar'
-import TitleInfo from '../components/atoms/titleInfo'
+import TitleInfo from '../components/atoms/titleinfo'
 
 export default Profile = ({ navigation }) => {
     
@@ -13,7 +13,7 @@ export default Profile = ({ navigation }) => {
 
     //Employee , Company
     const userOrCompany = {
-        type: 'Employee',
+        type: 'Company',
         title: 'Billennium',
         name: 'Dariusz',
         surname: 'Momot',
@@ -51,7 +51,7 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem onPress={() => console.log("Company Description Navigation")}>
+                <ListItem onPress={() => navigation.navigate("CompanyDescription")}>
                     <Left><Text>Company Description</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
@@ -76,7 +76,7 @@ export default Profile = ({ navigation }) => {
                 </ListItem>
 
                 <ListItem itemDivider>
-                    <Text>OFFERS</Text>
+                    <Text>ACCOUNT</Text>
                 </ListItem> 
 
                 <ListItem onPress={() => navigation.navigate("ChangePassword")}>
@@ -140,7 +140,7 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("Filters")}>
+                <ListItem onPress={() => navigation.navigate("ProfileTags")}>
                     <Left><Text>Tags</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>

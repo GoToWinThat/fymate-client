@@ -3,7 +3,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import TopBar from "../components/atoms/topbar";
 import Segmentbar from "../components/atoms/segmentbar";
-import TagFilter from "../components/organisms/tagFilter";
+import TagFilter from "../components/organisms/tagfilter";
 import {SCREEN_PADDING, ELEMENT_PADDING} from '../styles/spacing'
 import {FONT_SIZE_LABEL} from '../styles/typography'
 

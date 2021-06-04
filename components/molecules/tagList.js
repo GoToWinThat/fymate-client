@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Tagbox from "../atoms/tagBox";
+import Tagbox from "../atoms/tagbox";
 import {FONT_SIZE_LABEL} from '../../styles/typography'
 import {SCREEN_PADDING} from '../../styles/spacing'
 
