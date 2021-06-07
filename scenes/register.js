@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 import { useState } from "react";
 import Segmentbar from '../components/atoms/segmentbar';
 import Btn from '../components/atoms/btn'
+import education from "./education";
 
 //TODO: Repeat password UI state handling
 export default Register = ({ navigation }) => {
@@ -21,14 +22,30 @@ export default Register = ({ navigation }) => {
       .then((results) => {
 
         const userUid = results.user.uid;
-
-        //TODO: Finish account schema
         const account = {
           about: "",
-          firstName: "",
-          lastName: "",
-          location: "",
           company: "",
+          email: "",
+          location: "",
+          name: "",
+          surname: "",
+          phone: "",
+          details: {
+            contract: "",
+            jobtime: "",
+            position: "",
+            starttime: "",
+            worktype: "",
+          },
+          education: [],
+          experience: [],
+          projects: [],
+          tags: [],
+          contacts: {
+            phone: "",
+            mail: "",
+            github: "",
+          }
         }
 
         firebase.firestore().collection("users").doc(userUid).set(account)
@@ -101,11 +118,11 @@ export default Register = ({ navigation }) => {
             </View>
 
             <View>
-              <Segmentbar onClickChange={setType}/>
+              <Segmentbar onClickChange={setType} />
             </View>
           </View>
           <View style={styles.marginHor}>
-            <Btn text="Sign Up" onPress={onClickSignUp}/>
+            <Btn text="Sign Up" onPress={onClickSignUp} />
             {/* <Button style={styles.btn} onPress={() => onClickSignUp()}>
               <Text style={styles.btnText}>Sign Up</Text>
             </Button> */}

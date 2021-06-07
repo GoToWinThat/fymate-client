@@ -10,7 +10,7 @@ export default Education = ({ route, navigation }) => {
     const education = route.params.info
 
 
-    
+
     const submitCallback = (baseFromResults) => {
         const newElement = {
             location: baseFromResults[1],

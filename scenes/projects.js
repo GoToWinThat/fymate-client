@@ -5,47 +5,40 @@ import TopBar from '../components/atoms/topbar'
 import ProjectList from '../components/organisms/projectList'
 import Btn from '../components/atoms/btn'
 
-export default Projects = ({ navigation }) => {
-    
+export default Projects = ({ route, navigation }) => {
+    const doc = route.params.doc
+    const projects = route.params.info
+
+
+
+    const submitCallback = (baseFromResults) => {
+        const newElement = {
+            location: baseFromResults[1],
+            place: baseFromResults[0],
+            time: baseFromResults[2].toString(),
+            description: baseFromResults[3] //TODO: this is never used
+        }
+        projects.push(newElement)
+        doc.update({ education: projects })
+    }
+
     const onClickGoBack = () => {
         navigation.goBack();
     }
 
     const onClickAdd = () => {
-        navigation.navigate("EditPortfolio", { type: "project" })
+        navigation.navigate("EditPortfolio", { type: "project", submitCallback: submitCallback })
     }
-
-    const projects = [
-        {
-          id: 0,
-          taglist: ["C#", "C++", "Swift"],
-          title: "WeatherApp",
-          description:"Lorem Ipsum some description and some random words. So don't blame me if someone forget to remove this.",
-        },
-        {
-          id: 1,
-          taglist: ["JavaScript", "C#"],
-          title: "WeatherApp",
-          description:"Lorem Ipsum some description and some random words. So don't blame me if someone forget to remove this.",
-        },
-        {
-          id: 2,
-          taglist: ["C#", "C++", "Swift"],
-          title: "WeatherApp",
-          description:"Lorem Ipsum some description and some random words. So don't blame me if someone forget to remove this.",
-        },
-      ]
-      
 
     return (
         <Container>
             <Header>
-                <TopBar title="Projects" onClickGoBack={onClickGoBack}/>
+                <TopBar title="Projects" onClickGoBack={onClickGoBack} />
             </Header>
             <Content>
-                <ProjectList projects={projects}/>
+                <ProjectList projects={projects} />
                 <View style={styles.btnView}>
-                    <Btn icon="add" text="Add New" onPress={onClickAdd}/>
+                    <Btn icon="add" text="Add New" onPress={onClickAdd} />
                 </View>
             </Content>
         </Container>
