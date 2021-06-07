@@ -30,6 +30,7 @@ export default Register = ({ navigation }) => {
           name: "",
           surname: "",
           phone: "",
+          avaterUrl: "",
           details: {
             contract: "",
             jobtime: "",
