@@ -28,7 +28,7 @@ export default Experience = ({ route, navigation }) => {
     }
 
     const onClickAdd = () => {
-        navigation.navigate("EditPortfolio", { type: "experience", doc: doc, submitCallback: submitCallback })
+        navigation.navigate("EditPortfolio", { type: "experience", submitCallback: submitCallback })
     }
 
     return (
