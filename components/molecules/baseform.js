@@ -13,7 +13,7 @@ import {
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {SCREEN_PADDING} from '../../styles/spacing'
 
-export default BaseForm = ({ placeholders, submit }) => {
+export default BaseForm = ({ placeholders, submitCallback }) => {
 
   const [first, setFirst] = useState("");
   const [second, setSecond] = useState("");
@@ -79,7 +79,7 @@ export default BaseForm = ({ placeholders, submit }) => {
         />
       )}
 
-      <Btn text="Submit" onPress={() => submit([first, second, date, desc])} />
+      <Btn text="Submit" onPress={() => submitCallback([first, second, date, desc])} />
     </Form>
   );
 };

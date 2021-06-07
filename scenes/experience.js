@@ -1,51 +1,45 @@
-import { Button,Header, Container, Content, Icon, Text , View} from 'native-base'
+import { Button, Header, Container, Content, Icon, Text, View } from 'native-base'
 import { StyleSheet } from 'react-native'
 import ExperienceList from '../components/organisms/experienceList'
 import Btn from '../components/atoms/btn'
 import React from 'react'
 
-export default Experience = ({ navigation }) => {
-    
+//TODO: Deletion of experience 
+export default Experience = ({ route, navigation }) => {
+    const doc = route.params.doc
+    const experience = route.params.info
+
+
+    const submitCallback = (baseFromResults) => {
+        const newElement = {
+            company: baseFromResults[1],
+            title: baseFromResults[0],
+            time: baseFromResults[2].toString(), //TODO: this should be a time range
+            url: "", //TODO: baseform does not support such field
+            description: baseFromResults[3],
+            location: "" //TODO: baseform does not support such field 
+        }
+        experience.push(newElement)
+        doc.update({ experience: experience })
+    }
+
     const onClickGoBack = () => {
         navigation.goBack();
     }
 
-    const onClickAdd = () =>{
-        navigation.navigate("EditPortfolio" , { type: "experience" })
+    const onClickAdd = () => {
+        navigation.navigate("EditPortfolio", { type: "experience", doc: doc, submitCallback: submitCallback })
     }
-
-    const experience = [
-        {
-          id: 0,
-          title: "Java Developer",
-          location: "Berlin",
-          company: "Ubisoft",
-          time: "07.12-04.13",
-          url:
-            "https://www.gry-online.pl/galeria/kontakty/344743037.png",
-          description:"Lorem Ipsum some description and some random words. So don't blame me if someone forget to remove this."
-        },
-        {
-          id: 1,
-          title: "Java Developer",
-          location: "Berlin",
-          company: "Ubisoft",
-          time: "07.12-04.13",
-          url:
-            "https://www.gry-online.pl/galeria/kontakty/344743037.png",
-          description:"Lorem Ipsum some description and some random words. So don't blame me if someone forget to remove this."
-        },
-      ]
 
     return (
         <Container>
             <Header>
-                <TopBar title="Experience" onClickGoBack={onClickGoBack}/>
+                <TopBar title="Experience" onClickGoBack={onClickGoBack} />
             </Header>
             <Content>
-                <ExperienceList experience={experience}/>
+                <ExperienceList experience={experience} />
                 <View style={styles.btnView}>
-                    <Btn icon="add" text="Add New" onPress={onClickAdd}/>
+                    <Btn icon="add" text="Add New" onPress={onClickAdd} />
                 </View>
             </Content>
         </Container>
@@ -53,7 +47,7 @@ export default Experience = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-    btnView:{
+    btnView: {
         paddingVertical: 20,
         paddingHorizontal: 10
     }

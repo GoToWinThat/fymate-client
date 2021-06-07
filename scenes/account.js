@@ -10,6 +10,7 @@ import DetailsList from "../components/molecules/detailList";
 import TopBar from "../components/atoms/topbar";
 import ImgInfo from "../components/atoms/imginfo";
 import * as firebase from "firebase";
+import { acc } from "react-native-reanimated";
 
 export default Account = ({ route, navigation }) => {
   //Employee , Company 
@@ -19,7 +20,15 @@ export default Account = ({ route, navigation }) => {
 
 
   const uid = route.params.uid
+  //TODO: get this from profile if this screen was accessed via "See your profile" (since we already fetch data in previous screen)
   const [accountInfo, setAccountInfo] = useState({
+    about: "",
+    company: "",
+    email: "",
+    location: "",
+    name: "",
+    surname: "",
+    phone: "",
     details: {
       contract: "",
       jobtime: "",
@@ -32,11 +41,10 @@ export default Account = ({ route, navigation }) => {
     projects: [],
     tags: [],
     contacts: {
-      phone: "+48 517 952 221",
-      mail: "michal.wieczorek@gmail.com",
-      github: "michwiecz.github.com",
+      phone: "",
+      mail: "",
+      github: "",
     }
-
   });
 
   const onClickGoBack = () => {
@@ -51,8 +59,6 @@ export default Account = ({ route, navigation }) => {
     )
   }, []);
 
-
-
   const userContent =
     userOrCompany === "Employee" ? (
       <>
@@ -65,10 +71,10 @@ export default Account = ({ route, navigation }) => {
           />
         </Header>
         <ImgInfo
-          solary="8000 - 9000 PLN"
-          location="Warsaw"
+          solary="TODO"
+          location={accountInfo.location}
           url="https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png"
-          title="Ragnar The Great"
+          title={accountInfo.name + " " + accountInfo.surname}
           job="UX/UI Designer"
         />
 

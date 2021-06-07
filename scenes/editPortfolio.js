@@ -5,7 +5,7 @@ import BaseForm from "../components/molecules/baseform";
 import ProjectForm from "../components/molecules/projectform";
 
 export default EditPortfolio = ({ navigation, route }) => {
-  const { type } = route.params;
+  const { type, submitCallback } = route.params;
 
   const onClickGoBack = () => {
     navigation.goBack();
@@ -15,9 +15,9 @@ export default EditPortfolio = ({ navigation, route }) => {
     type === "project" ? (
       <ProjectForm />
     ) : type === "education" ? (
-      <BaseForm placeholders={["School/University", "Localization","Interesting facts..."]} />
+      <BaseForm submitCallback={submitCallback} placeholders={["School/University", "Localization","Interesting facts..."]} />
     ) : (
-      <BaseForm placeholders={["Position", "Company","Job description..."]} />
+      <BaseForm submitCallback={submitCallback} placeholders={["Position", "Company","Job description..."]} />
     );
 
   return (

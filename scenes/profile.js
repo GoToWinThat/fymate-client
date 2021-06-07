@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 //this screen is used for _current user_ only
 export default Profile = ({ navigation }) => {
 
-
+    const currentProfileDocumentRef = firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid)
     const [userOrCompany, setUserOrCompany] = useState(
         {
             type: 'Employee',
@@ -45,7 +45,7 @@ export default Profile = ({ navigation }) => {
     //Fetch current user info
     //TODO: cache, invalidate on logout.
     useEffect(() => {
-        firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).get().then((data) => {
+        currentProfileDocumentRef.get().then((data) => {
             setUserOrCompany(data.data());
         })
     }, []);
@@ -73,7 +73,7 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("General")}>
+                <ListItem onPress={() => navigation.navigate("General", { doc: currentProfileDocumentRef, info: userOrCompany.about })}>
                     <Left><Text>General</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
@@ -157,7 +157,7 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("Experience")}>
+                <ListItem onPress={() => navigation.navigate("Experience", { doc: currentProfileDocumentRef, info: userOrCompany.experience })}>
                     <Left><Text>Experience</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>

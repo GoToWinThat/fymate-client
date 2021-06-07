@@ -3,7 +3,7 @@ import React from 'react'
 import TopBar from '../components/atoms/topbar'
 import BaseForm from "../components/molecules/baseform"
 
-export default General = ({ navigation }) => {
+export default General = ({ route, navigation }) => {
     
     const onClickGoBack = () => {
         navigation.goBack();
