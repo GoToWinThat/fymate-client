@@ -20,7 +20,7 @@ const AddRemoveFromActiveList = (tag) => {
   console.log(activeTags)
 }
 
- const list = tags.map((tag) => {
+ const list = tags?.map((tag) => {
    return (
     <Tagbox
       key={tag}

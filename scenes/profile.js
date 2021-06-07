@@ -5,9 +5,24 @@ import TopBar from '../components/atoms/topbar'
 import Avatar from '../components/atoms/avatar'
 import TitleInfo from '../components/atoms/titleinfo'
 import * as firebase from 'firebase';
+import { useState, useEffect } from 'react';
 
-
+//this screen is used for _current user_ only
 export default Profile = ({ navigation }) => {
+
+
+    const [userOrCompany, setUserOrCompany] = useState(
+        {
+            type: 'Employee',
+            title: 'Billennium',
+            name: 'Dariusz',
+            surname: 'Momot',
+            email: 'dariusz.momot@gmail.com',
+            phone: '+48 517 952 221',
+            location: 'Gliwice',
+            avatarUrl: "https://cont4.naekranie.pl/media%2Fcache%2Farticle-cover%2F2016%2F07%2Fneytiri-avatar-5824.jpg"
+        }
+    );
 
     const onClickGoBack = () => {
         navigation.goBack();
@@ -20,24 +35,20 @@ export default Profile = ({ navigation }) => {
                 screen: "Login",
             });
         })
-        .catch(() => {
-            //TODO: inform user about failure
-            console.log("error while signing out");
-        });
-        
+            .catch(() => {
+                //TODO: inform user about failure
+                console.log("error while signing out");
+            });
+
     }
 
-    //Employee , Company
-    const userOrCompany = {
-        type: 'Company',
-        title: 'Billennium',
-        name: 'Dariusz',
-        surname: 'Momot',
-        email: 'dariusz.momot@gmail.com',
-        phone: '+48 517 952 221',
-        location: 'Gliwice',
-        avatarUrl: "https://cont4.naekranie.pl/media%2Fcache%2Farticle-cover%2F2016%2F07%2Fneytiri-avatar-5824.jpg"
-    }
+    //Fetch current user info
+    //TODO: cache, invalidate on logout.
+    useEffect(() => {
+        firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).get().then((data) => {
+            setUserOrCompany(data.data());
+        })
+    }, []);
 
 
     const companyContent = userOrCompany.type === "Company" ?
@@ -136,7 +147,7 @@ export default Profile = ({ navigation }) => {
                     <Text>PERSONAL INFO</Text>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("Account")}>
+                <ListItem onPress={() => navigation.navigate("Account", { uid: firebase.auth().currentUser.uid })}>
                     <Left><Text>See your profile</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
