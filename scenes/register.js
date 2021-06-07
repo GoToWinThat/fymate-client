@@ -50,8 +50,8 @@ export default Register = ({ navigation }) => {
 
         firebase.firestore().collection("users").doc(userUid).set(account)
           .then(() => {
-            navigation.navigate("Board", {
-              screen: "Board",
+            navigation.navigate("MainTab", {
+              screen: "MainTab",
               uid: userUid,
             });
           })
