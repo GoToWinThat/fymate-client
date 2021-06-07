@@ -152,7 +152,14 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("General", {doc: currentProfileDocumentRef})}>
+                <ListItem onPress={() => navigation.navigate("General", {
+                    doc: currentProfileDocumentRef,
+                    info: {
+                        about: userOrCompany.about,
+                        company: userOrCompany.company,
+                        details: userOrCompany.details
+                    }
+                })}>
                     <Left><Text>General</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>

@@ -5,9 +5,8 @@ import BaseForm from "../components/molecules/baseform"
 
 export default General = ({ route, navigation }) => {
     const doc = route.params.doc;
-    //TODO: restore base state to BaseForm
-
-
+    const general = route.params.info;
+    
     const onClickGoBack = () => {
         navigation.goBack();
     }
@@ -22,7 +21,11 @@ export default General = ({ route, navigation }) => {
                 <TopBar title="General" onClickGoBack={onClickGoBack} />
             </Header>
             <Content>
-                <BaseForm submitCallback={submitCallback} placeholders={["Position", "Company", "About You"]} />
+                <BaseForm defaults={{
+                    first: general.details.position,
+                    second: general.company,
+                    desc: general.about
+                }} submitCallback={submitCallback} placeholders={["Position", "Company", "About You"]} />
             </Content>
         </Container>
     )
