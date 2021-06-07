@@ -11,14 +11,14 @@ import {
   Button,
 } from "native-base";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import {SCREEN_PADDING} from '../../styles/spacing'
+import { SCREEN_PADDING } from '../../styles/spacing'
 
-export default BaseForm = ({ placeholders, submitCallback }) => {
+export default BaseForm = ({ placeholders, submitCallback, defaults }) => {
 
-  const [first, setFirst] = useState("");
-  const [second, setSecond] = useState("");
-  const [desc, setDesc] = useState("");
-  const [date, setDate] = useState(new Date(1598051730000));
+  const [first, setFirst] = useState(defaults?.first !== undefined ? defaults.first : "");
+  const [second, setSecond] = useState(defaults?.second !== undefined ? defaults.second : "");
+  const [desc, setDesc] = useState(defaults?.desc !== undefined ? defaults.desc : "");
+  const [date, setDate] = useState(defaults?.date !== undefined ? defaults.date : new Date(Date.now()));
 
   const [show, setShow] = useState(false);
 
@@ -32,6 +32,7 @@ export default BaseForm = ({ placeholders, submitCallback }) => {
     setShow(true);
     console.log(date);
   };
+
 
   return (
     <Form>
