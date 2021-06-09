@@ -15,9 +15,9 @@ import { acc } from "react-native-reanimated";
 export default Account = ({ route, navigation }) => {
   //Employee , Company 
   //TODO: fetch type from firebase
-  const userOrCompany = "Employee";
+  const userOrCompany = route.params.type;
   const uid = route.params.uid;
-  
+
   //TODO: get this from profile if this screen was accessed via "See your profile" (since we already fetch data in previous screen)
   const [accountInfo, setAccountInfo] = useState({
     about: "",
@@ -51,7 +51,6 @@ export default Account = ({ route, navigation }) => {
 
   useEffect(() => {
     firebase.firestore().collection('users').doc(uid).get().then((data) => {
-      console.log(data.data);
       setAccountInfo(data.data());
     }
     )
@@ -109,25 +108,23 @@ export default Account = ({ route, navigation }) => {
           />
         </Header>
         <ImgInfo
-          location="Warsaw, Kraków, Poznań"
-          size="1500"
-          url="https://www.gry-online.pl/galeria/kontakty/344743037.png"
-          title="Ubisoft"
+          location={accountInfo.location}
+          size="1500" //TODO: size info
+          url={accountInfo.avatarUrl}
+          title={accountInfo.name}
         />
 
         <About
           title="About"
-          desciption={
-            "Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi"
-          }
+          desciption={accountInfo.about}
         />
         <TagList
-          tags={["C#", "JavaScript", "C++"]}
+          tags={accountInfo.tags}
           title={"Tech Stack"}
           color={"blue"}
         />
 
-        <About
+        <About //TODO: Add company description
           title="Our Company"
           desciption={
             "Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi"
@@ -138,7 +135,7 @@ export default Account = ({ route, navigation }) => {
           }
         />
 
-        <Contact contacts={contacts} color="black" />
+        <Contact contacts={accountInfo.contacts} color="black" />
       </>
     ) : null;
   //Tag list or  tech stack ? ?  tag list is clickable

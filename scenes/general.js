@@ -6,13 +6,18 @@ import BaseForm from "../components/molecules/baseform"
 export default General = ({ route, navigation }) => {
     const doc = route.params.doc;
     const general = route.params.info;
-    
+
     const onClickGoBack = () => {
         navigation.goBack();
     }
 
     const submitCallback = (baseFromResults) => {
-        doc.update({ "details.position": baseFromResults[0], company: baseFromResults[1], "details.starttime": baseFromResults[2].toString(), about: baseFromResults[3] })
+        doc.update({
+            "details.position": baseFromResults[0],
+            company: baseFromResults[1],
+            "details.starttime": baseFromResults[2].toString(),
+            about: baseFromResults[3]
+        })
     }
 
     return (

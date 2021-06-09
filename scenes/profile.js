@@ -24,10 +24,11 @@ export default Profile = ({ navigation }) => {
         }
     );
 
+
+
     const onClickGoBack = () => {
         navigation.goBack();
     }
-
 
     const onClickLogOut = () => {
         firebase.auth().signOut().then(() => {
@@ -35,10 +36,10 @@ export default Profile = ({ navigation }) => {
                 screen: "Login",
             });
         })
-            .catch(() => {
-                //TODO: inform user about failure
-                console.log("error while signing out");
-            });
+        .catch(() => {
+            //TODO: inform user about failure
+            console.log("error while signing out");
+        });
 
     }
 
@@ -69,7 +70,7 @@ export default Profile = ({ navigation }) => {
                     <Text>COMPANY INFO</Text>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("Account")}>
+                <ListItem onPress={() => navigation.navigate("Account",{ uid: firebase.auth().currentUser.uid, type: "Company" })}>
                     <Left><Text>See your profile</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
@@ -84,7 +85,7 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("Filters")}>
+                <ListItem onPress={() => navigation.navigate("ProfileTags", { doc: currentProfileDocumentRef, info: userOrCompany.tags })}>
                     <Left><Text>Tags</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
@@ -148,7 +149,7 @@ export default Profile = ({ navigation }) => {
                     <Text>PERSONAL INFO</Text>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("Account", { uid: firebase.auth().currentUser.uid })}>
+                <ListItem onPress={() => navigation.navigate("Account", { uid: firebase.auth().currentUser.uid, type: "Employee" })}>
                     <Left><Text>See your profile</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
