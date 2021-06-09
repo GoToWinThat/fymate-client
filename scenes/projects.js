@@ -19,7 +19,7 @@ export default Projects = ({ route, navigation }) => {
             description: baseFromResults[3] //TODO: this is never used
         }
         projects.push(newElement)
-        doc.update({ education: projects })
+        doc.update({ projects: projects })
     }
 
     const onClickGoBack = () => {

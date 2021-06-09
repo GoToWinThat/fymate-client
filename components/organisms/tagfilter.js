@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "native-base";
 import TagList from "../molecules/tagList";
 
-export default TagFilter = () => {
+export default TagFilter = ({ initialTags, activeTagsChangedCallback }) => {
 
   const tagsArr = [
     ["SQL", "Oracle", "C#", "Python", "Javascript", "Ruby", "Linux"],
@@ -19,6 +19,7 @@ export default TagFilter = () => {
     "Work Time",
     "Agreement",
   ];
+
   const allTags = tagsArr.map((list, index) => {
     return (
       <TagList
@@ -27,6 +28,8 @@ export default TagFilter = () => {
         color={colors[index]}
         clickable={true}
         title={labels[index]}
+        activeTagsChangedCallback={activeTagsChangedCallback}
+        initialTags={initialTags}
       />
     );
   });

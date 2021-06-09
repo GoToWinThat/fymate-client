@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { TAG } from "../../styles/colors";
 
-const Tagbox = ({ color, text, clickable, selectTag }) => {
-  const [active, setActive] = useState(false);
+const Tagbox = ({ color, text, clickable, selectTag, initialActive }) => {
+  const [active, setActive] = useState(initialActive !== undefined ? initialActive : false);
 
   const tagClick = () => {
-    if(clickable === true) {
+    if (clickable === true) {
       setActive(!active);
       selectTag(text);
     }

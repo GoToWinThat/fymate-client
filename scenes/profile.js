@@ -13,14 +13,15 @@ export default Profile = ({ navigation }) => {
     const currentProfileDocumentRef = firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid)
     const [userOrCompany, setUserOrCompany] = useState(
         {
-            type: 'Employee',
-            title: 'Billennium',
-            name: 'Dariusz',
-            surname: 'Momot',
-            email: 'dariusz.momot@gmail.com',
-            phone: '+48 517 952 221',
-            location: 'Gliwice',
-            avatarUrl: "https://cont4.naekranie.pl/media%2Fcache%2Farticle-cover%2F2016%2F07%2Fneytiri-avatar-5824.jpg"
+            type: '',
+            title: '',
+            name: '',
+            surname: '',
+            email: '',
+            phone: '',
+            location: '',
+            avatarUrl: "",
+            tags: [],
         }
     );
 
@@ -179,7 +180,7 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("ProfileTags")}>
+                <ListItem onPress={() => navigation.navigate("ProfileTags", { doc: currentProfileDocumentRef, info: userOrCompany.tags })}>
                     <Left><Text>Tags</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>

@@ -16,19 +16,22 @@ export default Register = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [type, setType] = useState("Employee"); //TODO: add company account creation
 
+
+
   const onClickSignUp = () => {
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((results) => {
 
         const userUid = results.user.uid;
-        const account = {
+
+
+        let account = { //company account template
+          type: type,
           about: "",
           company: "",
           email: "",
           location: "",
-          name: "",
-          surname: "",
           phone: "",
           avaterUrl: "",
           details: {
@@ -38,9 +41,6 @@ export default Register = ({ navigation }) => {
             starttime: "",
             worktype: "",
           },
-          education: [],
-          experience: [],
-          projects: [],
           tags: [],
           contacts: {
             phone: "",
@@ -48,6 +48,37 @@ export default Register = ({ navigation }) => {
             github: "",
           }
         }
+
+        if (type === "Employee") {
+          account = { //employee account template
+            type: type,
+            about: "",
+            company: "",
+            email: "",
+            location: "",
+            name: "",
+            surname: "",
+            phone: "",
+            avaterUrl: "",
+            details: {
+              contract: "",
+              jobtime: "",
+              position: "",
+              starttime: "",
+              worktype: "",
+            },
+            education: [],
+            experience: [],
+            projects: [],
+            tags: [],
+            contacts: {
+              phone: "",
+              mail: "",
+              github: "",
+            }
+          }
+        }
+
 
         firebase.firestore().collection("users").doc(userUid).set(account)
           .then(() => {
