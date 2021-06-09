@@ -16,10 +16,8 @@ export default Account = ({ route, navigation }) => {
   //Employee , Company 
   //TODO: fetch type from firebase
   const userOrCompany = "Employee";
-
-
-
-  const uid = route.params.uid
+  const uid = route.params.uid;
+  
   //TODO: get this from profile if this screen was accessed via "See your profile" (since we already fetch data in previous screen)
   const [accountInfo, setAccountInfo] = useState({
     about: "",

@@ -13,8 +13,7 @@ export default Profile = ({ navigation }) => {
     const currentProfileDocumentRef = firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid)
     const [userOrCompany, setUserOrCompany] = useState(
         {
-            type: '',
-            title: '',
+            type: 'Company',
             name: '',
             surname: '',
             email: '',
@@ -44,11 +43,12 @@ export default Profile = ({ navigation }) => {
     }
 
     //Fetch current user info
-    //TODO: cache, invalidate on logout.
+    //TODO: cache
     useEffect(() => {
-        currentProfileDocumentRef.get().then((data) => {
-            setUserOrCompany(data.data());
-        })
+        const unsub = currentProfileDocumentRef.onSnapshot(snapshot => {
+            setUserOrCompany(snapshot.data());
+        });
+        return () => unsub(); //unsubscribe from realtime listener
     }, []);
 
 
@@ -57,7 +57,7 @@ export default Profile = ({ navigation }) => {
             <View style={styles.view}>
                 <Avatar url={userOrCompany.avatarUrl} />
                 <TitleInfo
-                    title={userOrCompany.title}
+                    title={userOrCompany.name}
                     email={userOrCompany.email}
                     phone={userOrCompany.phone}
                     location={userOrCompany.location}
