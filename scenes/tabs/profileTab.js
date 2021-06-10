@@ -8,7 +8,6 @@ import Experience from '../experience'
 import Projects from '../projects'
 import Education from '../education'
 import Filters from '../filters'
-import ChangePassword from '../changePassword'
 import MyOfferts from '../myofferts'
 import EditOffert from '../editoffert'
 import EditPortfolio from '../editPortfolio'
@@ -28,7 +27,6 @@ export default ProfileTab = ({ navigation }) => {
             <Stack.Screen name="Projects" component={Projects}/>
             <Stack.Screen name="Education" component={Education}/>
             <Stack.Screen name="Filters" component={Filters}/>
-            <Stack.Screen name="ChangePassword" component={ChangePassword}/>
             <Stack.Screen name="MyOfferts" component={MyOfferts}/>
             <Stack.Screen name="EditOffert" component={EditOffert}/>
             <Stack.Screen name="EditPortfolio" component={EditPortfolio}/>

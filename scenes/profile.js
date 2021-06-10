@@ -1,4 +1,4 @@
-import { Container, Header, Left, Right, Icon, Content, List, ListItem, Text, Switch, View } from 'native-base';
+import { Container, Header, Left, Right, Icon, Content, List, ListItem, Text, Switch, View, Toast } from 'native-base';
 import { StyleSheet } from 'react-native';
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
@@ -24,7 +24,9 @@ export default Profile = ({ navigation }) => {
         }
     );
 
-
+    const onSendVerificationClick = (resetEmail) => {
+        firebase.auth().sendPasswordResetEmail(resetEmail);
+    }
 
     const onClickGoBack = () => {
         navigation.goBack();
@@ -36,10 +38,10 @@ export default Profile = ({ navigation }) => {
                 screen: "Login",
             });
         })
-        .catch(() => {
-            //TODO: inform user about failure
-            console.log("error while signing out");
-        });
+            .catch(() => {
+                //TODO: inform user about failure
+                console.log("error while signing out");
+            });
 
     }
 
@@ -70,7 +72,7 @@ export default Profile = ({ navigation }) => {
                     <Text>COMPANY INFO</Text>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("Account",{ uid: firebase.auth().currentUser.uid, type: "Company" })}>
+                <ListItem onPress={() => navigation.navigate("Account", { uid: firebase.auth().currentUser.uid, type: "Company" })}>
                     <Left><Text>See your profile</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
@@ -108,7 +110,11 @@ export default Profile = ({ navigation }) => {
                     <Text>ACCOUNT</Text>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("ChangePassword")}>
+                <ListItem onPress={() => {
+                    firebase.auth().sendPasswordResetEmail(firebase.auth().currentUser.email)
+                    //.then(() => Toast.show({ text: "Password change email sent!" })) //TODO: figure this out
+                    //.catch(e => Toast.show({ text: "Something went wrong when sending password reset email" }))
+                }}>
                     <Left><Text>Change Password</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
@@ -190,7 +196,11 @@ export default Profile = ({ navigation }) => {
                     <Text>ACCOUNT</Text>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("ChangePassword")}>
+                <ListItem onPress={() => {
+                    firebase.auth().sendPasswordResetEmail(firebase.auth().currentUser.email)
+                    //.then(() => Toast.show({ text: "Password change email sent!" })) //TODO: figure this out
+                    //.catch(e => Toast.show({ text: "Something went wrong when sending password reset email" }))
+                }}>
                     <Left><Text>Change Password</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
