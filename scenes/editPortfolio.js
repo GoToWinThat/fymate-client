@@ -13,7 +13,7 @@ export default EditPortfolio = ({ navigation, route }) => {
 
   const form =
     type === "project" ? (
-      <ProjectForm />
+      <ProjectForm submitCallback={submitCallback}/>
     ) : type === "education" ? (
       <BaseForm submitCallback={submitCallback} placeholders={["School/University", "Localization","Interesting facts..."]} />
     ) : (

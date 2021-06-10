@@ -12,10 +12,11 @@ import {
 import TagList from "./tagList";
 import {SCREEN_PADDING} from '../../styles/spacing'
 
-export default ProjectForm = ({ submit }) => {
+export default ProjectForm = ({ submitCallback }) => {
 
   const [first, setFirst] = useState("");
   const [desc, setDesc] = useState("");
+  const [tags, setTags] = useState("");
   
 
   return (
@@ -38,6 +39,7 @@ export default ProjectForm = ({ submit }) => {
         color='blue'
         clickable={true}
         title={'Tech Stack'}
+        activeTagsChangedCallback={setTags}
       />
 
       <ListItem itemDivider>
@@ -53,7 +55,7 @@ export default ProjectForm = ({ submit }) => {
         />
       </View>
 
-      <Btn text="Submit" onPress={() => submit([first, desc])} />
+      <Btn text="Submit" onPress={() => submitCallback([first, desc, tags])} />
     </Form>
   );
 };

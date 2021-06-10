@@ -13,10 +13,9 @@ export default Projects = ({ route, navigation }) => {
 
     const submitCallback = (baseFromResults) => {
         const newElement = {
-            location: baseFromResults[1],
-            place: baseFromResults[0],
-            time: baseFromResults[2].toString(),
-            description: baseFromResults[3] //TODO: this is never used
+            title: baseFromResults[0],
+            description: baseFromResults[1],
+            tags: baseFromResults[2]
         }
         projects.push(newElement)
         doc.update({ projects: projects })

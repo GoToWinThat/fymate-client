@@ -8,6 +8,7 @@ import Register from './scenes/register';
 import MainTab from './scenes/tabs/mainTabs';
 import './firebaseConfig'
 import * as firebase from 'firebase';
+import { StyleProvider } from 'native-base';
 
 
 export default function App() {
