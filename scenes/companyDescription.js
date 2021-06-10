@@ -14,18 +14,21 @@ import { SCREEN_PADDING } from "../styles/spacing";
 import { Dimensions, StyleSheet } from "react-native";
 import avatar from "../components/atoms/avatar";
 
-export default CompanyDescription = ({ navigation, initialState }) => {
+export default CompanyDescription = ({ route,navigation }) => {
 
+  const initialState = route.params.info;
+  const doc = route.params.doc;
 
 
   const onClickGoBack = () => {
-    
+    doc.update({companyDescription: {description: description, imageUrl: imageUrl, unique: unique}})
     navigation.goBack();
   };
 
 
-  const [desc, setDesc] = useState(initialState?.desc || "" );
+  const [description, setDescription] = useState(initialState?.description || "");
   const [unique, setUnique] = useState(initialState?.unique || "");
+  const [imageUrl, setImageUrl] = useState(initialState?.imageUrl || "")
 
   return (
     <Container>
@@ -42,8 +45,8 @@ export default CompanyDescription = ({ navigation, initialState }) => {
               style={styles.text}
               rowSpan={7}
               placeholder={"Describe your company..."}
-              value={desc}
-              onChangeText={setDesc}
+              value={description}
+              onChangeText={setDescription}
             />
           </View>
           <View style={styles.input}>
@@ -59,7 +62,7 @@ export default CompanyDescription = ({ navigation, initialState }) => {
           <ListItem itemDivider>
             <Text>IMAGE</Text>
           </ListItem>
-          <Avatar url={"https://idsb.tmgrup.com.tr/ly/uploads/images/2020/11/13/72100.jpg"}/>
+          <Avatar url={imageUrl} />
         </Form>
       </Content>
     </Container>
