@@ -9,7 +9,7 @@ import Projects from '../projects'
 import Education from '../education'
 import Filters from '../filters'
 import MyOfferts from '../myofferts'
-import EditOffert from '../editoffert'
+import AddOffer from '../addOffer'
 import EditPortfolio from '../editPortfolio'
 import ProfileTags from '../profileTags'
 import CompanyDescription from '../companyDescription'
@@ -28,7 +28,7 @@ export default ProfileTab = ({ navigation }) => {
             <Stack.Screen name="Education" component={Education}/>
             <Stack.Screen name="Filters" component={Filters}/>
             <Stack.Screen name="MyOfferts" component={MyOfferts}/>
-            <Stack.Screen name="EditOffert" component={EditOffert}/>
+            <Stack.Screen name="AddOffer" component={AddOffer}/>
             <Stack.Screen name="EditPortfolio" component={EditPortfolio}/>
             <Stack.Screen name="ProfileTags" component={ProfileTags}/>
             <Stack.Screen name="CompanyDescription" component={CompanyDescription}/>

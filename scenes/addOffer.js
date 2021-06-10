@@ -9,7 +9,7 @@ import {
   ListItem,
   Textarea,
   Input,
-  Form,
+  Form, o
 } from "native-base";
 import React, { useState } from "react";
 import TopBar from "../components/atoms/topbar";
@@ -17,43 +17,53 @@ import { Dimensions, StyleSheet } from "react-native";
 import TagFilter from "../components/organisms/tagfilter";
 import BenefitsForm from "../components/organisms/benefitsForm";
 import Btn from "../components/atoms/btn";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import {SCREEN_PADDING} from '../styles/spacing'
+import { SCREEN_PADDING } from '../styles/spacing'
+import * as firebase from 'firebase'
 
-export default EditOffert = ({ navigation }) => {
+
+export default AddOffer = ({ navigation }) => {
+  const firestore = firebase.firestore();
   const onClickGoBack = () => {
     navigation.goBack();
   };
 
   const [position, setPosition] = useState("");
   const [place, setPlace] = useState("");
-  const [solary, setSolary] = useState("");
-  const [time, setTime] = useState("");
-  const [desc, setDesc] = useState("");
+  const [salary, setSalary] = useState("");
+  const [description, setDescription] = useState("");
   const [howTo, setHowTo] = useState("");
-  const [benefites, setBenefites] = useState([
+  const [benefits, setBenefits] = useState([
     "No free days",
     "Challanges at work",
   ]);
-  const [show, setShow] = useState(false);
-  const [date, setDate] = useState(new Date(1598051730000));
+  const [tags, setTags] = useState([])
+
 
   const addBenefit = (benefit) => {
-    let arr = benefites;
+    let arr = benefits;
     arr.push(benefit);
-    setBenefites(arr);
+    setBenefits(arr);
   };
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === "ios");
-    setDate(currentDate);
-  };
 
-  const showDatepicker = () => {
-    setShow(true);
-    console.log(date);
-  };
+
+  const onSubmit = () => {
+
+
+    const offer = {
+      ownerUid: firebase.auth().currentUser.uid,
+      date: firebase.firestore.FieldValue.serverTimestamp(),
+      position: position,
+      salary: salary,
+      description: description,
+      benefits: benefits,
+      howTo: howTo,
+      place: place,
+      tags: tags
+    }
+    firestore.collection('offers').add(offer);
+    navigation.goBack();
+  }
 
   return (
     <Container>
@@ -81,21 +91,20 @@ export default EditOffert = ({ navigation }) => {
         </View>
         <View style={styles.input}>
           <Input
-            placeholder={"Solary"}
-            value={solary}
-            onChangeText={setSolary}
+            placeholder={"Salary"}
+            value={salary}
+            onChangeText={setSalary}
           />
         </View>
-        <Btn text={date.toDateString()} onPress={showDatepicker} />
         <ListItem itemDivider>
           <Text>TAGS</Text>
         </ListItem>
 
-        <TagFilter />
+        <TagFilter activeTagsChangedCallback={setTags} />
         <ListItem itemDivider>
           <Text>BENEFITS</Text>
         </ListItem>
-        <BenefitsForm benefits={benefites} onClickAddBenefit={addBenefit} />
+        <BenefitsForm benefits={benefits} onClickAddBenefit={addBenefit} />
 
         <ListItem itemDivider>
           <Text>DESCRIPTION</Text>
@@ -105,8 +114,8 @@ export default EditOffert = ({ navigation }) => {
             style={styles.text}
             rowSpan={7}
             placeholder={"About You..."}
-            value={desc}
-            onChangeText={setDesc}
+            value={description}
+            onChangeText={setDescription}
           />
         </View>
         <ListItem itemDivider>
@@ -121,18 +130,8 @@ export default EditOffert = ({ navigation }) => {
             onChangeText={setHowTo}
           />
         </View>
-        <Btn text={"Apply"} />
+        <Btn text={"Submit"} onPress={onSubmit} />
 
-        {show && (
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode={"date"}
-            is24Hour={true}
-            display="default"
-            onChange={onChange}
-          />
-        )}
       </Content>
     </Container>
   );

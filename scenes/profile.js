@@ -101,7 +101,7 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("EditOffert")}>
+                <ListItem onPress={() => navigation.navigate("AddOffer")}>
                     <Left><Text>Add Offer</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
