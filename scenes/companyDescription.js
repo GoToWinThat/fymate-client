@@ -14,14 +14,14 @@ import { SCREEN_PADDING } from "../styles/spacing";
 import { Dimensions, StyleSheet } from "react-native";
 import avatar from "../components/atoms/avatar";
 
-export default CompanyDescription = ({ route,navigation }) => {
+export default CompanyDescription = ({ route, navigation }) => {
 
   const initialState = route.params.info;
   const doc = route.params.doc;
 
 
   const onClickGoBack = () => {
-    doc.update({companyDescription: {description: description, imageUrl: imageUrl, unique: unique}})
+    doc.update({ companyDescription: { description: description, imageUrl: imageUrl, unique: unique } })
     navigation.goBack();
   };
 
