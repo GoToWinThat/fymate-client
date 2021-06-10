@@ -14,12 +14,18 @@ import { SCREEN_PADDING } from "../styles/spacing";
 import { Dimensions, StyleSheet } from "react-native";
 import avatar from "../components/atoms/avatar";
 
-export default CompanyDescription = ({ navigation }) => {
+export default CompanyDescription = ({ navigation, initialState }) => {
+
+
+
   const onClickGoBack = () => {
+    
     navigation.goBack();
   };
-  const [desc, setDesc] = useState("");
-  const [unique, setUnique] = useState("");
+
+
+  const [desc, setDesc] = useState(initialState?.desc || "" );
+  const [unique, setUnique] = useState(initialState?.unique || "");
 
   return (
     <Container>

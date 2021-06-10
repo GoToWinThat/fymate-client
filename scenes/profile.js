@@ -82,7 +82,7 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("CompanyDescription")}>
+                <ListItem onPress={() => navigation.navigate("CompanyDescription", { doc: currentProfileDocumentRef, info: userOrCompany.companyDescription })}>
                     <Left><Text>Company Description</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>

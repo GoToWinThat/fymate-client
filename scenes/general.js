@@ -27,7 +27,7 @@ export default General = ({ route, navigation }) => {
             </Header>
             <Content>
                 <BaseForm defaults={{
-                    first: general.details.position,
+                    first: general?.details?.position,
                     second: general.company,
                     desc: general.about
                 }} submitCallback={submitCallback} placeholders={["Position", "Company", "About You"]} />

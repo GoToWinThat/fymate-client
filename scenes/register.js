@@ -7,6 +7,7 @@ import { useState } from "react";
 import Segmentbar from '../components/atoms/segmentbar';
 import Btn from '../components/atoms/btn'
 import education from "./education";
+import companyDescription from "./companyDescription";
 
 //TODO: Repeat password UI state handling
 export default Register = ({ navigation }) => {
@@ -25,27 +26,23 @@ export default Register = ({ navigation }) => {
 
         const userUid = results.user.uid;
 
-
         let account = { //company account template
           type: type,
           about: "",
-          company: "",
           email: "",
           location: "",
           phone: "",
           avaterUrl: "",
-          details: {
-            contract: "",
-            jobtime: "",
-            position: "",
-            starttime: "",
-            worktype: "",
-          },
           tags: [],
           contacts: {
             phone: "",
             mail: "",
             github: "",
+          },
+          companyDescription: {
+            description: "",
+            unique: "",
+            imageUrl: "",
           }
         }
 

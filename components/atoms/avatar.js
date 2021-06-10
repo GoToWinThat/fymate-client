@@ -20,13 +20,13 @@ export default Avatar = ({ url }) => {
 
   const [image, setImage] = useState(url);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (Platform.OS !== "web") {
-      const { status } =
-        await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== "granted") {
-        alert("Permision denied!");
-      }
+      ImagePicker.requestMediaLibraryPermissionsAsync().then(({ status }) => {
+        if (status !== "granted") {
+          alert("Permision denied!");
+        }
+      });
     }
   }, []);
 
