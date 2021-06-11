@@ -15,9 +15,9 @@ export default EditPortfolio = ({ navigation, route }) => {
     type === "project" ? (
       <ProjectForm />
     ) : type === "education" ? (
-      <BaseForm placeholders={["School/University", "Localization","Interesting facts..."]} />
+      <BaseForm placeholders={["School/University", "Localization","Date","Interesting facts..."]} />
     ) : (
-      <BaseForm placeholders={["Position", "Company","Job description..."]} />
+      <BaseForm placeholders={["Position", "Company","Date","Job description..."]} />
     );
 
   return (

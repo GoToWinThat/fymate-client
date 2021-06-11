@@ -43,7 +43,7 @@ export default ProjectForm = ({ submit }) => {
       <ListItem itemDivider>
         <Text>DESCRIPTION</Text>
       </ListItem>
-      <View style={styles.input}>
+      <View style={[styles.input,{ paddingVertical: 20,}]}>
         <Textarea
           style={styles.text}
           rowSpan={7}
@@ -64,9 +64,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   text: {
-    fontSize: 17,
-    paddingVertical: 20,
     width: "100%",
+    fontSize: 17,
   },
   input: {
     flexDirection: "row",
@@ -76,16 +75,14 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     marginVertical: 10,
     marginHorizontal: SCREEN_PADDING,
-    fontSize: 10,
+    fontSize: 5,
   },
   textArea: {
     flexDirection: "row",
     borderWidth: 1.3,
     borderRadius: 40,
-    padding: 20,
     borderColor: "gray",
-    marginVertical: 10,
-    marginHorizontal: 20,
+    marginHorizontal: SCREEN_PADDING,
     width: Dimensions.get("window").width - 40,
   },
 });

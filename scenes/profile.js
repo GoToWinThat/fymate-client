@@ -56,7 +56,7 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("Filters")}>
+                <ListItem onPress={() => navigation.navigate("ProfileTags")}>
                     <Left><Text>Tags</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>

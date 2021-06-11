@@ -18,20 +18,7 @@ export default BaseForm = ({ placeholders, submit }) => {
   const [first, setFirst] = useState("");
   const [second, setSecond] = useState("");
   const [desc, setDesc] = useState("");
-  const [date, setDate] = useState(new Date(1598051730000));
-
-  const [show, setShow] = useState(false);
-
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === "ios");
-    setDate(currentDate);
-  };
-
-  const showDatepicker = () => {
-    setShow(true);
-    console.log(date);
-  };
+  const [date, setDate] = useState("");
 
   return (
     <Form>
@@ -52,32 +39,27 @@ export default BaseForm = ({ placeholders, submit }) => {
           onChangeText={setSecond}
         />
       </View>
+      <View style={styles.input}>
+        <Input
+          placeholder={placeholders[2]}
+          value={date}
+          onChangeText={setDate}
+        />
+      </View>
 
-      <Btn text={date.toDateString()} onPress={showDatepicker} />
-
+      
       <ListItem itemDivider>
         <Text>DESCRIPTION</Text>
       </ListItem>
-      <View style={styles.input}>
+      <View style={[styles.input,{ paddingVertical: 20,}]}>
         <Textarea
           style={styles.text}
           rowSpan={7}
-          placeholder={placeholders[2]}
+          placeholder={placeholders[3]}
           value={desc}
           onChangeText={setDesc}
         />
       </View>
-
-      {show && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode={"date"}
-          is24Hour={true}
-          display="default"
-          onChange={onChange}
-        />
-      )}
 
       <Btn text="Submit" onPress={() => submit([first, second, date, desc])} />
     </Form>
@@ -90,7 +72,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   text: {
-    paddingVertical: 20,
     width: "100%",
     fontSize: 17,
   },
@@ -108,9 +89,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderWidth: 1.3,
     borderRadius: 40,
-    padding: 20,
     borderColor: "gray",
-    marginVertical: 20,
     marginHorizontal: SCREEN_PADDING,
     width: Dimensions.get("window").width - 40,
   },

@@ -1,11 +1,20 @@
 import React from "react";
-import { Container, Header, Content } from "native-base";
+import {
+  Container,
+  Header,
+  Content,
+  Item,
+  Icon,
+  Input,
+  Button,
+  Text,
+} from "native-base";
 import TopBar from "../components/atoms/topbar";
 import Searchbar from "../components/atoms/searchbar";
 import OfferList from "../components/molecules/offerlist";
+import { StyleSheet, Platform } from "react-native";
 
 export default Board = ({ navigation }) => {
-
   const accountType = "Company"; //Employee , Company
 
   const companyList = [
@@ -103,17 +112,36 @@ export default Board = ({ navigation }) => {
     });
   };
 
+  const header =
+    Platform.OS === "ios" ? (
+      <Header searchBar rounded>
+        <Item>
+          <Icon name="ios-search" />
+          <Input
+            placeholder="Search"
+            onChangeText={(val) => setSearchText(val)}
+          />
+        </Item>
+        <Button transparent onPress={onClickNavigateFilters}>
+          <Icon name={"filter"} />
+        </Button>
+      </Header>
+    ) : (
+      <>
+        <Header searchBar rounded>
+          <TopBar
+            title="Fymate"
+            onClickRightIcon={onClickNavigateFilters}
+            rightIcon="filter"
+          />
+        </Header>
+        <Searchbar />
+      </>
+    );
+
   return (
     <Container>
-      <Header>
-        <TopBar
-          title="Fymate"
-          onClickRightIcon={onClickNavigateFilters}
-          rightIcon="filter"
-        />
-      </Header>
-      <Searchbar />
-
+      {header}
       <Content>
         {accountType === "Company" ? (
           <OfferList onClick={onClickNavigateOffer} list={userList} />
@@ -124,3 +152,8 @@ export default Board = ({ navigation }) => {
     </Container>
   );
 };
+const styles = StyleSheet.create({
+  header: {
+    flexDirection: "row",
+  },
+});

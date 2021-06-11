@@ -31,7 +31,7 @@ export default CompanyDescription = ({ navigation }) => {
           <ListItem itemDivider>
             <Text>YOUR COMPANY</Text>
           </ListItem>
-          <View style={styles.input}>
+          <View style={[styles.input,{ paddingVertical: 20,}]}>
             <Textarea
               style={styles.text}
               rowSpan={7}
@@ -40,7 +40,7 @@ export default CompanyDescription = ({ navigation }) => {
               onChangeText={setDesc}
             />
           </View>
-          <View style={styles.input}>
+          <View style={[styles.input,{ paddingVertical: 20,}]}>
             <Textarea
               style={styles.text}
               rowSpan={7}
@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   text: {
-    paddingVertical: 20,
     width: "100%",
     fontSize: 17,
   },
@@ -84,9 +83,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderWidth: 1.3,
     borderRadius: 40,
-    padding: 20,
     borderColor: "gray",
-    marginVertical: 20,
     marginHorizontal: SCREEN_PADDING,
     width: Dimensions.get("window").width - 40,
   },
