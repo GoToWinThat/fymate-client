@@ -8,6 +8,7 @@ import Segmentbar from '../components/atoms/segmentbar';
 import Btn from '../components/atoms/btn'
 import education from "./education";
 import companyDescription from "./companyDescription";
+import { formStyle } from '../styles/style'
 
 //TODO: Repeat password UI state handling
 export default Register = ({ navigation }) => {
@@ -125,28 +126,28 @@ export default Register = ({ navigation }) => {
 
           <View style={styles.marginHor}>
 
-            <View style={styles.input}>
+            <View style={formStyle.input}>
               <View style={styles.icon}>
                 <FontAwesome5 name="envelope" size={24} color="black" />
               </View>
 
               <Input onChangeText={setEmail} placeholder="Email" />
             </View>
-            <View style={styles.input}>
+            <View style={formStyle.input}>
               <View style={styles.icon}>
                 <FontAwesome5 name="lock" size={24} color="black" />
               </View>
 
-              <Input onChangeText={setPassword} placeholder="Password" />
+              <Input secureTextEntry={true} onChangeText={setPassword} placeholder="Password" />
             </View>
-            <View style={styles.input}>
+            <View style={formStyle.input}>
               <View style={styles.icon}>
                 <FontAwesome5 name="lock" size={24} color="black" />
               </View>
-              <Input placeholder="Repeat Password" />
+              <Input secureTextEntry={true} placeholder="Repeat Password" />
             </View>
 
-            <View>
+            <View style={styles.segmented}>
               <Segmentbar onClickChange={setType} />
             </View>
           </View>
@@ -171,7 +172,6 @@ const styles = StyleSheet.create({
   },
   screen: {
     justifyContent: "space-evenly",
-    paddingHorizontal: 30,
     alignItems: "center",
     height: "100%",
     paddingVertical: "15%",
@@ -188,15 +188,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: "100%",
   },
-  input: {
-    flexDirection: "row",
-    borderWidth: 2,
-    borderRadius: 40,
-    paddingHorizontal: 20,
-    marginBottom: 20,
-  },
   icon: {
     marginTop: 12,
     marginRight: 15,
   },
+  segmented: {
+    marginHorizontal: 20,
+    marginTop: 10,
+    marginBottom: 30
+  }
 });

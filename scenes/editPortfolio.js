@@ -1,7 +1,8 @@
 import { Button, Container, Content, Header, Icon, Text } from "native-base";
 import React from "react";
 import TopBar from "../components/atoms/topbar";
-import BaseForm from "../components/molecules/baseform";
+import EducationForm from "../components/molecules/educationForm";
+import ExperienceForm from "../components/molecules/experienceForm";
 import ProjectForm from "../components/molecules/projectform";
 
 export default EditPortfolio = ({ navigation, route }) => {
@@ -15,15 +16,15 @@ export default EditPortfolio = ({ navigation, route }) => {
     type === "project" ? (
       <ProjectForm submitCallback={submitCallback}/>
     ) : type === "education" ? (
-      <BaseForm submitCallback={submitCallback} placeholders={["School/University", "Localization","Interesting facts..."]} />
+      <EducationForm submitCallback={submitCallback} />
     ) : (
-      <BaseForm submitCallback={submitCallback} placeholders={["Position", "Company","Job description..."]} />
+      <ExperienceForm submitCallback={submitCallback} />
     );
 
   return (
     <Container>
       <Header>
-        <TopBar onClickGoBack={onClickGoBack} title="Edit" />
+        <TopBar onClickGoBack={onClickGoBack} title="Edit" onClickRightIcon={onClickGoBack} rightIcon="trash-outline" />
       </Header>
       <Content>{form}</Content>
     </Container>

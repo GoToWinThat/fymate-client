@@ -5,6 +5,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import * as firebase from 'firebase'
 import { useState } from "react";
 import Btn from '../components/atoms/btn'
+import { formStyle } from '../styles/style'
 
 //TODO: Handle login failure
 export default Login = ({ navigation }) => {
@@ -19,7 +20,8 @@ export default Login = ({ navigation }) => {
   const [password, setPassword] = useState("");
 
   const onClickSignIn = () => {
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    // firebase.auth().signInWithEmailAndPassword(email, password)
+    firebase.auth().signInWithEmailAndPassword("tester@mail.com", "1q2w3e4r")
       .then((results) => {
         navigation.navigate("MainTab", {
           screen: "MainTab",
@@ -57,7 +59,7 @@ export default Login = ({ navigation }) => {
           </View>
 
           <View style={styles.marginHor}>
-            <View style={styles.input}>
+            <View style={formStyle.input}>
               <View style={styles.icon}>
                 <FontAwesome5 name="user-circle" size={24} color="black" />
               </View>
@@ -65,12 +67,12 @@ export default Login = ({ navigation }) => {
               <Input onChangeText={setEmail} placeholder="Email" />
             </View>
 
-            <View style={styles.input}>
+            <View style={formStyle.input}>
               <View style={styles.icon}>
                 <FontAwesome5 name="lock" size={24} color="black" />
               </View>
 
-              <Input onChangeText={setPassword} placeholder="Password" />
+              <Input secureTextEntry={true} onChangeText={setPassword} placeholder="Password" />
             </View>
 
             <TouchableOpacity onPress={() => onClickSignUp()}>
@@ -102,7 +104,6 @@ const styles = StyleSheet.create({
   },
   screen: {
     justifyContent: "space-evenly",
-    paddingHorizontal: 30,
     alignItems: "center",
     height: "100%",
     paddingVertical: "15%",
@@ -118,13 +119,6 @@ const styles = StyleSheet.create({
   btnText: {
     textAlign: "center",
     width: "100%",
-  },
-  input: {
-    flexDirection: "row",
-    borderWidth: 2,
-    borderRadius: 40,
-    paddingHorizontal: 20,
-    marginBottom: 20,
   },
   icon: {
     marginTop: 12,

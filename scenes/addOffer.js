@@ -13,13 +13,11 @@ import {
 } from "native-base";
 import React, { useState } from "react";
 import TopBar from "../components/atoms/topbar";
-import { Dimensions, StyleSheet } from "react-native";
 import TagFilter from "../components/organisms/tagfilter";
 import BenefitsForm from "../components/organisms/benefitsForm";
 import Btn from "../components/atoms/btn";
-import { SCREEN_PADDING } from '../styles/spacing'
 import * as firebase from 'firebase'
-
+import { formStyle } from '../styles/style'
 
 export default AddOffer = ({ navigation }) => {
   const firestore = firebase.firestore();
@@ -68,28 +66,28 @@ export default AddOffer = ({ navigation }) => {
   return (
     <Container>
       <Header>
-        <TopBar title="Edit Offert" onClickGoBack={onClickGoBack} />
+        <TopBar title="Edit Offert" onClickGoBack={onClickGoBack} onClickRightIcon={onClickGoBack} rightIcon="trash-outline"/>
       </Header>
       <Content>
         <ListItem itemDivider>
           <Text>GENERAL</Text>
         </ListItem>
 
-        <View style={styles.input}>
+        <View style={formStyle.input}>
           <Input
             placeholder={"Position"}
             value={position}
             onChangeText={setPosition}
           />
         </View>
-        <View style={styles.input}>
+        <View style={formStyle.input}>
           <Input
             placeholder={"Localization"}
             value={place}
             onChangeText={setPlace}
           />
         </View>
-        <View style={styles.input}>
+        <View style={formStyle.input}>
           <Input
             placeholder={"Salary"}
             value={salary}
@@ -109,9 +107,9 @@ export default AddOffer = ({ navigation }) => {
         <ListItem itemDivider>
           <Text>DESCRIPTION</Text>
         </ListItem>
-        <View style={styles.input}>
+        <View style={formStyle.input}>
           <Textarea
-            style={styles.text}
+            style={formStyle.text}
             rowSpan={7}
             placeholder={"About You..."}
             value={description}
@@ -121,9 +119,9 @@ export default AddOffer = ({ navigation }) => {
         <ListItem itemDivider>
           <Text>HOW TO APPLY</Text>
         </ListItem>
-        <View style={styles.input}>
+        <View style={formStyle.input}>
           <Textarea
-            style={styles.text}
+            style={formStyle.text}
             rowSpan={7}
             placeholder={"Instruction..."}
             value={howTo}
@@ -136,35 +134,4 @@ export default AddOffer = ({ navigation }) => {
     </Container>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-  },
-  text: {
-    fontSize: 17,
-    paddingVertical: 20,
-    width: "100%",
-  },
-  input: {
-    flexDirection: "row",
-    borderWidth: 1.3,
-    borderRadius: 40,
-    paddingHorizontal: 20,
-    borderColor: "gray",
-    marginVertical: 10,
-    marginHorizontal: SCREEN_PADDING,
-    fontSize: 5,
-  },
-  textArea: {
-    flexDirection: "row",
-    borderWidth: 1.3,
-    borderRadius: 40,
-    padding: 20,
-    borderColor: "gray",
-    marginVertical: 10,
-    marginHorizontal: SCREEN_PADDING,
-    width: Dimensions.get("window").width - 40,
-  },
-});
+
