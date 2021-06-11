@@ -6,23 +6,26 @@ export default Segmentbar = ({onClickChange}) => {
 
     const [active, setActive] = useState("Company");
 
+    const companyText = active === "Company" ? { color: 'white' } : {  color: '#007AFF' }
+    const employeeText = active === "Employee" ? { color: 'white' } : {  color: '#007AFF' }
+
     return (
       <Segment style={styles.segment}>
-        <Button style={styles.buttons} first Employee
+        <Button transparent style={styles.buttons} first Employee
                 active={active === "Employee"}
                 onPress={() => {
                     onClickChange("Employee")
                     setActive("Employee")
                     }}>
-          <Text>Employee</Text>
+          <Text style={employeeText}>Employee</Text>
         </Button>
-        <Button style={styles.buttons} last Company
+        <Button transparent style={styles.buttons} last Company
                 active={active === "Company"}
                 onPress={() => {
                   onClickChange("Company");    
                   setActive("Company");
                   }}>
-          <Text>Company</Text>
+          <Text style={companyText}>Company</Text>
         </Button>
       </Segment>
     )
@@ -31,9 +34,8 @@ export default Segmentbar = ({onClickChange}) => {
 const styles = StyleSheet.create({
   buttons: {
     width: '50%',
-    height: '100%',
+    height: '80%',
     justifyContent: 'center',
-    borderWidth: 3,
-    borderColor: 'black', 
   },
+  text: { fontWeight: 'bold', color: 'white' }
 })

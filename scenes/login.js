@@ -2,7 +2,7 @@ import { Button, Container, Content, Text, View, Input } from "native-base";
 import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import * as firebase from 'firebase'
+// import * as firebase from 'firebase'
 import { useState } from "react";
 import Btn from '../components/atoms/btn'
 
@@ -13,24 +13,24 @@ export default Login = ({ navigation }) => {
   const [password, setPassword] = useState("");
 
   const onClickSignIn = () => {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((results) => {
-        navigation.navigate("MainTab", {
-          screen: "MainTab",
-          uid: results.user.uid,
-        });
-      })
-      .catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        if (errorCode === 'auth/wrong-password') {
-          alert('Wrong password.');
-        } else {
-          alert(errorMessage);
-        }
-        console.log(error);
-      });
+    // firebase.auth().signInWithEmailAndPassword(email, password)
+    //   .then((results) => {
+    //     navigation.navigate("MainTab", {
+    //       screen: "MainTab",
+    //       uid: results.user.uid,
+    //     });
+    //   })
+    //   .catch(function (error) {
+    //     // Handle Errors here.
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
+    //     if (errorCode === 'auth/wrong-password') {
+    //       alert('Wrong password.');
+    //     } else {
+    //       alert(errorMessage);
+    //     }
+    //     console.log(error);
+    //   });
   };
 
   const onClickSignUp = () => {

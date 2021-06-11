@@ -23,7 +23,7 @@ export default EditPortfolio = ({ navigation, route }) => {
   return (
     <Container>
       <Header>
-        <TopBar onClickGoBack={onClickGoBack} title="Edit" />
+        <TopBar onClickGoBack={onClickGoBack} title="Edit" rightIcon="trash-outline" onClickRightIcon={onClickGoBack}/>
       </Header>
       <Content>{form}</Content>
     </Container>

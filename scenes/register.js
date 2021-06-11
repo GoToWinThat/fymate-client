@@ -2,7 +2,7 @@ import { Button, Container, Content, Text, View, Input } from "native-base";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import * as firebase from 'firebase';
+// import * as firebase from 'firebase';
 import { useState } from "react";
 import Segmentbar from '../components/atoms/segmentbar';
 import Btn from '../components/atoms/btn'
@@ -17,51 +17,51 @@ export default Register = ({ navigation }) => {
 
   const onClickSignUp = () => {
 
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then((results) => {
+    // firebase.auth().createUserWithEmailAndPassword(email, password)
+    //   .then((results) => {
 
-        const userUid = results.user.uid;
+    //     const userUid = results.user.uid;
 
-        //TODO: Finish account schema
-        const account = {
-          about: "",
-          firstName: "",
-          lastName: "",
-          location: "",
-          company: "",
-        }
+    //     //TODO: Finish account schema
+    //     const account = {
+    //       about: "",
+    //       firstName: "",
+    //       lastName: "",
+    //       location: "",
+    //       company: "",
+    //     }
 
-        firebase.firestore().collection("users").doc(userUid).set(account)
-          .then(() => {
-            navigation.navigate("Board", {
-              screen: "Board",
-              uid: userUid,
-            });
-          })
-          .catch((error) => {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            alert(errorMessage);
-            console.log(error);
+    //     firebase.firestore().collection("users").doc(userUid).set(account)
+    //       .then(() => {
+    //         navigation.navigate("Board", {
+    //           screen: "Board",
+    //           uid: userUid,
+    //         });
+    //       })
+    //       .catch((error) => {
+    //         // Handle Errors here.
+    //         var errorCode = error.code;
+    //         var errorMessage = error.message;
+    //         alert(errorMessage);
+    //         console.log(error);
 
-            //TODO: Dispose of user account somehow (maybe move document creation to cloud function)
-          });
+    //         //TODO: Dispose of user account somehow (maybe move document creation to cloud function)
+    //       });
 
-      })
-      .catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        if (errorCode == 'auth/weak-password') {
-          //TODO: handle weak password in UI
-          alert('The password is too weak.');
-        } else {
-          //TODO: handle critical error in UI
-          alert(errorMessage);
-        }
-        console.log(error);
-      });
+    //   })
+    //   .catch(function (error) {
+    //     // Handle Errors here.
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
+    //     if (errorCode == 'auth/weak-password') {
+    //       //TODO: handle weak password in UI
+    //       alert('The password is too weak.');
+    //     } else {
+    //       //TODO: handle critical error in UI
+    //       alert(errorMessage);
+    //     }
+    //     console.log(error);
+    //   });
 
   };
 
