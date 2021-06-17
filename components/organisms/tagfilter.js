@@ -1,6 +1,7 @@
 import React from "react";
 import { View } from "native-base";
 import TagList from "../molecules/tagList";
+import { useEffect, useState } from "react/cjs/react.production.min";
 
 export default TagFilter = ({ initialTags, activeTagsChangedCallback }) => {
 
@@ -20,6 +21,8 @@ export default TagFilter = ({ initialTags, activeTagsChangedCallback }) => {
     "Agreement",
   ];
 
+  const initialTagsState = initialTags !== undefined ? initialTags : []; //Force TagLists to use the same array
+
   const allTags = tagsArr.map((list, index) => {
     return (
       <TagList
@@ -29,7 +32,7 @@ export default TagFilter = ({ initialTags, activeTagsChangedCallback }) => {
         clickable={true}
         title={labels[index]}
         activeTagsChangedCallback={activeTagsChangedCallback}
-        initialTags={initialTags}
+        initialTags={initialTagsState}
       />
     );
   });
