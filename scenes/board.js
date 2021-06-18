@@ -10,7 +10,7 @@ import * as firebase from 'firebase';
 
 const defaultFilterState = {
   tags: [],
-  searchType: "Employee",
+  searchType: "Company",
   searchPhrase: ""
 }
 
@@ -61,9 +61,10 @@ export default Board = ({ navigation }) => {
     });
   };
 
-  const onClickNavigateOffer = () => {
+  const onClickNavigateOffer = (offer) => {
     navigation.navigate("Offert", {
       screen: "Offert",
+      offer: offer,
     });
   };
 

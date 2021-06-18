@@ -7,44 +7,36 @@ import DetailsList from '../components/molecules/detailList'
 import BenefitsDoubleList from '../components/organisms/benefitsDoubleList'
 import ImgInfo from '../components/atoms/imginfo'
 
-export default Offert = ({ navigation }) => {
-    
+export default Offert = ({ route, navigation }) => {
+    const offer = route?.params?.offer
+    console.log(offer)
+
+
     const onClickGoBack = () => {
         navigation.goBack();
     }
-
-    const details = {
-        contract: "Umowa - B2B",
-        position: "Junior",
-        worktype: "Remote",
-        starttime: "06.07.2021.r",
-        jobtime: "1/4 etatu"
-    }
-
-    const benefits = ["Free Food", "Unlimited Netflix", "Daily Coffe", "1h PS5", "Unlimited Spotify", "Daily Apple", "2h Xbox"]
-
-    const howtoapply = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper bibendum tortor, non viverra velit gravida at. Vestibulum eros lorem, iaculis sit amet sapien non, euismod imperdiet enim. Nam aliquam augue et vestibulum malesuada. Donec tristique pulvinar metus eget dignissim. Cras ante lacus, blandit non congue id, malesuada a velit. Vivamus porttitor ac lacus elementum ultricies. Vivamus sit amet pellentesque augue, vitae pharetra dolor. Donec posuere elit quis orci tincidunt aliquet. Duis pellentesque pretium urna, in finibus dui rhoncus ac."
-
+    //TODO: company fetch
+    //TODO: Image url
     return (
         <Container>
             <Header>
                 <TopBar onClickGoBack={onClickGoBack} title={"Offert"}
-                     rightIcon='heart' onClickRightIcon={() => console.log("TODO; ADD to favorite")}/>
+                    rightIcon='heart' onClickRightIcon={() => console.log("TODO; ADD to favorite")} />
             </Header>
             <Content >
-                <ImgInfo 
-                    solary='8000 - 9000 PLN'
-                    location="Warsaw"
+                <ImgInfo
+                    solary={offer.salary}
+                    location={offer.place}
                     url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCtJrLLTxjKNbvNxJGA3Id6_at43-0cWYglUKoAukqoyqTnv_KwnX34tDM2rISSZchc70&usqp=CAU"
-                    title="Front-end Developer"
+                    title={offer.position}
                     company="IBM corp."
                     size={30000}
                 />
-                <About title="About" desciption={howtoapply}/>
-                <TagList tags={['C#', "JavaScript", "C++", "React"]} title={"Tech Stack"} color={'blue'}/>
-                <DetailsList details={details}/>
-                <BenefitsDoubleList benefits={benefits}/>
-                <About title="How To Aplly" desciption={howtoapply}/>
+                <About title="About" desciption={offer.description} />
+                <TagList tags={offer.tags} title={"Tech Stack"} color={'blue'} />
+                <DetailsList details={[]} />
+                <BenefitsDoubleList benefits={offer.benefits} />
+                <About title="How To Apply" desciption={offer.howtoapply} />
 
             </Content>
         </Container>

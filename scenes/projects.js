@@ -9,8 +9,6 @@ export default Projects = ({ route, navigation }) => {
     const doc = route.params.doc
     const projects = route.params.info
 
-
-
     const submitCallback = (baseFromResults) => {
         const newElement = {
             title: baseFromResults[0],
