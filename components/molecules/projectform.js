@@ -11,12 +11,12 @@ import {
 import TagList from "./tagList";
 import { formStyle } from '../../styles/style'
 
-export default ProjectForm = ({ submitCallback }) => {
+export default ProjectForm = ({ submitCallback, defaults, idx }) => {
 
-  const [first, setFirst] = useState("");
-  const [desc, setDesc] = useState("");
-  const [tags, setTags] = useState("");
-  
+  const [title, setTitle] = useState(defaults?.title !== undefined ? defaults.title : "");
+  const [description, setDescription] = useState(defaults?.description !== undefined ? defaults.description : "");
+  const [tags, setTags] = useState(defaults?.tags !== undefined ? defaults.tags : []);
+
 
   return (
     <Form>
@@ -26,8 +26,8 @@ export default ProjectForm = ({ submitCallback }) => {
       <View style={formStyle.input}>
         <Input
           placeholder={"Project Name"}
-          value={first}
-          onChangeText={setFirst}
+          value={title}
+          onChangeText={setTitle}
         />
       </View>
       <ListItem itemDivider>
@@ -39,6 +39,7 @@ export default ProjectForm = ({ submitCallback }) => {
         clickable={true}
         title={'Tech Stack'}
         activeTagsChangedCallback={setTags}
+        initialTags={tags}
       />
 
       <ListItem itemDivider>
@@ -49,12 +50,17 @@ export default ProjectForm = ({ submitCallback }) => {
           style={formStyle.text}
           rowSpan={7}
           placeholder={"Project Description..."}
-          value={desc}
-          onChangeText={setDesc}
+          value={description}
+          onChangeText={setDescription}
         />
       </View>
 
-      <Btn text="Submit" onPress={() => submitCallback([first, desc, tags])} />
+      <Btn text="Submit" onPress={() => submitCallback(
+        {
+          title: title,
+          description: description,
+          tags: tags
+        }, idx)} />
     </Form>
   );
 };
