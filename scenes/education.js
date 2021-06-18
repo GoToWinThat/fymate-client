@@ -33,6 +33,12 @@ export default Education = ({ route, navigation }) => {
         doc.update({ education: education })
     }
 
+    const deleteCallback = (idx) => {
+        education.splice(idx, 1)
+        doc.update({ education: education })
+    }
+
+
     const onClickGoBack = () => {
         navigation.goBack();
     }
@@ -42,7 +48,7 @@ export default Education = ({ route, navigation }) => {
     }
 
     const onClickListElement = (edu, idx) => {
-        navigation.navigate("EditPortfolio", { type: "education", defaults: edu, idx: idx, submitCallback: updateCallback })
+        navigation.navigate("EditPortfolio", { type: "education", defaults: edu, idx: idx, submitCallback: updateCallback, deleteCallback: deleteCallback })
     }
 
     return (
