@@ -6,7 +6,7 @@ import ExperienceForm from "../components/molecules/experienceForm";
 import ProjectForm from "../components/molecules/projectform";
 
 export default EditPortfolio = ({ navigation, route }) => {
-  const { type, submitCallback } = route.params;
+  const { type, submitCallback, defaults, idx } = route.params;
 
   const onClickGoBack = () => {
     navigation.goBack();
@@ -14,11 +14,11 @@ export default EditPortfolio = ({ navigation, route }) => {
 
   const form =
     type === "project" ? (
-      <ProjectForm submitCallback={submitCallback}/>
+      <ProjectForm submitCallback={submitCallback} defaults={defaults} idx={idx} />
     ) : type === "education" ? (
-      <EducationForm submitCallback={submitCallback} />
+      <EducationForm submitCallback={submitCallback} defaults={defaults} idx={idx} />
     ) : (
-      <ExperienceForm submitCallback={submitCallback} />
+      <ExperienceForm submitCallback={submitCallback} defaults={defaults} idx={idx} />
     );
 
   return (

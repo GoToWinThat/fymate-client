@@ -10,12 +10,12 @@ import {
 } from "native-base";
 import { formStyle } from '../../styles/style'
 
-export default ExperienceForm = ({ submitCallback, defaults }) => {
+export default EducationForm = ({ submitCallback, defaults, idx }) => {
 
-  const [university, setUniversity] = useState(defaults?.university !== undefined ? defaults.first : "");
-  const [date, setDate] = useState(defaults?.date !== undefined ? defaults.second : "");
-  const [place, setPlace] = useState(defaults?.place !== undefined ? defaults.date : "");
-  const [desc, setDesc] = useState(defaults?.desc !== undefined ? defaults.desc : "");
+  const [university, setUniversity] = useState(defaults?.university !== undefined ? defaults.university : "");
+  const [date, setDate] = useState(defaults?.date !== undefined ? defaults.date : "");
+  const [place, setPlace] = useState(defaults?.place !== undefined ? defaults.place : "");
+  const [description, setDescription] = useState(defaults?.description !== undefined ? defaults.description : "");
 
   return (
     <Form>
@@ -52,12 +52,17 @@ export default ExperienceForm = ({ submitCallback, defaults }) => {
           style={formStyle.text}
           rowSpan={7}
           placeholder={"What have you learnt..."}
-          value={desc}
-          onChangeText={setDesc}
+          value={description}
+          onChangeText={setDescription}
         />
       </View>
 
-      <Btn text="Submit" onPress={() => submitCallback([university, place, date, desc])} />
+      <Btn text="Submit" onPress={() => submitCallback({
+        university: university,
+        date: date,
+        place: place,
+        description: description
+      }, idx)} />
     </Form>
   );
 };

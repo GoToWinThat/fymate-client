@@ -11,14 +11,25 @@ export default Education = ({ route, navigation }) => {
 
 
 
-    const submitCallback = (baseFromResults) => {
+    const submitCallback = (result) => {
         const newElement = {
-            location: baseFromResults[1],
-            place: baseFromResults[0],
-            time: baseFromResults[2].toString(),
-            description: baseFromResults[3] //TODO: this is never used
+            university: result.university,
+            place: result.place,
+            date: result.date,
+            description: result.description
         }
         education.push(newElement)
+        doc.update({ education: education })
+    }
+
+    const updateCallback = (result, idx) => {
+        const newElement = {
+            university: result.university,
+            place: result.place,
+            date: result.date,
+            description: result.description
+        }
+        education[idx] = newElement;
         doc.update({ education: education })
     }
 
@@ -30,7 +41,9 @@ export default Education = ({ route, navigation }) => {
         navigation.navigate("EditPortfolio", { type: "education", submitCallback: submitCallback })
     }
 
-
+    const onClickListElement = (edu, idx) => {
+        navigation.navigate("EditPortfolio", { type: "education", defaults: edu, idx: idx, submitCallback: updateCallback })
+    }
 
     return (
         <Container>
@@ -38,7 +51,7 @@ export default Education = ({ route, navigation }) => {
                 <TopBar title="Education" onClickGoBack={onClickGoBack} />
             </Header>
             <Content>
-                <EducationList education={education} />
+                <EducationList education={education} onListElementClicked={onClickListElement} />
                 <View style={styles.btnView}>
                     <Btn onPress={onClickAdd} icon="add" text="Add New" />
                 </View>
