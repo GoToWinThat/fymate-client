@@ -1,7 +1,7 @@
 import { Button, Header, Container, Content, Icon, Text } from 'native-base'
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
-import BaseForm from "../components/molecules/baseform"
+import GeneralForm from "../components/molecules/generalForm"
 
 export default General = ({ route, navigation }) => {
     const doc = route.params.doc;
@@ -26,11 +26,11 @@ export default General = ({ route, navigation }) => {
                 <TopBar title="General" onClickGoBack={onClickGoBack} />
             </Header>
             <Content>
-                <BaseForm defaults={{
+                <GeneralForm defaults={{
                     first: general?.details?.position,
                     second: general.company,
                     desc: general.about
-                }} submitCallback={submitCallback} placeholders={["Position", "Company", "About You"]} />
+                }} submitCallback={submitCallback} />
             </Content>
         </Container>
     )

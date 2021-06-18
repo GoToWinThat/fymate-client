@@ -1,4 +1,3 @@
-import { Dimensions, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import Btn from "../atoms/btn";
 import {
@@ -10,7 +9,7 @@ import {
   Form,
 } from "native-base";
 import TagList from "./tagList";
-import {SCREEN_PADDING} from '../../styles/spacing'
+import { formStyle } from '../../styles/style'
 
 export default ProjectForm = ({ submitCallback }) => {
 
@@ -24,7 +23,7 @@ export default ProjectForm = ({ submitCallback }) => {
       <ListItem itemDivider>
         <Text>INFO</Text>
       </ListItem>
-      <View style={styles.input}>
+      <View style={formStyle.input}>
         <Input
           placeholder={"Project Name"}
           value={first}
@@ -45,9 +44,9 @@ export default ProjectForm = ({ submitCallback }) => {
       <ListItem itemDivider>
         <Text>DESCRIPTION</Text>
       </ListItem>
-      <View style={styles.input}>
+      <View style={formStyle.input}>
         <Textarea
-          style={styles.text}
+          style={formStyle.text}
           rowSpan={7}
           placeholder={"Project Description..."}
           value={desc}
@@ -59,35 +58,3 @@ export default ProjectForm = ({ submitCallback }) => {
     </Form>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-  },
-  text: {
-    fontSize: 17,
-    paddingVertical: 20,
-    width: "100%",
-  },
-  input: {
-    flexDirection: "row",
-    borderWidth: 1.3,
-    borderRadius: 40,
-    paddingHorizontal: 20,
-    borderColor: "gray",
-    marginVertical: 10,
-    marginHorizontal: SCREEN_PADDING,
-    fontSize: 10,
-  },
-  textArea: {
-    flexDirection: "row",
-    borderWidth: 1.3,
-    borderRadius: 40,
-    padding: 20,
-    borderColor: "gray",
-    marginVertical: 10,
-    marginHorizontal: 20,
-    width: Dimensions.get("window").width - 40,
-  },
-});

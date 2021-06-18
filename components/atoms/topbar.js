@@ -7,19 +7,19 @@ export default TopBar = ({ onClickGoBack, title, onClickRightIcon, rightIcon }) 
         <>
             {onClickGoBack !== undefined ?  
             <Left> 
-                <Button onPress={() => onClickGoBack()} transparent>
+                <Button transparent onPress={() => onClickGoBack()} transparent>
                     <Icon name='arrow-back' />
                     {Platform.OS === 'ios' ? <Text>Back</Text> : null}
                 </Button>
-            </Left>: null}
+            </Left>: <Left/>}
             <Body >
                 <Title>{title}</Title>
             </Body>
             {onClickRightIcon !== undefined ? <Right>
-                <Button onPress={() => onClickRightIcon()}>
+                <Button transparent onPress={() => onClickRightIcon()}>
                     <Icon name={rightIcon}/>
                 </Button>
-            </Right> : null}
+            </Right> : <Right/>}
         </>
     )
 }

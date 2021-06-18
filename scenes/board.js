@@ -69,7 +69,7 @@ export default Board = ({ navigation }) => {
 
   return (
     <Container>
-      <Header>
+      <Header searchBar rounded>
         <TopBar
           title="Fymate"
           onClickRightIcon={onClickNavigateFilters}
@@ -77,7 +77,6 @@ export default Board = ({ navigation }) => {
         />
       </Header>
       <Searchbar />
-
       <Content>
         <OfferList onClick={onClickNavigateOffer} list={list} />
       </Content>

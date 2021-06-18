@@ -10,9 +10,9 @@ import {
 } from "native-base";
 import React, { useState } from "react";
 import TopBar from "../components/atoms/topbar";
-import { SCREEN_PADDING } from "../styles/spacing";
-import { Dimensions, StyleSheet } from "react-native";
 import avatar from "../components/atoms/avatar";
+import { formStyle } from '../styles/style'
+import Btn from '../components/atoms/btn'
 
 export default CompanyDescription = ({ route, navigation }) => {
 
@@ -33,25 +33,25 @@ export default CompanyDescription = ({ route, navigation }) => {
   return (
     <Container>
       <Header>
-        <TopBar title="Company Description" onClickGoBack={onClickGoBack} />
+        <TopBar title="Description" onClickGoBack={onClickGoBack} />
       </Header>
       <Content>
         <Form>
           <ListItem itemDivider>
             <Text>YOUR COMPANY</Text>
           </ListItem>
-          <View style={styles.input}>
+          <View style={formStyle.input}>
             <Textarea
-              style={styles.text}
+              style={formStyle.text}
               rowSpan={7}
               placeholder={"Describe your company..."}
               value={description}
               onChangeText={setDescription}
             />
           </View>
-          <View style={styles.input}>
+          <View style={formStyle.input}>
             <Textarea
-              style={styles.text}
+              style={formStyle.text}
               rowSpan={7}
               placeholder={"Why it is so unique..."}
               value={unique}
@@ -62,41 +62,10 @@ export default CompanyDescription = ({ route, navigation }) => {
           <ListItem itemDivider>
             <Text>IMAGE</Text>
           </ListItem>
-          <Avatar url={imageUrl} />
+          {/* <Avatar url={imageUrl} /> */}
+          <Btn text="Submit" />
         </Form>
       </Content>
     </Container>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-  },
-  text: {
-    paddingVertical: 20,
-    width: "100%",
-    fontSize: 17,
-  },
-  input: {
-    flexDirection: "row",
-    borderWidth: 1.3,
-    borderRadius: 40,
-    paddingHorizontal: 20,
-    borderColor: "gray",
-    marginVertical: 10,
-    marginHorizontal: SCREEN_PADDING,
-    fontSize: 5,
-  },
-  textArea: {
-    flexDirection: "row",
-    borderWidth: 1.3,
-    borderRadius: 40,
-    padding: 20,
-    borderColor: "gray",
-    marginVertical: 20,
-    marginHorizontal: SCREEN_PADDING,
-    width: Dimensions.get("window").width - 40,
-  },
-});
