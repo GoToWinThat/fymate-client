@@ -9,12 +9,12 @@ import { FONT_SIZE_LABEL } from '../styles/typography'
 import { useState } from "react";
 
 export default Filters = ({ route, navigation }) => {
-  const onGoBack = route.params?.onGoBackCallback
+  const onGoBack = route?.params?.onGoBackCallback
+  const initialFilterState = route?.params?.initialFilterState;
 
-  const [tags, setTags] = useState([]);
-  const [searchType, setSearchType] = useState("Company");
+  const [tags, setTags] = useState(initialFilterState?.tags !== undefined ? initialFilterState.tags : []);
+  const [searchType, setSearchType] = useState(initialFilterState?.searchType !== undefined ? initialFilterState.searchType : "Company");
   const onClickGoBack = () => {
-    console.log({ tags, val: searchType });
     if (onGoBack !== undefined) {
       onGoBack(
         {
@@ -26,8 +26,7 @@ export default Filters = ({ route, navigation }) => {
     navigation.goBack();
   };
 
-
-
+  //TODO: setting initial value of segment bar
   return (
     <Container>
       <Header>
@@ -38,7 +37,7 @@ export default Filters = ({ route, navigation }) => {
           <Text style={styles.title}>Range</Text>
           <Segmentbar onClickChange={(v) => setSearchType(v)} />
         </View>
-        <TagFilter initialTags={[]} activeTagsChangedCallback={setTags} />
+        <TagFilter initialTags={tags} activeTagsChangedCallback={setTags} />
       </Content>
     </Container>
   );

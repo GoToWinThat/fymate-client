@@ -14,27 +14,50 @@ const defaultFilterState = {
   searchPhrase: ""
 }
 
+export default Board = ({ navigation }) => {
 
-export default Board = ({ route, navigation }) => {
-  const initialFilterState = route?.params?.filterState
-  
-  const accountType = "Company"; //Employee , Company
   const [list, setList] = useState([])
-  const [filter, setFilter] = useState(initialFilterState !== undefined ? initialFilterState : defaultFilterState);
+  const [filter, setFilter] = useState(defaultFilterState);
+
+  const onReceivedNewFilter = (newFilter) => {
+    filter.tags = newFilter.tags;
+    filter.searchType = newFilter.searchType;
+    setFilter({ ...filter })
+  }
+
+
+  const onReceivedNewSearchPhrase = (val) => {
+    filter.searchPhrase = val;
+    setFilter({ ...filter })
+  }
 
   useEffect(() => {
-    if (accountType === "Employee") {
-      //firebase.firestore().collection("offers").where()
+    let queryRef = null;
+    if (filter.searchType === "Company") {
+      queryRef = firebase.firestore()
+        .collection("offers")
+      if (filter.tags.length !== 0)
+        queryRef = queryRef.where("tags", "array-contains-any", filter.tags) //TODO: this only supports up to 10 elements
+
     }
     else {
-      //firebase.firestore().collection("users").where()
+      queryRef = firebase.firestore()
+        .collection("users")
+        .where("type", "==", "Employee")
+      if (filter.tags.length !== 0)
+        queryRef = queryRef.where("tags", "array-contains-any", filter.tags) //TODO: this only supports up to 10 elements
     }
-  }, [])
-
+    queryRef.limit(20).get().then(snapshot => {
+      let data = snapshot.docs.map(x => x.data())
+      setList(data);
+    }) //get 20 posts
+  }, [filter])
 
   const onClickNavigateFilters = () => {
     navigation.navigate("Filters", {
       screen: "Filters",
+      onGoBackCallback: onReceivedNewFilter,
+      initialFilterState: filter
     });
   };
 

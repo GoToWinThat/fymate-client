@@ -1,5 +1,5 @@
 import { Header, Icon, Input, Item } from 'native-base'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 export default Searchbar = ({ handler, initText }) => {
 
@@ -9,7 +9,11 @@ export default Searchbar = ({ handler, initText }) => {
         <Header searchBar rounded>
             <Item>
                 <Icon name="ios-search" />
-                <Input placeholder="Search" onChangeText={val => setSearchText(val)}/>
+                <Input placeholder="Search" onChangeText={val => {
+                    setSearchText(val)
+                    if (handler !== undefined)
+                        handler(val);
+                }} />
             </Item>
         </Header>
     )
