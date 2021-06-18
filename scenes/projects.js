@@ -29,6 +29,10 @@ export default Projects = ({ route, navigation }) => {
         doc.update({ projects: projects })
     }
 
+    const deleteCallback = (idx) => {
+        projects.splice(idx, 1)
+        doc.update({ projects: projects })
+    }
 
     const onClickGoBack = () => {
         navigation.goBack();
@@ -39,7 +43,7 @@ export default Projects = ({ route, navigation }) => {
     }
 
     const onClickListElement = (proj, idx) => {
-        navigation.navigate("EditPortfolio", { type: "project", defaults: proj, idx: idx, submitCallback: updateCallback })
+        navigation.navigate("EditPortfolio", { type: "project", defaults: proj, idx: idx, submitCallback: updateCallback, deleteCallback: deleteCallback })
     }
 
     return (

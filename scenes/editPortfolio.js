@@ -6,11 +6,17 @@ import ExperienceForm from "../components/molecules/experienceForm";
 import ProjectForm from "../components/molecules/projectform";
 
 export default EditPortfolio = ({ navigation, route }) => {
-  const { type, submitCallback, defaults, idx } = route.params;
+  const { type, submitCallback, defaults, idx, deleteCallback } = route.params;
 
   const onClickGoBack = () => {
     navigation.goBack();
   };
+
+  const onDeleteClick = () => {
+    if (deleteCallback !== undefined)
+      deleteCallback(idx)
+    navigation.goBack();
+  }
 
   const form =
     type === "project" ? (
@@ -24,7 +30,7 @@ export default EditPortfolio = ({ navigation, route }) => {
   return (
     <Container>
       <Header>
-        <TopBar onClickGoBack={onClickGoBack} title="Edit" onClickRightIcon={onClickGoBack} rightIcon="trash-outline" />
+        <TopBar onClickGoBack={onClickGoBack} title="Edit" onClickRightIcon={onDeleteClick} rightIcon="trash-outline" />
       </Header>
       <Content>{form}</Content>
     </Container>
