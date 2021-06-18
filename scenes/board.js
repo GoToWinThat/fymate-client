@@ -22,13 +22,12 @@ export default Board = ({ navigation }) => {
   const onReceivedNewFilter = (newFilter) => {
     filter.tags = newFilter.tags;
     filter.searchType = newFilter.searchType;
-    setFilter({ ...filter })
+    setFilter({ ...filter }) //copy object to force rerender
   }
-
 
   const onReceivedNewSearchPhrase = (val) => {
     filter.searchPhrase = val;
-    setFilter({ ...filter })
+    setFilter({ ...filter }) //copy object to force rerender
   }
 
   useEffect(() => {
