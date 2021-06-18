@@ -1,29 +1,30 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import OfferListBox from '../atoms/offerlistbox';
-import {FONT_SIZE_LABEL} from '../../styles/typography'
-import {ELEMENT_PADDING,SCREEN_PADDING} from '../../styles/spacing'
+import { FONT_SIZE_LABEL } from '../../styles/typography'
+import { ELEMENT_PADDING, SCREEN_PADDING } from '../../styles/spacing'
 
 //Add company item
-export default ExperienceList = ({experience}) => {
+export default ExperienceList = ({ onListElementClicked, experience }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Experience</Text>
-            {experience.map((e, index) => {
+            {experience.map((e, idx) => {
                 return (
                     <View>
                         <OfferListBox
-                            key={index}
+                            key={idx}
                             title={e.title}
                             company={e.company}
                             url={e.url}
                             time={e.time}
+                            onClick={() => onListElementClicked(e, idx)}
                         />
                         <Text style={styles.description}>{e.description}</Text>
                     </View>
                 )
             })}
-            
+
         </View>
     )
 }

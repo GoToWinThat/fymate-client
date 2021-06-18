@@ -10,16 +10,29 @@ export default Experience = ({ route, navigation }) => {
     const experience = route.params.info
 
 
-    const submitCallback = (baseFromResults) => {
+    const submitCallback = (result) => {
         const newElement = {
-            company: baseFromResults[1],
-            title: baseFromResults[0],
-            time: baseFromResults[2].toString(), //TODO: this should be a time range
+            company: result.company,
+            title: result.title,
+            date: result.date,
             url: "", //TODO: baseform does not support such field
-            description: baseFromResults[3],
+            description: result.description,
             location: "" //TODO: baseform does not support such field 
         }
         experience.push(newElement)
+        doc.update({ experience: experience })
+    }
+
+    const updateCallback = (result, idx) => {
+        const newElement = {
+            company: result.company,
+            title: result.title,
+            date: result.date,
+            url: "", //TODO: baseform does not support such field
+            description: result.description,
+            location: "" //TODO: baseform does not support such field 
+        }
+        experience[idx] = newElement;
         doc.update({ experience: experience })
     }
 
@@ -31,13 +44,19 @@ export default Experience = ({ route, navigation }) => {
         navigation.navigate("EditPortfolio", { type: "experience", submitCallback: submitCallback })
     }
 
+    const onClickListElement = (exp, idx) => {
+        navigation.navigate("EditPortfolio", { type: "experience", defaults: exp, idx: idx, submitCallback: updateCallback })
+    }
+
+
+
     return (
         <Container>
             <Header>
                 <TopBar title="Experience" onClickGoBack={onClickGoBack} />
             </Header>
             <Content>
-                <ExperienceList experience={experience} />
+                <ExperienceList experience={experience} onListElementClicked={onClickListElement} />
                 <View style={styles.btnView}>
                     <Btn icon="add" text="Add New" onPress={onClickAdd} />
                 </View>

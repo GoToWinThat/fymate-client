@@ -10,12 +10,12 @@ import {
 } from "native-base";
 import { formStyle } from '../../styles/style'
 
-export default ExperienceForm = ({ submitCallback, defaults }) => {
+export default ExperienceForm = ({ submitCallback, defaults, idx }) => {
 
-  const [position, setPosition] = useState(defaults?.position !== undefined ? defaults.first : "");
-  const [date, setDate] = useState(defaults?.date !== undefined ? defaults.second : "");
-  const [company, setCompany] = useState(defaults?.company !== undefined ? defaults.date : "");
-  const [desc, setDesc] = useState(defaults?.desc !== undefined ? defaults.desc : "");
+  const [title, setTitle] = useState(defaults?.title !== undefined ? defaults.title : "");
+  const [date, setDate] = useState(defaults?.date !== undefined ? defaults.date : "");
+  const [company, setCompany] = useState(defaults?.company !== undefined ? defaults.company : "");
+  const [description, setDescription] = useState(defaults?.description !== undefined ? defaults.description : "");
 
   return (
     <Form>
@@ -25,8 +25,8 @@ export default ExperienceForm = ({ submitCallback, defaults }) => {
       <View style={formStyle.input}>
         <Input
           placeholder={"Position..."}
-          value={position}
-          onChangeText={setPosition}
+          value={title}
+          onChangeText={setTitle}
         />
       </View>
       <View style={formStyle.input}>
@@ -52,12 +52,19 @@ export default ExperienceForm = ({ submitCallback, defaults }) => {
           style={formStyle.text}
           rowSpan={7}
           placeholder={"About job..."}
-          value={desc}
-          onChangeText={setDesc}
+          value={description}
+          onChangeText={setDescription}
         />
       </View>
 
-      <Btn text="Submit" onPress={() => submitCallback([phone, place, link, desc])} />
+      <Btn text="Submit" onPress={() => submitCallback(
+        {
+          title: title,
+          date: date,
+          company: company,
+          description: description
+        }, idx
+      )} />
     </Form>
   );
 };
