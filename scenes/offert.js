@@ -7,6 +7,7 @@ import DetailsList from '../components/molecules/detailList'
 import BenefitsDoubleList from '../components/organisms/benefitsDoubleList'
 import ImgInfo from '../components/atoms/imginfo'
 
+///Read only offer 
 export default Offert = ({ route, navigation }) => {
     const offer = route?.params?.offer
     console.log(offer)

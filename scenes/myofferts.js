@@ -10,14 +10,16 @@ import { useState } from 'react'
 
 
 export default MyOfferts = ({ navigation }) => {
-
+  const offerColl = firebase.firestore().collection("offers");
   const [offerList, setOfferList] = useState([])
 
   useEffect(() => {
     const uid = firebase.auth().currentUser.uid
-    const offersRef = firebase.firestore().collection("offers")
-    offersRef.where("ownerUid", "==", uid).get().then(snap => {
-      const arr = snap.docs.map(x => x.data())
+    offerColl.where("ownerUid", "==", uid).get().then(snap => {
+      const arr = snap.docs.map((x) => {
+        let data = x.data();
+        return { docId: x.id, ...data }
+      })
       setOfferList(arr)
     })
   }, [])
@@ -27,6 +29,23 @@ export default MyOfferts = ({ navigation }) => {
     navigation.goBack();
   }
 
+  const updateCallback = (result) => {
+    const newElement = result;
+    const docId = result.docId
+    delete newElement.docId; //get rid of redudant field
+    console.log(docId)
+    offerColl.doc(docId).update(result)
+  }
+
+
+  const deleteCallback = (docId) => {
+    offerColl.doc(docId).delete()
+  }
+
+  const onClickListElement = (offer) => {
+    navigation.navigate("AddOffer", { defaults: offer, submitCallback: updateCallback, deleteCallback: deleteCallback })
+  }
+
 
   return (
     <Container>
@@ -34,7 +53,7 @@ export default MyOfferts = ({ navigation }) => {
         <TopBar title="My Offerts" onClickGoBack={onClickGoBack} />
       </Header>
       <Content>
-        <Offerlist list={offerList} />
+        <Offerlist list={offerList} onClick={onClickListElement} />
       </Content>
     </Container>
   )

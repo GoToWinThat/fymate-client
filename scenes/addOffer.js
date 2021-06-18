@@ -19,22 +19,22 @@ import Btn from "../components/atoms/btn";
 import * as firebase from 'firebase'
 import { formStyle } from '../styles/style'
 
-export default AddOffer = ({ navigation }) => {
+export default AddOffer = ({ route, navigation }) => {
+  const defaults = route?.params?.defaults;
+
+
   const firestore = firebase.firestore();
   const onClickGoBack = () => {
     navigation.goBack();
   };
 
-  const [position, setPosition] = useState("");
-  const [place, setPlace] = useState("");
-  const [salary, setSalary] = useState("");
-  const [description, setDescription] = useState("");
-  const [howTo, setHowTo] = useState("");
-  const [benefits, setBenefits] = useState([
-    "No free days",
-    "Challanges at work",
-  ]);
-  const [tags, setTags] = useState([])
+  const [position, setPosition] = useState(defaults?.position !== undefined ? defaults.position : "");
+  const [place, setPlace] = useState(defaults?.place !== undefined ? defaults.place : "");
+  const [salary, setSalary] = useState(defaults?.salary !== undefined ? defaults.salary : "");
+  const [description, setDescription] = useState(defaults?.description !== undefined ? defaults.description : "");
+  const [howTo, setHowTo] = useState(defaults?.howTo !== undefined ? defaults.howTo : "");
+  const [benefits, setBenefits] = useState(defaults?.benefits !== undefined ? defaults.benefits : []);
+  const [tags, setTags] = useState(defaults?.tags !== undefined ? defaults.tags : [])
 
 
   const addBenefit = (benefit) => {
@@ -43,30 +43,23 @@ export default AddOffer = ({ navigation }) => {
     setBenefits(arr);
   };
 
-
-
-  const onSubmit = () => {
-
-
-    const offer = {
-      ownerUid: firebase.auth().currentUser.uid,
-      date: firebase.firestore.FieldValue.serverTimestamp(),
-      position: position,
-      salary: salary,
-      description: description,
-      benefits: benefits,
-      howTo: howTo,
-      place: place,
-      tags: tags
-    }
+  const onSubmit = (offer) => {
+    delete offer.docId
     firestore.collection('offers').add(offer);
     navigation.goBack();
   }
 
+  const submitCallback = route?.params?.submitCallback !== undefined ? route.params.submitCallback : onSubmit;
+  const deleteCallback = route?.params?.deleteCallback;
+
   return (
     <Container>
       <Header>
-        <TopBar title="Edit Offert" onClickGoBack={onClickGoBack} onClickRightIcon={onClickGoBack} rightIcon="trash-outline"/>
+        <TopBar title="Edit Offert" onClickGoBack={onClickGoBack} onClickRightIcon={() => {
+          if (deleteCallback !== undefined)
+            deleteCallback(defaults?.docId);
+          onClickGoBack();
+        }} rightIcon="trash-outline" />
       </Header>
       <Content>
         <ListItem itemDivider>
@@ -98,7 +91,7 @@ export default AddOffer = ({ navigation }) => {
           <Text>TAGS</Text>
         </ListItem>
 
-        <TagFilter activeTagsChangedCallback={setTags} />
+        <TagFilter initialTags={tags} activeTagsChangedCallback={setTags} />
         <ListItem itemDivider>
           <Text>BENEFITS</Text>
         </ListItem>
@@ -128,7 +121,18 @@ export default AddOffer = ({ navigation }) => {
             onChangeText={setHowTo}
           />
         </View>
-        <Btn text={"Submit"} onPress={onSubmit} />
+        <Btn text={"Submit"} onPress={() => submitCallback({
+          docId: defaults?.docId,
+          ownerUid: firebase.auth().currentUser.uid,
+          date: firebase.firestore.FieldValue.serverTimestamp(),
+          position: position,
+          salary: salary,
+          description: description,
+          benefits: benefits,
+          howTo: howTo,
+          place: place,
+          tags: tags
+        })} />
 
       </Content>
     </Container>
