@@ -46,7 +46,6 @@ export default Profile = ({ navigation }) => {
     }
 
     //Fetch current user info
-    //TODO: cache
     useEffect(() => {
         const unsub = currentProfileDocumentRef.onSnapshot(snapshot => {
             setUserOrCompany(snapshot.data());

@@ -63,7 +63,6 @@ export default CompanyDescription = ({ route, navigation }) => {
             <Text>IMAGE</Text>
           </ListItem>
           {/* <Avatar url={imageUrl} /> */}
-          <Btn text="Submit" />
         </Form>
       </Content>
     </Container>
