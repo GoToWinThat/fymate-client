@@ -38,7 +38,6 @@ export default Education = ({ route, navigation }) => {
         doc.update({ education: education })
     }
 
-
     const onClickGoBack = () => {
         navigation.goBack();
     }

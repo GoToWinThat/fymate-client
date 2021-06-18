@@ -36,6 +36,11 @@ export default Experience = ({ route, navigation }) => {
         doc.update({ experience: experience })
     }
 
+    const deleteCallback = (idx) => {
+        experience.splice(idx, 1)
+        doc.update({ experience: experience })
+    }
+
     const onClickGoBack = () => {
         navigation.goBack();
     }
@@ -45,7 +50,7 @@ export default Experience = ({ route, navigation }) => {
     }
 
     const onClickListElement = (exp, idx) => {
-        navigation.navigate("EditPortfolio", { type: "experience", defaults: exp, idx: idx, submitCallback: updateCallback })
+        navigation.navigate("EditPortfolio", { type: "experience", defaults: exp, idx: idx, submitCallback: updateCallback, deleteCallback: deleteCallback })
     }
 
 
