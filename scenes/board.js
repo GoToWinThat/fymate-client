@@ -53,7 +53,8 @@ export default Board = ({ navigation }) => {
         let d = x.data()
         return {
           uid: x.id,
-          ...d}
+          ...d
+        }
       })
       setList(data);
     }) //get 20 posts
@@ -94,7 +95,7 @@ export default Board = ({ navigation }) => {
       <Searchbar />
       <Content>
         {filter.searchType === "Company" ? <OfferList onClick={onClickOffer} list={list} />
-        : <UserList onClick={onClickUser} list={list}/>}
+          : <UserList onClick={onClickUser} list={list} />}
       </Content>
     </Container>
   );

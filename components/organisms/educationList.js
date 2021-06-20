@@ -11,7 +11,7 @@ export default EducationList = ({ onListElementClicked, education }) => {
             <Text style={styles.title}>Education</Text>
             {education.map((e, idx) => {
                 return <OfferListBox
-                    key={e.id}
+                    key={idx}
                     title={e.education}
                     time={e.time}
                     location={e.location}

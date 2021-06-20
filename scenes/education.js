@@ -1,15 +1,13 @@
 import { Button, Header, Container, Content, Icon, Text, View } from 'native-base'
 import { StyleSheet } from 'react-native'
 import EducationList from '../components/organisms/educationList'
-import React from 'react'
+import React, { useState } from 'react'
 import TopBar from '../components/atoms/topbar'
 import Btn from '../components/atoms/btn'
 
 export default Education = ({ route, navigation }) => {
     const doc = route.params.doc
-    const education = route.params.info
-
-
+    const [education, setEducation] = useState(route.params.info)
 
     const submitCallback = (result) => {
         const newElement = {
@@ -20,6 +18,7 @@ export default Education = ({ route, navigation }) => {
         }
         education.push(newElement)
         doc.update({ education: education })
+        setEducation([...education])
     }
 
     const updateCallback = (result, idx) => {
@@ -31,11 +30,13 @@ export default Education = ({ route, navigation }) => {
         }
         education[idx] = newElement;
         doc.update({ education: education })
+        setEducation([...education])
     }
 
     const deleteCallback = (idx) => {
         education.splice(idx, 1)
         doc.update({ education: education })
+        setEducation([...education])
     }
 
     const onClickGoBack = () => {

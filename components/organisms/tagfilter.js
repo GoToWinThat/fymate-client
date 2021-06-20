@@ -3,17 +3,17 @@ import { View } from "native-base";
 import TagList from "../molecules/tagList";
 import { useEffect, useState } from "react/cjs/react.production.min";
 
-export default TagFilter = ({ initialTags, activeTagsChangedCallback }) => {
+export default TagFilter = ({ initialTags, activeTagsChangedCallback, tags, colors, labels }) => {
 
-  const tagsArr = [
+  const tagsArr = tags || [
     ["SQL", "Oracle", "C#", "Python", "Javascript", "Ruby", "Linux"],
     ["Full", "Office", "Partly"],
     ["Junior", "Mid", "Senior"],
     ["1/4", "1/8", "1/2", "Full"],
     ["B2B", "Job"],
   ];
-  const colors = ["blue", "purple", "green", "orange", "red"];
-  const labels = [
+  const colorsArr = colors || ["blue", "purple", "green", "orange", "red"];
+  const labelsArr = labels || [
     "Tech Stack",
     "Work Remote",
     "Experience",
@@ -23,14 +23,15 @@ export default TagFilter = ({ initialTags, activeTagsChangedCallback }) => {
 
   const initialTagsState = initialTags !== undefined ? initialTags : []; //Force TagLists to use the same array
 
+
   const allTags = tagsArr.map((list, index) => {
     return (
       <TagList
         key={index}
         tags={list}
-        color={colors[index]}
+        color={colorsArr[index]}
         clickable={true}
-        title={labels[index]}
+        title={labelsArr[index]}
         activeTagsChangedCallback={activeTagsChangedCallback}
         initialTags={initialTagsState}
       />

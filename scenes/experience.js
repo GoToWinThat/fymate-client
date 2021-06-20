@@ -2,13 +2,12 @@ import { Button, Header, Container, Content, Icon, Text, View } from 'native-bas
 import { StyleSheet } from 'react-native'
 import ExperienceList from '../components/organisms/experienceList'
 import Btn from '../components/atoms/btn'
-import React from 'react'
+import React, { useState } from 'react'
 
 //TODO: Deletion of experience 
 export default Experience = ({ route, navigation }) => {
     const doc = route.params.doc
-    const experience = route.params.info
-
+    const [experience, setExperience] = useState(route.params.info)
 
     const submitCallback = (result) => {
         const newElement = {
@@ -21,6 +20,7 @@ export default Experience = ({ route, navigation }) => {
         }
         experience.push(newElement)
         doc.update({ experience: experience })
+        setExperience([...experience])
     }
 
     const updateCallback = (result, idx) => {
@@ -34,11 +34,13 @@ export default Experience = ({ route, navigation }) => {
         }
         experience[idx] = newElement;
         doc.update({ experience: experience })
+        setExperience([...experience])
     }
 
     const deleteCallback = (idx) => {
         experience.splice(idx, 1)
         doc.update({ experience: experience })
+        setExperience([...experience])
     }
 
     const onClickGoBack = () => {

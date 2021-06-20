@@ -1,13 +1,13 @@
 import { Button, Header, Container, Content, Icon, Text, View } from 'native-base'
 import { StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import TopBar from '../components/atoms/topbar'
 import ProjectList from '../components/organisms/projectList'
 import Btn from '../components/atoms/btn'
 
 export default Projects = ({ route, navigation }) => {
     const doc = route.params.doc
-    const projects = route.params.info
+    const [projects, setProjects] = useState(route.params.info)
 
     const submitCallback = (result) => {
         const newElement = {
@@ -17,6 +17,7 @@ export default Projects = ({ route, navigation }) => {
         }
         projects.push(newElement)
         doc.update({ projects: projects })
+        setProjects([...projects])
     }
 
     const updateCallback = (result, idx) => {
@@ -27,11 +28,13 @@ export default Projects = ({ route, navigation }) => {
         }
         projects[idx] = newElement;
         doc.update({ projects: projects })
+        setProjects([...projects])
     }
 
     const deleteCallback = (idx) => {
         projects.splice(idx, 1)
         doc.update({ projects: projects })
+        setProjects([...projects])
     }
 
     const onClickGoBack = () => {
