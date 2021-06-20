@@ -10,19 +10,22 @@ import ImgInfo from '../components/atoms/imginfo'
 ///Read only offer 
 export default Offert = ({ route, navigation }) => {
     const offer = route?.params?.offer
-    console.log(offer)
+    const onRightIconClick = route?.params?.rightIconCallback;    
 
 
     const onClickGoBack = () => {
         navigation.goBack();
     }
+
+
+
     //TODO: company fetch
     //TODO: Image url
     return (
         <Container>
             <Header>
                 <TopBar onClickGoBack={onClickGoBack} title={"Offert"}
-                    rightIcon='heart' onClickRightIcon={() => console.log("TODO; ADD to favorite")} />
+                    rightIcon='heart' onClickRightIcon={() => onRightIconClick(offer)} />
             </Header>
             <Content >
                 <ImgInfo

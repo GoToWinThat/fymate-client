@@ -24,7 +24,6 @@ export default ExperienceList = ({ onListElementClicked, experience }) => {
                     </View>
                 )
             })}
-
         </View>
     )
 }

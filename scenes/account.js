@@ -17,9 +17,11 @@ export default Account = ({ route, navigation }) => {
   //TODO: fetch type from firebase
   const userOrCompany = route.params.type;
   const uid = route.params.uid;
+  const onRightIconClick = route?.params?.rightIconCallback;
 
   //TODO: get this from profile if this screen was accessed via "See your profile" (since we already fetch data in previous screen)
   const [accountInfo, setAccountInfo] = useState({
+    uid: "",
     about: "",
     company: "",
     email: "",
@@ -51,11 +53,18 @@ export default Account = ({ route, navigation }) => {
 
   useEffect(() => {
     firebase.firestore().collection('users').doc(uid).get().then((data) => {
-      setAccountInfo(data.data());
+      const d = data.data()
+      setAccountInfo(
+        {
+          uid: data.id,
+          ...d
+        }
+      );
     }
     )
   }, []);
 
+  //TODO: move this to render
   const userContent =
     userOrCompany === "Employee" ? (
       <>
@@ -64,7 +73,7 @@ export default Account = ({ route, navigation }) => {
             onClickGoBack={onClickGoBack}
             title="Account"
             rightIcon="heart"
-            onClickRightIcon={() => console.log("Added to favorites !! TODO")}
+            onClickRightIcon={() => onRightIconClick(accountInfo)}
           />
         </Header>
         <ImgInfo
@@ -96,6 +105,8 @@ export default Account = ({ route, navigation }) => {
       </>
     ) : null;
 
+
+  //TODO: move this to render
   const companyContent =
     userOrCompany === "Company" ? (
       <>

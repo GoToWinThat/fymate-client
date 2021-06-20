@@ -69,19 +69,58 @@ export default Board = ({ navigation }) => {
   };
 
   const onClickOffer = (offer) => {
+    const onClickFav = async (offer) => {
+      const uid = firebase.auth().currentUser.uid;
+      const userDocRef = firebase.firestore().collection("users").doc(uid);
+      const userDoc = await userDocRef.get();
+      let favArr = userDoc.get("favouriteOffers");
+      if (favArr === undefined)
+        favArr = [];
+      if (favArr.includes(offer.uid)) {
+        const idx = favArr.indexOf(offer.uid);
+        favArr.splice(idx, 1)
+      }
+      else {
+        favArr.push(offer.uid);
+      }
+      userDocRef.update({ favouriteOffers: favArr });
+    }
+
     navigation.navigate("Offert", {
       screen: "Offert",
       offer: offer,
+      rightIconCallback: onClickFav
     });
   };
 
   const onClickUser = (user) => {
+    const onClickFav = async (offer) => {
+      const uid = firebase.auth().currentUser.uid;
+      const userDocRef = firebase.firestore().collection("users").doc(uid);
+      const userDoc = await userDocRef.get();
+      let favArr = userDoc.get("favouriteUsers");
+      if (favArr === undefined)
+        favArr = [];
+      if (favArr.includes(offer.uid)) {
+        const idx = favArr.indexOf(offer.uid);
+        favArr.splice(idx, 1)
+      }
+      else {
+        favArr.push(offer.uid);
+      }
+      userDocRef.update({ favouriteUsers: favArr });
+    }
+
+
     navigation.navigate("Account", {
       screen: "Account",
       type: "Employee",
       uid: user.uid,
+      rightIconCallback: onClickFav
     });
   };
+
+
 
   return (
     <Container>
