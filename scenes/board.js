@@ -3,9 +3,11 @@ import { Container, Header, Content } from "native-base";
 import TopBar from "../components/atoms/topbar";
 import Searchbar from "../components/atoms/searchbar";
 import OfferList from "../components/molecules/offerlist";
+import UserList from "../components/molecules/userlist";
 import { useState } from "react";
 import { useEffect } from "react";
 import * as firebase from 'firebase';
+import userlist from "../components/molecules/userlist";
 
 
 const defaultFilterState = {
@@ -47,12 +49,17 @@ export default Board = ({ navigation }) => {
         queryRef = queryRef.where("tags", "array-contains-any", filter.tags) //TODO: this only supports up to 10 elements
     }
     queryRef.limit(20).get().then(snapshot => {
-      let data = snapshot.docs.map(x => x.data())
+      let data = snapshot.docs.map(x => {
+        let d = x.data()
+        return {
+          uid: x.id,
+          ...d}
+      })
       setList(data);
     }) //get 20 posts
   }, [filter])
 
-  const onClickNavigateFilters = () => {
+  const onClickFilters = () => {
     navigation.navigate("Filters", {
       screen: "Filters",
       onGoBackCallback: onReceivedNewFilter,
@@ -60,10 +67,18 @@ export default Board = ({ navigation }) => {
     });
   };
 
-  const onClickNavigateOffer = (offer) => {
+  const onClickOffer = (offer) => {
     navigation.navigate("Offert", {
       screen: "Offert",
       offer: offer,
+    });
+  };
+
+  const onClickUser = (user) => {
+    navigation.navigate("Account", {
+      screen: "Account",
+      type: "Employee",
+      uid: user.uid,
     });
   };
 
@@ -72,13 +87,14 @@ export default Board = ({ navigation }) => {
       <Header searchBar rounded>
         <TopBar
           title="Fymate"
-          onClickRightIcon={onClickNavigateFilters}
+          onClickRightIcon={onClickFilters}
           rightIcon="filter"
         />
       </Header>
       <Searchbar />
       <Content>
-        <OfferList onClick={onClickNavigateOffer} list={list} />
+        {filter.searchType === "Company" ? <OfferList onClick={onClickOffer} list={list} />
+        : <UserList onClick={onClickUser} list={list}/>}
       </Content>
     </Container>
   );

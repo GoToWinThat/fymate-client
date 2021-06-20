@@ -33,7 +33,7 @@ export default Register = ({ navigation }) => {
           email: "",
           location: "",
           phone: "",
-          avaterUrl: "",
+          avatarUrl: "",
           tags: [],
           contacts: {
             phone: "",
@@ -57,7 +57,7 @@ export default Register = ({ navigation }) => {
             name: "",
             surname: "",
             phone: "",
-            avaterUrl: "",
+            avatarUrl: "",
             details: {
               contract: "",
               jobtime: "",

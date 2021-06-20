@@ -12,10 +12,9 @@ export default BoardTab = ({ navigation }) => {
     return (
         <Stack.Navigator headerMode='none'>
             <Stack.Screen name="Board" component={Board}/>
-
             <Stack.Screen name="Offert" component={Offert}/>
-
             <Stack.Screen name="Filters" component={Filters}/>
+            <Stack.Screen name="Account" component={Account}/>
         </Stack.Navigator>
     )
 }
