@@ -18,6 +18,7 @@ export default Account = ({ route, navigation }) => {
   const userOrCompany = route.params.type;
   const uid = route.params.uid;
   const onRightIconClick = route?.params?.rightIconCallback;
+  const prevScreen = route.params.prev
 
   //TODO: get this from profile if this screen was accessed via "See your profile" (since we already fetch data in previous screen)
   const [accountInfo, setAccountInfo] = useState({
@@ -70,22 +71,25 @@ export default Account = ({ route, navigation }) => {
       .getDownloadURL()
       .then(url => setAvatarUrl(url))
       .catch(e => console.log(e));
+      console.log(prevScreen)
   }, []);
-
-
-
 
   //TODO: move this to render
   const userContent =
     userOrCompany === "Employee" ? (
       <>
         <Header>
-          <TopBar
-            onClickGoBack={onClickGoBack}
-            title="Account"
-            rightIcon="heart"
-            onClickRightIcon={() => onRightIconClick(accountInfo)}
-          />
+          {prevScreen === "profile" ?  
+            <TopBar
+              onClickGoBack={onClickGoBack}
+              title="Account"
+            /> : 
+            <TopBar
+              onClickGoBack={onClickGoBack}
+              title="Account"
+              rightIcon="heart"
+              onClickRightIcon={() => onRightIconClick(accountInfo)}
+            />}
         </Header>
         <ImgInfo
           solary="TODO"

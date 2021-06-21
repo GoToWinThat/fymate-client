@@ -90,7 +90,7 @@ export default Profile = ({ navigation }) => {
                     <Text>COMPANY INFO</Text>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("Account", { uid: uid, type: "Company" })}>
+                <ListItem onPress={() => navigation.navigate("Account", { uid: uid, type: "Company",prev: "profile" })}>
                     <Left><Text>See your profile</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
@@ -146,11 +146,6 @@ export default Profile = ({ navigation }) => {
                     <Left><Text>Log out</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
-
-                <ListItem>
-                    <Left><Text>Dark Mode</Text></Left>
-                    <Right><Switch value={false} /></Right>
-                </ListItem>
             </List>
         </>
         : null
@@ -173,7 +168,7 @@ export default Profile = ({ navigation }) => {
                     <Text>PERSONAL INFO</Text>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("Account", { uid: uid, type: "Employee" })}>
+                <ListItem onPress={() => navigation.navigate("Account", { uid: uid, type: "Employee",prev: "profile" })}>
                     <Left><Text>See your profile</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
@@ -183,7 +178,9 @@ export default Profile = ({ navigation }) => {
                     info: {
                         about: userOrCompany.about,
                         company: userOrCompany.company,
-                        details: userOrCompany.details
+                        details: userOrCompany.details,
+                        solary: userOrCompany.solary,
+                        position: userOrCompany.position
                     }
                 })}>
                     <Left><Text>General</Text></Left>
@@ -231,11 +228,6 @@ export default Profile = ({ navigation }) => {
                 <ListItem onPress={onClickLogOut}>
                     <Left><Text>Log out</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
-                </ListItem>
-
-                <ListItem>
-                    <Left><Text>Dark Mode</Text></Left>
-                    <Right><Switch value={false} /></Right>
                 </ListItem>
             </List>
         </>
