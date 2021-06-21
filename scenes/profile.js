@@ -1,4 +1,4 @@
-import { Container, Header, Left, Right, Icon, Content, List, ListItem, Text, Switch, View, Toast } from 'native-base';
+import { Container, Header, Left, Right, Icon, Content, List, ListItem, Text, Switch, View, Toast, Thumbnail } from 'native-base';
 import { StyleSheet } from 'react-native';
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
@@ -68,7 +68,7 @@ export default Profile = ({ navigation }) => {
         firebase.storage().ref()
             .child("avatars/" + uid)
             .getDownloadURL()
-            .then(url => setAvatarUrl(url))
+            .then(url => { setAvatarUrl(url); })
             .catch(e => console.log(e)); //TODO: cancel on unmount
     }, []);
 

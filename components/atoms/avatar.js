@@ -19,7 +19,7 @@ export default Avatar = ({ url, onImageChosen }) => {
   //url is started image -> image from firebase ...
 
   const [image, setImage] = useState(url);
-  console.log(image)
+
 
   useEffect(() => {
     if (Platform.OS !== "web") {
@@ -51,7 +51,7 @@ export default Avatar = ({ url, onImageChosen }) => {
     <View style={styles.view}>
       <TouchableOpacity onPress={PickImage}>
         <ImageBackground
-          source={{ uri: image }}
+          source={{ uri: url }}
           style={{ width: 120, height: 120 }}
           imageStyle={{ borderRadius: 100 }}
         >
