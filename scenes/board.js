@@ -7,7 +7,8 @@ import UserList from "../components/molecules/userlist";
 import { useState } from "react";
 import { useEffect } from "react";
 import * as firebase from 'firebase';
-import userlist from "../components/molecules/userlist";
+import { notFoundImageUrl } from "../globals"
+import 'allsettled-polyfill';
 
 
 const defaultFilterState = {
@@ -50,15 +51,40 @@ export default Board = ({ navigation }) => {
     }
     queryRef.limit(20).get().then(snapshot => {
       let data = snapshot.docs.map(x => {
-        let d = x.data()
+        let d = x.data();
         return {
           uid: x.id,
           ...d
         }
       })
       setList(data);
+      updateListWithUrls(data);
     }) //get 20 posts
   }, [filter])
+
+  //Fetches avatar urls
+  const updateListWithUrls = (data) => {
+    const storageRef = firebase.storage().ref();
+
+    const promises = data.map((x) => {
+      return storageRef.child("avatars/" + x.uid).getDownloadURL();
+    })
+
+    const urls = Promise.allSettled(promises)
+      .then(x => {
+        const urls = x.map(y => {
+          if (y.status === "rejected")
+            return notFoundImageUrl; //guard rejection
+          return y.value;
+        })
+        const newList = data.map((x, idx) => {
+          return { ...x, url: urls[idx] };
+        })
+
+        console.log(newList)
+        setList(newList);
+      })
+  };
 
   const onClickFilters = () => {
     navigation.navigate("Filters", {
@@ -94,7 +120,7 @@ export default Board = ({ navigation }) => {
   };
 
   const onClickUser = (user) => {
-    const onClickFav = async (offer) => {
+    const onClickFav = async (offer) => { //TODO: move out
       const uid = firebase.auth().currentUser.uid;
       const userDocRef = firebase.firestore().collection("users").doc(uid);
       const userDoc = await userDocRef.get();

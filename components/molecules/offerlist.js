@@ -4,9 +4,9 @@ import OfferListBox from "../atoms/offerlistbox";
 
 export default OfferList = ({ list, onClick }) => {
 
-  const offerList = list.map((offer) => (
+  const offerList = list.map((offer,idx) => (
     <OfferListBox
-      key={offer.id} //does this even exist?
+      key={idx} 
       title={offer.position}
       company={offer.company}
       payment={offer.salary}

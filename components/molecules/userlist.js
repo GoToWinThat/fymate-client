@@ -4,6 +4,7 @@ import OfferListBox from "../atoms/offerlistbox";
 
 export default UserList = ({ list, onClick }) => {
 
+
   const userList = list.map((user, idx) => (
     <OfferListBox
       key={idx}
@@ -11,7 +12,7 @@ export default UserList = ({ list, onClick }) => {
       company={user.company}
       payment={user.salary}
       location={user.location}
-      url={user.avatarUrl}
+      url={user.url}
       time={user.date?.toDate().toString()}
       onClick={() => onClick !== undefined ? onClick(user) : null}
     />
