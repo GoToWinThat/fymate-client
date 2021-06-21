@@ -15,7 +15,7 @@ import * as ImagePicker from "expo-image-picker";
 
 //Example use:
 // <Avatar url="https://cont4.naekranie.pl/media%2Fcache%2Farticle-cover%2F2016%2F07%2Fneytiri-avatar-5824.jpg"/>
-export default Avatar = ({ url }) => {
+export default Avatar = ({ url, onImageChosen }) => {
   //url is started image -> image from firebase ...
 
   const [image, setImage] = useState(url);
@@ -30,17 +30,19 @@ export default Avatar = ({ url }) => {
     }
   }, []);
 
+
+
   const PickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [4, 3],
       quality: 1,
+      allowsMultipleSelection: false,
     });
-    console.log(result);
     if (!result.cancelled) {
       setImage(result.uri);
-      onClickHandle(result.uri);
+      if (onImageChosen !== undefined)
+        onImageChosen(result.uri)
     }
   };
 

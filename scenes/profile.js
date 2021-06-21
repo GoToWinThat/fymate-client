@@ -32,6 +32,14 @@ export default Profile = ({ navigation }) => {
         navigation.goBack();
     }
 
+    const onImageChosen = async (uri) => {  
+        const uid = firebase.auth().currentUser.uid;
+        const response = await fetch(uri)
+        const data = await response.blob();
+        const ref = firebase.storage().ref().child("avatars/" + uid);
+        ref.put(data);
+    }
+
     const onClickLogOut = () => {
         firebase.auth().signOut().then(() => {
             navigation.navigate("Login", {
@@ -57,7 +65,7 @@ export default Profile = ({ navigation }) => {
     const companyContent = userOrCompany.type === "Company" ?
         <>
             <View style={styles.view}>
-                <Avatar url={userOrCompany.avatarUrl} />
+                <Avatar url={userOrCompany.avatarUrl} onImageChosen={onImageChosen}/>
                 <TitleInfo
                     title={userOrCompany.name}
                     email={userOrCompany.email}
@@ -140,7 +148,7 @@ export default Profile = ({ navigation }) => {
     const userContent = userOrCompany.type === 'Employee' ?
         <>
             <View style={styles.view}>
-                <Avatar url={userOrCompany.avatarUrl} />
+                <Avatar url={userOrCompany.avatarUrl} onImageChosen={onImageChosen} />
                 <TitleInfo
                     title={`${userOrCompany.name} ${userOrCompany.surname}`}
                     email={userOrCompany.email}

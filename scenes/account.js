@@ -47,6 +47,9 @@ export default Account = ({ route, navigation }) => {
     }
   });
 
+  const [avatarUrl, setAvatarUrl] = useState("https://safetyaustraliagroup.com.au/wp-content/uploads/2019/05/image-not-found.png");
+
+
   const onClickGoBack = () => {
     navigation.goBack();
   };
@@ -60,9 +63,17 @@ export default Account = ({ route, navigation }) => {
           ...d
         }
       );
-    }
-    )
+    });
+
+    firebase.storage().ref()
+      .child("avatars/" + uid)
+      .getDownloadURL()
+      .then(url => setAvatarUrl(url))
+      .catch(e => console.log(e));
   }, []);
+
+
+
 
   //TODO: move this to render
   const userContent =
@@ -79,7 +90,7 @@ export default Account = ({ route, navigation }) => {
         <ImgInfo
           solary="TODO"
           location={accountInfo.location}
-          url="https://widgetwhats.com/app/uploads/2019/11/free-profile-photo-whatsapp-4.png"
+          url={avatarUrl}
           title={accountInfo.name + " " + accountInfo.surname}
           job="UX/UI Designer"
         />
@@ -121,7 +132,7 @@ export default Account = ({ route, navigation }) => {
         <ImgInfo
           location={accountInfo.location}
           size="1500" //TODO: size info
-          url={accountInfo.avatarUrl}
+          url={avatarUrl}
           title={accountInfo.name}
         />
 
