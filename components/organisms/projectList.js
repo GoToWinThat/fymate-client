@@ -14,7 +14,7 @@ export default ProjectList = ({ onListElementClicked, projects }) => {
                 return (
                     <TouchableOpacity onPress={() => onListElementClicked(e, idx)} activeOpacity={0.5}>
                         <View key={e.id} style={styles.view}>
-                            <TagList title={e.title} tags={e.taglist} />
+                            <TagList title={e.title} tags={e.tags} />
                             <Text style={styles.description}>{e.description}</Text>
                         </View>
                     </TouchableOpacity>

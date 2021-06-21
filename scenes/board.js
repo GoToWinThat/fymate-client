@@ -80,8 +80,6 @@ export default Board = ({ navigation }) => {
         const newList = data.map((x, idx) => {
           return { ...x, url: urls[idx] };
         })
-
-        console.log(newList)
         setList(newList);
       })
   };

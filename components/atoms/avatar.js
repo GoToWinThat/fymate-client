@@ -19,6 +19,7 @@ export default Avatar = ({ url, onImageChosen }) => {
   //url is started image -> image from firebase ...
 
   const [image, setImage] = useState(url);
+  console.log(image)
 
   useEffect(() => {
     if (Platform.OS !== "web") {
