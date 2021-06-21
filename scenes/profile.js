@@ -6,11 +6,16 @@ import Avatar from '../components/atoms/avatar'
 import TitleInfo from '../components/atoms/titleinfo'
 import * as firebase from 'firebase';
 import { useState, useEffect } from 'react';
+import { notFoundImageUrl } from '../globals'
 
 //this screen is used for _current user_ only
 export default Profile = ({ navigation }) => {
 
-    const currentProfileDocumentRef = firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid)
+    const uid = firebase.auth().currentUser.uid;
+    const currentProfileDocumentRef = firebase.firestore().collection('users').doc(uid)
+    const [avatarUrl, setAvatarUrl] = useState(notFoundImageUrl);
+
+
     const [userOrCompany, setUserOrCompany] = useState(
         {
             type: 'Company',
@@ -19,7 +24,6 @@ export default Profile = ({ navigation }) => {
             email: '',
             phone: '',
             location: '',
-            avatarUrl: "",
             tags: [],
         }
     );
@@ -32,8 +36,7 @@ export default Profile = ({ navigation }) => {
         navigation.goBack();
     }
 
-    const onImageChosen = async (uri) => {  
-        const uid = firebase.auth().currentUser.uid;
+    const onImageChosen = async (uri) => {
         const response = await fetch(uri)
         const data = await response.blob();
         const ref = firebase.storage().ref().child("avatars/" + uid);
@@ -61,11 +64,19 @@ export default Profile = ({ navigation }) => {
         return () => unsub(); //unsubscribe from realtime listener
     }, []);
 
+    useEffect(() => {
+        firebase.storage().ref()
+            .child("avatars/" + uid)
+            .getDownloadURL()
+            .then(url => setAvatarUrl(url))
+            .catch(e => console.log(e)); //TODO: cancel on unmount
+    }, []);
+
 
     const companyContent = userOrCompany.type === "Company" ?
         <>
             <View style={styles.view}>
-                <Avatar url={userOrCompany.avatarUrl} onImageChosen={onImageChosen}/>
+                <Avatar url={avatarUrl} onImageChosen={onImageChosen} />
                 <TitleInfo
                     title={userOrCompany.name}
                     email={userOrCompany.email}
@@ -79,7 +90,7 @@ export default Profile = ({ navigation }) => {
                     <Text>COMPANY INFO</Text>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("Account", { uid: firebase.auth().currentUser.uid, type: "Company" })}>
+                <ListItem onPress={() => navigation.navigate("Account", { uid: uid, type: "Company" })}>
                     <Left><Text>See your profile</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
@@ -148,7 +159,7 @@ export default Profile = ({ navigation }) => {
     const userContent = userOrCompany.type === 'Employee' ?
         <>
             <View style={styles.view}>
-                <Avatar url={userOrCompany.avatarUrl} onImageChosen={onImageChosen} />
+                <Avatar url={avatarUrl} onImageChosen={onImageChosen} />
                 <TitleInfo
                     title={`${userOrCompany.name} ${userOrCompany.surname}`}
                     email={userOrCompany.email}
@@ -162,7 +173,7 @@ export default Profile = ({ navigation }) => {
                     <Text>PERSONAL INFO</Text>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("Account", { uid: firebase.auth().currentUser.uid, type: "Employee" })}>
+                <ListItem onPress={() => navigation.navigate("Account", { uid: uid, type: "Employee" })}>
                     <Left><Text>See your profile</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>

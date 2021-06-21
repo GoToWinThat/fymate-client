@@ -1,0 +1,1 @@
+export const notFoundImageUrl = "https://safetyaustraliagroup.com.au/wp-content/uploads/2019/05/image-not-found.png"
