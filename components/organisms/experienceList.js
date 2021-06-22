@@ -16,8 +16,8 @@ export default ExperienceList = ({ onListElementClicked, experience }) => {
                             key={idx}
                             title={e.title}
                             company={e.company}
-                            url={e.url}
-                            time={e.time}
+                            url="https://static.thenounproject.com/png/1705256-200.png"
+                            time={e.date}
                             onClick={() => onListElementClicked(e, idx)}
                         />
                         <Text style={styles.description}>{e.description}</Text>

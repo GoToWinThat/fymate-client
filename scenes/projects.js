@@ -18,6 +18,7 @@ export default Projects = ({ route, navigation }) => {
         projects.push(newElement)
         doc.update({ projects: projects })
         setProjects([...projects])
+        navigation.goBack()
     }
 
     const updateCallback = (result, idx) => {

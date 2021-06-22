@@ -16,6 +16,8 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
   const [place, setPlace] = useState(defaults?.place !== undefined ? defaults.second : "");
   const [link, setLink] = useState(defaults?.link !== undefined ? defaults.date : "");
   const [desc, setDesc] = useState(defaults?.desc !== undefined ? defaults.desc : "");
+  const [solary, setSolary] = useState(defaults?.solary !== undefined ? defaults.desc : "");
+  const [position, setPosition] = useState(defaults?.position !== undefined ? defaults.desc : "");
 
   return (
     <Form>
@@ -43,6 +45,20 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
           onChangeText={setLink}
         />
       </View>
+      <View style={formStyle.input}>
+        <Input
+          placeholder={"Your solary"}
+          value={solary}
+          onChangeText={setSolary}
+        />
+      </View>
+      <View style={formStyle.input}>
+        <Input
+          placeholder={"Your current position"}
+          value={position}
+          onChangeText={setPosition}
+        />
+      </View>
 
       <ListItem itemDivider>
         <Text>DESCRIPTION</Text>
@@ -57,7 +73,14 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
         />
       </View>
 
-      <Btn text="Submit" onPress={() => submitCallback([phone, place, link, desc])} />
+      <Btn text="Submit" onPress={() => submitCallback({
+        phone: phone,
+        place: place,
+        link: link,
+        description: desc,
+        solary: solary,
+        position: position
+      }, idx)} />
     </Form>
   );
 };

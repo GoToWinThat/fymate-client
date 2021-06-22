@@ -11,6 +11,7 @@ export default General = ({ route, navigation }) => {
         navigation.goBack();
     }
 
+    //TODO: Przesłane masz jako obiekt, nie wiem jak zrobić update więc to zostawiam tobie
     const submitCallback = (baseFromResults) => {
         doc.update({
             "details.position": baseFromResults[0],
@@ -18,8 +19,10 @@ export default General = ({ route, navigation }) => {
             "details.starttime": baseFromResults[2].toString(),
             about: baseFromResults[3]
         })
+        navigation.goBack();
     }
 
+    console.log(general)
     return (
         <Container>
             <Header>
@@ -27,9 +30,10 @@ export default General = ({ route, navigation }) => {
             </Header>
             <Content>
                 <GeneralForm defaults={{
-                    first: general?.details?.position,
-                    second: general.company,
-                    desc: general.about
+                    phone: general?.details?.position,
+                    place: general.company,
+                    desc: general.about,
+                    link: general.link,
                 }} submitCallback={submitCallback} />
             </Content>
         </Container>

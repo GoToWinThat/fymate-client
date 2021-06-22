@@ -19,6 +19,7 @@ export default Education = ({ route, navigation }) => {
         education.push(newElement)
         doc.update({ education: education })
         setEducation([...education])
+        navigation.goBack();
     }
 
     const updateCallback = (result, idx) => {

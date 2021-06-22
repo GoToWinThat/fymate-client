@@ -21,6 +21,7 @@ export default Experience = ({ route, navigation }) => {
         experience.push(newElement)
         doc.update({ experience: experience })
         setExperience([...experience])
+        navigation.goBack();
     }
 
     const updateCallback = (result, idx) => {
