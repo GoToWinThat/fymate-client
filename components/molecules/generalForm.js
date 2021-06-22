@@ -18,6 +18,7 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
   const [description, setDescription] = useState(defaults?.description !== undefined ? defaults.description : "");
   const [salary, setSalary] = useState(defaults?.salary !== undefined ? defaults.salary : "");
   const [position, setPosition] = useState(defaults?.position !== undefined ? defaults.position : "");
+  const [company, setCompany] = useState(defaults?.company !== undefined ? defaults.company : "");
 
   return (
     <Form>
@@ -43,6 +44,13 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
           placeholder={"Link to your page..."}
           value={site}
           onChangeText={setSite}
+        />
+      </View>
+      <View style={formStyle.input}>
+        <Input
+          placeholder={"Your current company"}
+          value={company}
+          onChangeText={setCompany}
         />
       </View>
       <View style={formStyle.input}>
@@ -79,7 +87,8 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
         site: site,
         description: description,
         salary: salary,
-        position: position
+        position: position,
+        company: company
       })} />
     </Form>
   );

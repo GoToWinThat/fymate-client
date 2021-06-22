@@ -20,6 +20,7 @@ export default General = ({ route, navigation }) => {
             "contacts.site": r.site,
             "details.position": r.position,
             "details.salary": r.salary,
+            "details.company": r.company
         })
     }
 

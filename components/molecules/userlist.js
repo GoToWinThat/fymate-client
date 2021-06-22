@@ -9,7 +9,7 @@ export default UserList = ({ list, onClick }) => {
     <OfferListBox
       key={idx}
       title={user.details?.position}
-      company={user.company}
+      company={user.details?.company}
       payment={user.salary}
       location={user.location}
       url={user.url}
