@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 const ImgInfo = ({
   company,
-  solary,
+  salary,
   location,
   size,
   url,
@@ -44,7 +44,7 @@ const ImgInfo = ({
         </View>
       ) : null}
 
-      {solary !== undefined ? (
+      {salary !== undefined ? (
         <View style={styles.row}>
           <Ionicons
             style={styles.icon}
@@ -52,7 +52,7 @@ const ImgInfo = ({
             size={iconSize}
             color={color}
           />
-          <Text style={styles.text}>{solary}</Text>
+          <Text style={styles.text}>{salary}</Text>
         </View>
       ) : null}
 

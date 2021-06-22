@@ -3,8 +3,6 @@ import { List } from "native-base";
 import OfferListBox from "../atoms/offerlistbox";
 
 export default UserList = ({ list, onClick }) => {
-
-
   const userList = list.map((user, idx) => (
     <OfferListBox
       key={idx}

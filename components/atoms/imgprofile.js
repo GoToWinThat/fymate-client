@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import { Thumbnail, Text, View } from "native-base";
 import { Ionicons } from '@expo/vector-icons';
 
-const ImgProfile = ({ company, solary, location, size, url, title }) => {
+const ImgProfile = ({ company, salary, location, size, url, title }) => {
   return (
     <View style={styles.box}>
       <Thumbnail source={{ uri: url }} style={styles.thumbnail} />
@@ -21,7 +21,7 @@ const ImgProfile = ({ company, solary, location, size, url, title }) => {
         </View>
       ) : null}
 
-      {solary !== undefined ? (
+      {salary !== undefined ? (
         <View style={styles.row}>
           <Ionicons
             style={styles.icon}
@@ -29,7 +29,7 @@ const ImgProfile = ({ company, solary, location, size, url, title }) => {
             size={24}
             color="gray"
           />
-          <Text note>{solary}</Text>
+          <Text note>{salary}</Text>
         </View>
       ) : null}
 

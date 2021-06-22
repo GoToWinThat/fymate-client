@@ -67,7 +67,7 @@ export default Account = ({ route, navigation }) => {
             />}
         </Header>
         <ImgInfo
-          solary="TODO"
+          salary="TODO"
           location={accountInfo?.location}
           url={avatarUrl}
           title={(accountInfo?.name || "") + " " + (accountInfo?.surname || "")}

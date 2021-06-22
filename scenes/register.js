@@ -18,8 +18,6 @@ export default Register = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [type, setType] = useState("Employee"); //TODO: add company account creation
 
-
-
   const onClickSignUp = () => {
 
     firebase.auth().createUserWithEmailAndPassword(email, password)

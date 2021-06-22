@@ -29,7 +29,7 @@ export default Offert = ({ route, navigation }) => {
             </Header>
             <Content >
                 <ImgInfo
-                    solary={offer.salary}
+                    salary={offer.salary}
                     location={offer.place}
                     url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCtJrLLTxjKNbvNxJGA3Id6_at43-0cWYglUKoAukqoyqTnv_KwnX34tDM2rISSZchc70&usqp=CAU"
                     title={offer.position}

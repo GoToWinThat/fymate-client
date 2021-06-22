@@ -26,7 +26,7 @@ export default OfferListBox = ({
         <TitleInfo
           title={title}
           company={company}
-          solary={payment}
+          salary={payment}
           location={location}
           time={time}
         />
