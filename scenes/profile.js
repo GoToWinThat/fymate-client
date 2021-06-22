@@ -7,6 +7,7 @@ import TitleInfo from '../components/atoms/titleinfo'
 import * as firebase from 'firebase';
 import { useState, useEffect } from 'react';
 import { notFoundImageUrl } from '../globals'
+import { deleteCurrentUser } from '../backend/backend';
 
 //this screen is used for _current user_ only
 export default Profile = ({ navigation }) => {
@@ -56,6 +57,14 @@ export default Profile = ({ navigation }) => {
 
     }
 
+    const onClickDelete = async () => {
+        await deleteCurrentUser();
+        navigation.navigate("Login", {
+            screen: "Login",
+        });
+    }
+
+
     //Fetch current user info
     useEffect(() => {
         const unsub = currentProfileDocumentRef.onSnapshot(snapshot => {
@@ -71,6 +80,7 @@ export default Profile = ({ navigation }) => {
             .then(url => { setAvatarUrl(url); })
             .catch(e => console.log(e)); //TODO: cancel on unmount
     }, []);
+
 
 
     const companyContent = userOrCompany.type === "Company" ?
@@ -137,7 +147,7 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem >
+                <ListItem onPress={onClickDelete}>
                     <Left><Text>Delete Account</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
