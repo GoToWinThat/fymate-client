@@ -5,6 +5,7 @@ import Offerlist from "../components/molecules/offerlist";
 import UserList from "../components/molecules/offerlist";
 import * as firebase from 'firebase'
 import { chunk } from "../globals";
+import { set } from "react-native-reanimated";
 
 const defaultFilterState = {
   tags: [],
@@ -15,7 +16,8 @@ const defaultFilterState = {
 export default Favorite = ({ navigation }) => {
   const uid = firebase.auth().currentUser.uid;
   const [accountInfo, setAccountInfo] = useState({ type: "Employee" });
-  const [list, setList] = useState([]);
+  const [userList, setUserList] = useState([]);
+  const [offerList, setOfferList] = useState([]);
   const [filter, setFilter] = useState(defaultFilterState);
 
   const onReceivedNewFilter = (newFilter) => {
@@ -37,25 +39,31 @@ export default Favorite = ({ navigation }) => {
 
   //Fetches favourite offers and users
   useEffect(() => {
-
     const store = firebase.firestore();
-    if (filter.searchType === "Company") {
-      //divide input into 10s
+    
+    if (accountInfo.favouriteOffers !== undefined) {
       const promises = []
-      if (accountInfo.favouriteOffers !== undefined) {
-        for (const offer of accountInfo.favouriteOffers) {
-          promises.push(store.collection("offers").doc(offer).get())
-        }
-        Promise.all(promises).then(x => x.map(y => y.data())).then(x => {
-          console.log(x);
-          setList(x);
-        });
+      for (const offer of accountInfo.favouriteOffers) {
+        promises.push(store.collection("offers").doc(offer).get())
       }
+      Promise.all(promises) //Wait for all documents to fetch
+        .then(x => x.map(y => y.data()))
+        .then(x => {
+          setOfferList(x);
+        });
     }
-    else {
 
+    if (accountInfo.favouriteUsers !== undefined) {
+      const promises = []
+      for (const user of accountInfo.favouriteUsers) {
+        promises.push(store.collection("users").doc(user).get())
+      }
+      Promise.all(promises) //Wait for all documents to fetch
+        .then(x => x.map(y => y.data()))
+        .then(x => {
+          setUserList(x);
+        });
     }
-
   }, [accountInfo, filter])
 
 
@@ -94,9 +102,9 @@ export default Favorite = ({ navigation }) => {
       </Header>
       <Content>
         {filter.searchType === "Company" ? (
-          <Offerlist onClick={onOfferClicked} list={list} />
+          <Offerlist onClick={onOfferClicked} list={offerList} />
         ) : (
-          <UserList onClick={onUserClicked} list={list} />
+          <UserList onClick={onUserClicked} list={userList} />
         )}
       </Content>
     </Container>
