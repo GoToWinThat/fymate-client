@@ -1,36 +1,36 @@
 import { Button, Segment } from 'native-base'
-import React, {useState} from 'react'
-import { Text, StyleSheet,Platform } from 'react-native'
+import React, { useState } from 'react'
+import { Text, StyleSheet, Platform } from 'react-native'
 
-export default Segmentbar = ({onClickChange}) => {
+export default Segmentbar = ({ initialState, onClickChange }) => {
 
-    const [active, setActive] = useState("Company");
+  const [value, setValue] = useState(initialState !== undefined ? initialState : "Company");
 
-    const color = Platform.OS === 'ios' ? '#007AFF' : 'white'
-    const color2 = Platform.OS === 'ios' ? 'white' : 'black'
-    const companyText = active === "Company" ? { color: color2 } : {  color: color }
-    const employeeText = active === "Employee" ? { color: color2 } : {  color: color }
-    const buttons = Platform.OS === 'ios' ? styles.btnsIOS : styles.btnsAndroid
-    return (
-      <Segment style={styles.segment}>
-        <Button transparent style={buttons} first Employee
-                active={active === "Employee"}
-                onPress={() => {
-                    onClickChange("Employee")
-                    setActive("Employee")
-                    }}>
-          <Text style={employeeText}>Employee</Text>
-        </Button>
-        <Button transparent style={buttons} last Company
-                active={active === "Company"}
-                onPress={() => {
-                  onClickChange("Company");    
-                  setActive("Company");
-                  }}>
-          <Text style={companyText}>Company</Text>
-        </Button>
-      </Segment>
-    )
+  const color = Platform.OS === 'ios' ? '#007AFF' : 'white'
+  const color2 = Platform.OS === 'ios' ? 'white' : 'black'
+  const companyText = value === "Company" ? { color: color2 } : { color: color }
+  const employeeText = value === "Employee" ? { color: color2 } : { color: color }
+  const buttons = Platform.OS === 'ios' ? styles.btnsIOS : styles.btnsAndroid
+  return (
+    <Segment style={styles.segment}>
+      <Button transparent style={buttons} first Employee
+        active={value === "Employee"}
+        onPress={() => {
+          onClickChange("Employee")
+          setValue("Employee")
+        }}>
+        <Text style={employeeText}>Employee</Text>
+      </Button>
+      <Button transparent style={buttons} last Company
+        active={value === "Company"}
+        onPress={() => {
+          onClickChange("Company");
+          setValue("Company");
+        }}>
+        <Text style={companyText}>Company</Text>
+      </Button>
+    </Segment>
+  )
 }
 
 const styles = StyleSheet.create({

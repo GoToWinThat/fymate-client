@@ -35,7 +35,7 @@ export default Filters = ({ route, navigation }) => {
       <Content>
         <View style={styles.container}>
           <Text style={styles.title}>Range</Text>
-          <Segmentbar onClickChange={(v) => setSearchType(v)} />
+          <Segmentbar initialState={searchType} onClickChange={(v) => setSearchType(v)} />
         </View>
         <TagFilter initialTags={tags} activeTagsChangedCallback={setTags} />
       </Content>
