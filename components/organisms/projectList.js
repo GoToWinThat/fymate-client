@@ -10,7 +10,7 @@ export default ProjectList = ({ onListElementClicked, projects }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Projects</Text>
-            {projects.map((e, idx) => {
+            {projects?.map((e, idx) => {
                 return (
                     <TouchableOpacity onPress={() => onListElementClicked(e, idx)} activeOpacity={0.5}>
                         <View key={e.id} style={styles.view}>

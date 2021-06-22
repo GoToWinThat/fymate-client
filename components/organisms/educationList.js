@@ -9,7 +9,7 @@ export default EducationList = ({ onListElementClicked, education }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Education</Text>
-            {education.map((e, idx) => {
+            {education?.map((e, idx) => {
                 return <OfferListBox
                     key={idx}
                     title={e.university}

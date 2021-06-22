@@ -21,35 +21,10 @@ export default Account = ({ route, navigation }) => {
   const prevScreen = route.params.prev
 
   //TODO: get this from profile if this screen was accessed via "See your profile" (since we already fetch data in previous screen)
-  const [accountInfo, setAccountInfo] = useState({
-    uid: "",
-    about: "",
-    company: "",
-    email: "",
-    location: "",
-    name: "",
-    surname: "",
-    phone: "",
-    details: {
-      contract: "",
-      jobtime: "",
-      position: "",
-      starttime: "",
-      worktype: "",
-    },
-    education: [],
-    experience: [],
-    projects: [],
-    tags: [],
-    contacts: {
-      phone: "",
-      mail: "",
-      github: "",
-    }
-  });
-
-  
+  const [accountInfo, setAccountInfo] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState("https://safetyaustraliagroup.com.au/wp-content/uploads/2019/05/image-not-found.png");
+
+
 
   const onClickGoBack = () => {
     navigation.goBack();
@@ -71,19 +46,19 @@ export default Account = ({ route, navigation }) => {
       .getDownloadURL()
       .then(url => setAvatarUrl(url))
       .catch(e => console.log(e));
-      console.log(prevScreen)
+    console.log(prevScreen)
   }, []);
 
-  //TODO: move this to render
+
   const userContent =
     userOrCompany === "Employee" ? (
       <>
         <Header>
-          {prevScreen === "profile" ?  
+          {prevScreen === "profile" ?
             <TopBar
               onClickGoBack={onClickGoBack}
               title="Account"
-            /> : 
+            /> :
             <TopBar
               onClickGoBack={onClickGoBack}
               title="Account"
@@ -93,35 +68,35 @@ export default Account = ({ route, navigation }) => {
         </Header>
         <ImgInfo
           solary="TODO"
-          location={accountInfo.location}
+          location={accountInfo?.location}
           url={avatarUrl}
-          title={accountInfo.name + " " + accountInfo.surname}
+          title={(accountInfo?.name || "") + " " + (accountInfo?.surname || "")}
           job="UX/UI Designer"
         />
 
         <About
           title="About"
           desciption={
-            accountInfo.about
+            accountInfo?.about
           }
         />
 
         <TagList
-          tags={accountInfo.tags}
+          tags={accountInfo?.tags}
           title={"Tech Stack"}
           color={"blue"}
         />
 
-        <DetailsList details={accountInfo.details} />
-        <ExperienceList experience={accountInfo.experience} />
-        <ProjectList projects={accountInfo.projects} />
-        <EducationList education={accountInfo.education} />
-        <Contact contacts={accountInfo.contacts} color="black" />
+        <DetailsList details={accountInfo?.details} />
+        <ExperienceList experience={accountInfo?.experience} />
+        <ProjectList projects={accountInfo?.projects} />
+        <EducationList education={accountInfo?.education} />
+        <Contact contacts={accountInfo?.contacts} color="black" />
       </>
     ) : null;
 
 
-  //TODO: move this to render
+
   const companyContent =
     userOrCompany === "Company" ? (
       <>
@@ -134,18 +109,18 @@ export default Account = ({ route, navigation }) => {
           />
         </Header>
         <ImgInfo
-          location={accountInfo.location}
+          location={accountInfo?.location}
           size="1500" //TODO: size info
           url={avatarUrl}
-          title={accountInfo.name}
+          title={(accountInfo?.name || "")}
         />
 
         <About
           title="About"
-          desciption={accountInfo.about}
+          desciption={accountInfo?.about}
         />
         <TagList
-          tags={accountInfo.tags}
+          tags={accountInfo?.tags}
           title={"Tech Stack"}
           color={"blue"}
         />
@@ -161,7 +136,7 @@ export default Account = ({ route, navigation }) => {
           }
         />
 
-        <Contact contacts={accountInfo.contacts} color="black" />
+        <Contact contacts={accountInfo?.contacts} color="black" />
       </>
     ) : null;
   //Tag list or  tech stack ? ?  tag list is clickable

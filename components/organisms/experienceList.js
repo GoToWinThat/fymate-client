@@ -9,7 +9,7 @@ export default ExperienceList = ({ onListElementClicked, experience }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Experience</Text>
-            {experience.map((e, idx) => {
+            {experience?.map((e, idx) => {
                 return (
                     <View>
                         <OfferListBox
