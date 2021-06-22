@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { Text, View } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
+import { isNotUndefinedOrEmpty } from "../../globals";
 
 const TitleInfo = ({ title, company, salary, location, email, web, phone, time }) => {
   const iconSize = 18;
@@ -11,7 +12,7 @@ const TitleInfo = ({ title, company, salary, location, email, web, phone, time }
     <View style={styles.box}>
       <Text style={styles.title}>{title}</Text>
 
-      {company !== undefined ? (
+      {isNotUndefinedOrEmpty(company) ? (
         <View style={styles.row}>
           <Ionicons
             style={styles.icon}
@@ -23,7 +24,7 @@ const TitleInfo = ({ title, company, salary, location, email, web, phone, time }
         </View>
       ) : null}
 
-      {salary !== undefined ? (
+      {isNotUndefinedOrEmpty(salary) ? (
         <View style={styles.row}>
           <Ionicons
             style={styles.icon}
@@ -35,7 +36,7 @@ const TitleInfo = ({ title, company, salary, location, email, web, phone, time }
         </View>
       ) : null}
 
-      {email !== undefined ? (
+      {isNotUndefinedOrEmpty(email) ? (
         <View style={styles.row}>
           <Ionicons
             style={styles.icon}
@@ -47,7 +48,7 @@ const TitleInfo = ({ title, company, salary, location, email, web, phone, time }
         </View>
       ) : null}
 
-      {phone !== undefined ? (
+      {isNotUndefinedOrEmpty(phone) ? (
         <View style={styles.row}>
           <Ionicons
             style={styles.icon}
@@ -59,7 +60,7 @@ const TitleInfo = ({ title, company, salary, location, email, web, phone, time }
         </View>
       ) : null}
 
-      {web !== undefined ? (
+      {isNotUndefinedOrEmpty(web) ? (
         <View style={styles.row}>
           <Ionicons
             style={styles.icon}
@@ -71,7 +72,7 @@ const TitleInfo = ({ title, company, salary, location, email, web, phone, time }
         </View>
       ) : null}
 
-      {location !== undefined ? (
+      {isNotUndefinedOrEmpty(location) ? (
         <View style={styles.row}>
           <Ionicons
             style={styles.icon}
@@ -83,7 +84,7 @@ const TitleInfo = ({ title, company, salary, location, email, web, phone, time }
         </View>
       ) : null}
 
-      {time !== undefined ? (
+      {isNotUndefinedOrEmpty(time) ? (
         <View style={styles.row}>
           <Ionicons
             style={styles.icon}

@@ -19,3 +19,9 @@ export function chunk(array, n) {
     //append last elements
 
 }
+
+
+export function isNotUndefinedOrEmpty(str)
+{
+    return str !== undefined && str !== null && str.length !== 0
+}
