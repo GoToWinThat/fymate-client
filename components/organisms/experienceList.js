@@ -10,6 +10,7 @@ export default ExperienceList = ({ onListElementClicked, experience }) => {
         <View style={styles.container}>
             <Text style={styles.title}>Experience</Text>
             {experience?.map((e, idx) => {
+                const onClick = onListElementClicked !== undefined ? () => { onListElementClicked(e, idx) } : undefined
                 return (
                     <View>
                         <OfferListBox
@@ -18,7 +19,7 @@ export default ExperienceList = ({ onListElementClicked, experience }) => {
                             company={e.company}
                             url="https://static.thenounproject.com/png/1705256-200.png"
                             time={e.date}
-                            onClick={() => onListElementClicked(e, idx)}
+                            onClick={onClick}
                         />
                         <Text style={styles.description}>{e.description}</Text>
                     </View>

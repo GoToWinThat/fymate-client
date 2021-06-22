@@ -11,8 +11,9 @@ export default ProjectList = ({ onListElementClicked, projects }) => {
         <View style={styles.container}>
             <Text style={styles.title}>Projects</Text>
             {projects?.map((e, idx) => {
+                const onClick = onListElementClicked !== undefined ? () => { onListElementClicked(e, idx) } : undefined
                 return (
-                    <TouchableOpacity onPress={() => onListElementClicked(e, idx)} activeOpacity={0.5}>
+                    <TouchableOpacity onPress={onClick} activeOpacity={0.5}>
                         <View key={e.id} style={styles.view}>
                             <TagList title={e.title} tags={e.tags} />
                             <Text style={styles.description}>{e.description}</Text>
