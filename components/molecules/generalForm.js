@@ -14,7 +14,7 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
 
   const [phone, setPhone] = useState(defaults?.phone !== undefined ? defaults.phone : "");
   const [location, setLocation] = useState(defaults?.location !== undefined ? defaults.location : "");
-  const [link, setLink] = useState(defaults?.link !== undefined ? defaults.link : "");
+  const [site, setSite] = useState(defaults?.site !== undefined ? defaults.site : "");
   const [description, setDescription] = useState(defaults?.description !== undefined ? defaults.description : "");
   const [salary, setSalary] = useState(defaults?.salary !== undefined ? defaults.salary : "");
   const [position, setPosition] = useState(defaults?.position !== undefined ? defaults.position : "");
@@ -41,8 +41,8 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
       <View style={formStyle.input}>
         <Input
           placeholder={"Link to your page..."}
-          value={link}
-          onChangeText={setLink}
+          value={site}
+          onChangeText={setSite}
         />
       </View>
       <View style={formStyle.input}>
@@ -76,7 +76,7 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
       <Btn text="Submit" onPress={() => submitCallback({
         phone: phone,
         location: location,
-        link: link,
+        site: site,
         description: description,
         salary: salary,
         position: position

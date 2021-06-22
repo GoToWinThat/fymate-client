@@ -78,10 +78,10 @@ export default Profile = ({ navigation }) => {
             <View style={styles.view}>
                 <Avatar url={avatarUrl} onImageChosen={onImageChosen} />
                 <TitleInfo
-                    title={userOrCompany.name}
-                    email={userOrCompany.email}
-                    phone={userOrCompany.phone}
-                    location={userOrCompany.location}
+                    title={userOrCompany?.name}
+                    email={userOrCompany?.contacts?.mail}
+                    phone={userOrCompany?.contacts?.phone}
+                    location={userOrCompany?.location}
                 />
             </View>
 
@@ -90,7 +90,7 @@ export default Profile = ({ navigation }) => {
                     <Text>COMPANY INFO</Text>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("Account", { uid: uid, type: "Company",prev: "profile" })}>
+                <ListItem onPress={() => navigation.navigate("Account", { uid: uid, type: "Company", prev: "profile" })}>
                     <Left><Text>See your profile</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
@@ -157,8 +157,8 @@ export default Profile = ({ navigation }) => {
                 <Avatar url={avatarUrl} onImageChosen={onImageChosen} />
                 <TitleInfo
                     title={`${userOrCompany.name} ${userOrCompany.surname}`}
-                    email={userOrCompany.email}
-                    phone={userOrCompany.phone}
+                    email={userOrCompany.contacts?.email}
+                    phone={userOrCompany.contacts?.phone}
                     location={userOrCompany.location}
                 />
             </View>
@@ -168,7 +168,7 @@ export default Profile = ({ navigation }) => {
                     <Text>PERSONAL INFO</Text>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("Account", { uid: uid, type: "Employee",prev: "profile" })}>
+                <ListItem onPress={() => navigation.navigate("Account", { uid: uid, type: "Employee", prev: "profile" })}>
                     <Left><Text>See your profile</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
@@ -176,11 +176,12 @@ export default Profile = ({ navigation }) => {
                 <ListItem onPress={() => navigation.navigate("General", {
                     doc: currentProfileDocumentRef,
                     info: {
-                        about: userOrCompany.about,
-                        company: userOrCompany.company,
-                        details: userOrCompany.details,
-                        solary: userOrCompany.solary,
-                        position: userOrCompany.position
+                        description: userOrCompany.about,
+                        phone: userOrCompany.contacts?.phone,
+                        site: userOrCompany.contacts?.site,
+                        salary: userOrCompany.details?.salary,
+                        position: userOrCompany.details?.position,
+                        location: userOrCompany.location
                     }
                 })}>
                     <Left><Text>General</Text></Left>

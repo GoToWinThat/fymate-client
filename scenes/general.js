@@ -12,11 +12,12 @@ export default General = ({ route, navigation }) => {
     }
 
     const submitCallback = (r) => {
+        console.log(r)
         doc.update({
             about: r.description,
             location: r.location,
             "contacts.phone": r.phone,
-            "contacts.site": r.link,
+            "contacts.site": r.site,
             "details.position": r.position,
             "details.salary": r.salary,
         })
@@ -28,11 +29,7 @@ export default General = ({ route, navigation }) => {
                 <TopBar title="General" onClickGoBack={onClickGoBack} />
             </Header>
             <Content>
-                <GeneralForm defaults={{
-                    first: general?.details?.position,
-                    second: general.company,
-                    desc: general.about
-                }} submitCallback={submitCallback} />
+                <GeneralForm defaults={general} submitCallback={submitCallback} />
             </Content>
         </Container>
     )
