@@ -148,7 +148,7 @@ export default Profile = ({ navigation }) => {
                 <ListItem onPress={() => navigation.navigate("ProfileTags", {
                     doc: currentProfileDocumentRef, info: {
                         techstack: userOrCompany?.tags,
-                        worktime: [userOrCompany?.details?.worktime],
+                        worktype: [userOrCompany?.details?.worktype],
                         jobtime: [userOrCompany?.details?.jobtime],
                         level: [userOrCompany?.details?.level],
                         contract: [userOrCompany?.details?.contract],
