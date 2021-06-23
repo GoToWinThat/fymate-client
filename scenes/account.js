@@ -49,6 +49,8 @@ export default Account = ({ route, navigation }) => {
     console.log(prevScreen)
   }, []);
 
+  console.log(accountInfo)
+  console.log(`12322222222222222222222222222222222     ${avatarUrl} `)
 
   const userContent =
     userOrCompany === "Employee" ? (
@@ -67,11 +69,11 @@ export default Account = ({ route, navigation }) => {
             />}
         </Header>
         <ImgInfo
-          salary="TODO"
+          salary={accountInfo?.details.salary}
           location={accountInfo?.location}
           url={avatarUrl}
           title={(accountInfo?.name || "") + " " + (accountInfo?.surname || "")}
-          job="UX/UI Designer"
+          job={accountInfo?.details.position}
         />
 
         <About
