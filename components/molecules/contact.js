@@ -11,7 +11,7 @@ export default Contact = ({ contacts, color }) => {
             <Text style={styles.title}>Contact</Text>
             {contacts?.phone !== undefined ? <ContactItem description={contacts?.phone} icon="call" color={color} /> : null}
             {contacts?.mail !== undefined ? <ContactItem description={contacts?.mail} icon="mail-sharp" color={color} /> : null}
-            {contacts?.github !== undefined ? <ContactItem description={contacts?.site} icon="logo-github" color={color} /> : null}
+            {contacts?.site !== undefined ? <ContactItem description={contacts?.site} icon="logo-github" color={color} /> : null}
         </View>
     )
 }
