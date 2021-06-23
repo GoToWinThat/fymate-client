@@ -14,6 +14,7 @@ import avatar from "../components/atoms/avatar";
 import { formStyle } from '../styles/style'
 import Btn from '../components/atoms/btn'
 import * as firebase from "firebase";
+import { notFoundImageUrl } from "../globals";
 
 export default CompanyDescription = ({ route, navigation }) => {
 
@@ -22,7 +23,7 @@ export default CompanyDescription = ({ route, navigation }) => {
 
 
   const onClickGoBack = () => {
-    doc.update({ companyDescription: { description: description, imageUrl: imageUrl, unique: unique } })
+    doc.update({ companyDescription: { description: description, unique: unique } })
     navigation.goBack();
   };
 
@@ -36,7 +37,7 @@ export default CompanyDescription = ({ route, navigation }) => {
 
   const [description, setDescription] = useState(initialState?.description || "");
   const [unique, setUnique] = useState(initialState?.unique || "");
-  const [imageUrl, setImageUrl] = useState(initialState?.imageUrl || "");
+  const [imageUrl, setImageUrl] = useState(initialState?.imageUrl || notFoundImageUrl);
 
   //Fetches image url from firebase
   useEffect(() => {

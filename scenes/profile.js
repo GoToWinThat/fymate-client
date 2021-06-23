@@ -64,7 +64,6 @@ export default Profile = ({ navigation }) => {
         });
     }
 
-
     //Fetch current user info
     useEffect(() => {
         const unsub = currentProfileDocumentRef.onSnapshot(snapshot => {
@@ -73,12 +72,13 @@ export default Profile = ({ navigation }) => {
         return () => unsub(); //unsubscribe from realtime listener
     }, []);
 
+    //Fetch current user avatar
     useEffect(() => {
         firebase.storage().ref()
             .child("avatars/" + uid)
             .getDownloadURL()
             .then(url => { setAvatarUrl(url); })
-            .catch(e => console.log(e)); //TODO: cancel on unmount
+            .catch(e => console.log(e));
     }, []);
 
     console.log(`@@!#!@@#!GENERAL userOrCompanyAbout: s ${userOrCompany.name}    ${userOrCompany.surname}`)

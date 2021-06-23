@@ -10,8 +10,7 @@ import ImgInfo from '../components/atoms/imginfo'
 ///Read only offer 
 export default Offert = ({ route, navigation }) => {
     const offer = route?.params?.offer
-    const onRightIconClick = route?.params?.rightIconCallback;    
-
+    const onRightIconClick = route?.params?.rightIconCallback;
 
     const onClickGoBack = () => {
         navigation.goBack();
