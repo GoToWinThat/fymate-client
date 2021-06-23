@@ -152,7 +152,8 @@ export default Profile = ({ navigation }) => {
                         jobtime: [userOrCompany?.details?.jobtime],
                         level: [userOrCompany?.details?.level],
                         contract: [userOrCompany?.details?.contract],
-                    }
+                    },
+                    type: userOrCompany.type
                 })}>
                     <Left><Text>Tags</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>

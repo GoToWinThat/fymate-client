@@ -7,6 +7,7 @@ import { allContractTags, allJobtimeTags, allLevelTags, allTechstackTags, allWor
 export default ProfileTags = ({ route, navigation }) => {
     const doc = route.params.doc;
     const tags = route.params.info;
+    const type = route.params.type;
 
     const onClickGoBack = () => {
         navigation.goBack();
@@ -46,35 +47,48 @@ export default ProfileTags = ({ route, navigation }) => {
                 <TopBar title="Tags" onClickGoBack={onClickGoBack} />
             </Header>
             <Content>
-                <TagFilter initialTags={tags} activeTagsChangedCallback={onTagsChanged}
-                    tags={{
-                        techstack: allTechstackTags,
-                        contract: allContractTags,
-                        jobtime: allJobtimeTags,
-                        worktype: allWorktypeTags,
-                        level: allLevelTags
-                    }}
-                    colors={{
-                        techstack: "blue",
-                        contract: "purple",
-                        jobtime: "green",
-                        worktype: "orange",
-                        level: "red"
-                    }}
-                    labels={{
-                        techstack: "Techstack",
-                        contract: "Contract",
-                        jobtime: "Jobtime",
-                        worktype: "Agreement",
-                        level: "Level"
-                    }}
-                    singleChoices={{
-                        contract: true,
-                        jobtime: true,
-                        worktype: true,
-                        level: true,
-                    }}
-                />
+                { type !== "Company" ? 
+                    <TagFilter initialTags={tags} activeTagsChangedCallback={onTagsChanged}
+                        tags={{
+                            techstack: allTechstackTags,
+                            contract: allContractTags,
+                            jobtime: allJobtimeTags,
+                            worktype: allWorktypeTags,
+                            level: allLevelTags
+                        }}
+                        colors={{
+                            techstack: "blue",
+                            contract: "purple",
+                            jobtime: "green",
+                            worktype: "orange",
+                            level: "red"
+                        }}
+                        labels={{
+                            techstack: "Techstack",
+                            contract: "Contract",
+                            jobtime: "Jobtime",
+                            worktype: "Agreement",
+                            level: "Level"
+                        }}
+                        singleChoices={{
+                            contract: true,
+                            jobtime: true,
+                            worktype: true,
+                            level: true,
+                        }}
+                    /> :
+                    <TagFilter initialTags={tags} activeTagsChangedCallback={onTagsChanged} 
+                        tags={{
+                            techstack: allTechstackTags
+                        }}
+                        colors={{
+                            techstack: "blue"
+                        }}
+                        labels={{
+                            techstack: "Techstack"
+                        }}
+                    />
+                }
             </Content>
         </Container>
     )
