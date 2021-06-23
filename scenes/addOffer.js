@@ -35,7 +35,11 @@ export default AddOffer = ({ route, navigation }) => {
   const [howTo, setHowTo] = useState(defaults?.howTo !== undefined ? defaults.howTo : "");
   const [benefits, setBenefits] = useState(defaults?.benefits !== undefined ? defaults.benefits : []);
   const [tags, setTags] = useState(defaults?.tags !== undefined ? {
-    
+    techstack: defaults.tags,
+    worktype: [defaults.details.worktype],
+    jobtime: [defaults.details.jobtime],
+    contract: [defaults.details.contract],
+    level: [defaults.details.level],
   } : {})
 
 
@@ -120,6 +124,12 @@ export default AddOffer = ({ route, navigation }) => {
             jobtime: "Jobtime",
             worktype: "Agreement",
             level: "Level"
+          }}
+          singleChoices={{
+            contract: true,
+            jobtime: true,
+            worktype: true,
+            level: true,
           }}
         />
         <ListItem itemDivider>
