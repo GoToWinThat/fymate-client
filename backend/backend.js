@@ -43,7 +43,20 @@ export async function deleteCurrentUser() {
     auth.currentUser.delete();
 }
 
-export async function addOrRemoveFromArray()
-{
-
+export async function addOrRemoveFromArray(arrayPath, element, collection, docId) {
+    const userDocRef = firebase.firestore().collection(collection).doc(docId);
+    const userDoc = await userDocRef.get();
+    let favArr = userDoc.get(arrayPath);
+    if (favArr === undefined)
+        favArr = [];
+    if (favArr.includes(element)) {
+        const idx = favArr.indexOf(element);
+        favArr.splice(idx, 1)
+    }
+    else {
+        favArr.push(element);
+    }
+    const updateObject = {}
+    updateObject[arrayPath] = favArr
+    userDocRef.update(updateObject);
 }

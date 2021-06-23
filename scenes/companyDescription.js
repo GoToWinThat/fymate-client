@@ -84,7 +84,7 @@ export default CompanyDescription = ({ route, navigation }) => {
           </ListItem>
           <Avatar url={imageUrl} onImageChosen={onImageChosen} />
 
-          <Btn text="Submit" onPress={() => onClickOnSubmit()}/>
+          <Btn text="Submit" onPress={() => onClickOnSubmit()} />
         </Form>
       </Content>
     </Container>

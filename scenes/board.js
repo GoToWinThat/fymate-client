@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import * as firebase from 'firebase';
 import { notFoundImageUrl } from "../globals"
 import 'allsettled-polyfill';
+import { addOrRemoveFromArray } from "../backend/backend"
 
 
 const defaultFilterState = {
@@ -118,19 +119,7 @@ export default Board = ({ navigation }) => {
   const onClickOffer = (offer) => {
     const onClickFav = async (offer) => {
       const uid = firebase.auth().currentUser.uid;
-      const userDocRef = firebase.firestore().collection("users").doc(uid);
-      const userDoc = await userDocRef.get();
-      let favArr = userDoc.get("favouriteOffers");
-      if (favArr === undefined)
-        favArr = [];
-      if (favArr.includes(offer.uid)) {
-        const idx = favArr.indexOf(offer.uid);
-        favArr.splice(idx, 1)
-      }
-      else {
-        favArr.push(offer.uid);
-      }
-      userDocRef.update({ favouriteOffers: favArr });
+      await addOrRemoveFromArray("favouriteOffers", offer.uid, "users", uid)
     }
 
     navigation.navigate("Offert", {
@@ -141,23 +130,10 @@ export default Board = ({ navigation }) => {
   };
 
   const onClickUser = (user) => {
-    const onClickFav = async (offer) => { //TODO: move out
+    const onClickFav = async (user) => {
       const uid = firebase.auth().currentUser.uid;
-      const userDocRef = firebase.firestore().collection("users").doc(uid);
-      const userDoc = await userDocRef.get();
-      let favArr = userDoc.get("favouriteUsers");
-      if (favArr === undefined)
-        favArr = [];
-      if (favArr.includes(offer.uid)) {
-        const idx = favArr.indexOf(offer.uid);
-        favArr.splice(idx, 1)
-      }
-      else {
-        favArr.push(offer.uid);
-      }
-      userDocRef.update({ favouriteUsers: favArr });
+      await addOrRemoveFromArray("favouriteUsers", user.uid, "users", uid)
     }
-
 
     navigation.navigate("Account", {
       screen: "Account",
