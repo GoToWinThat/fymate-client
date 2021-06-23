@@ -61,6 +61,12 @@ export default Filters = ({ route, navigation }) => {
             worktype: "Agreement",
             level: "Level"
           }}
+          singleChoices={{
+            contract: true,
+            jobtime: true,
+            worktype: true,
+            level: true,
+          }}
         />
       </Content>
     </Container>
