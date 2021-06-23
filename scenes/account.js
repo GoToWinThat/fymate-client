@@ -139,7 +139,7 @@ export default Account = ({ route, navigation }) => {
 
         <About //TODO: Add company description
           title="Our Company"
-          desciption={accountInfo?.companyDescription?.desciption}
+          desciption={accountInfo?.companyDescription?.description}
           img={companyDescriptionImageUrl}
           desciption2={accountInfo?.companyDescription?.unique}
         />
