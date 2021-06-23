@@ -12,7 +12,7 @@ import {ELEMENT_PADDING,SCREEN_PADDING} from '../../styles/spacing'
 //     starttime: "06.07.2021.r",
 //     jobtime: "1/4 etatu"
 // }
-export default DetailsList = ({details}) => {
+export default DetailsList = ({details, type}) => {
     //contract , position, jobTime, worktype, starttime
     return (
         <>
@@ -21,7 +21,7 @@ export default DetailsList = ({details}) => {
             <View>
                 <Detail icon="document-text" text={details?.contract}/>
                 <Detail icon="laptop-outline" text={details?.worktype}/>
-                <Detail icon="calendar-outline" text={details?.starttime}/>
+                {type !== "Employee" ? <Detail icon="calendar-outline" text={details?.starttime}/> : null}
             </View>
             <View>
                 <Detail icon="briefcase" text={details?.position}/>

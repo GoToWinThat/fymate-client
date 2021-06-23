@@ -49,9 +49,6 @@ export default Account = ({ route, navigation }) => {
     console.log(prevScreen)
   }, []);
 
-  console.log(accountInfo)
-  console.log(`12322222222222222222222222222222222     ${avatarUrl} `)
-
   const userContent =
     userOrCompany === "Employee" ? (
       <>
@@ -89,7 +86,7 @@ export default Account = ({ route, navigation }) => {
           color={"blue"}
         />
 
-        <DetailsList details={accountInfo?.details} />
+        <DetailsList details={accountInfo?.details} type={accountInfo?.type}/>
         <ExperienceList experience={accountInfo?.experience} />
         <ProjectList projects={accountInfo?.projects} />
         <EducationList education={accountInfo?.education} />
