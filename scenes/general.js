@@ -22,11 +22,14 @@ export default General = ({ route, navigation }) => {
             "contacts.site": r.site,
             "details.position": r.position,
             "details.salary": r.salary,
-            "details.company": r.company
+            "details.company": r.company,
+            "details.companySize": r.companySize
         }).then(
             navigation.goBack()
         )
     }
+
+    console.log(`General :  ${general}`)
 
     return (
         <Container>

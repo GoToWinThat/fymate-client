@@ -81,7 +81,7 @@ export default Profile = ({ navigation }) => {
             .catch(e => console.log(e));
     }, []);
 
-    console.log(`@@!#!@@#!GENERAL userOrCompanyAbout: s ${userOrCompany.name}    ${userOrCompany.surname}`)
+    console.log(`@@!#!@@#!GENERAL userOrCompanyName: s ${JSON.stringify(userOrCompany)}    about    :${userOrCompany.about}`)
 
     const companyContent = userOrCompany.type === "Company" ?
         <>
@@ -105,7 +105,20 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("General", { doc: currentProfileDocumentRef, info: userOrCompany.about })}>
+                <ListItem onPress={() => navigation.navigate("General", { 
+                    doc: currentProfileDocumentRef,
+                    info: {
+                        type: userOrCompany.type,
+                        description: userOrCompany.about,
+                        phone: userOrCompany.contacts?.phone,
+                        site: userOrCompany.contacts?.site,
+                        salary: userOrCompany.details?.salary,
+                        position: userOrCompany.details?.position,
+                        location: userOrCompany.location,
+                        name: userOrCompany.name,
+                        surname: userOrCompany.surname
+                    } 
+                    })}>
                     <Left><Text>General</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
