@@ -116,9 +116,10 @@ export default Profile = ({ navigation }) => {
                         position: userOrCompany.details?.position,
                         location: userOrCompany.location,
                         name: userOrCompany.name,
-                        surname: userOrCompany.surname
-                    }
-                })}>
+                        surname: userOrCompany.surname,
+                        companySize: userOrCompany.details.companySize
+                    } 
+                    })}>
                     <Left><Text>General</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>

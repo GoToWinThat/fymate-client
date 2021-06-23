@@ -49,6 +49,12 @@ export default AddOffer = ({ route, navigation }) => {
     navigation.goBack();
   }
 
+  const deleteBenefit = (benefit) => {
+    let arr = benefits
+    arr = arr.filter( e => e !== benefit)
+    setBenefits(arr)
+  }
+
   const submitCallback = route?.params?.submitCallback !== undefined ? route.params.submitCallback : onSubmit;
   const deleteCallback = route?.params?.deleteCallback;
 
@@ -95,7 +101,7 @@ export default AddOffer = ({ route, navigation }) => {
         <ListItem itemDivider>
           <Text>BENEFITS</Text>
         </ListItem>
-        <BenefitsForm benefits={benefits} onClickAddBenefit={addBenefit} />
+        <BenefitsForm benefits={benefits} onClickAddBenefit={addBenefit} onClickDeleteBenefit={deleteBenefit}/>
 
         <ListItem itemDivider>
           <Text>DESCRIPTION</Text>
