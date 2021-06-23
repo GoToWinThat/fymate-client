@@ -23,7 +23,6 @@ export default CompanyDescription = ({ route, navigation }) => {
 
 
   const onClickGoBack = () => {
-    doc.update({ companyDescription: { description: description, unique: unique } })
     navigation.goBack();
   };
 
@@ -45,6 +44,11 @@ export default CompanyDescription = ({ route, navigation }) => {
     const ref = firebase.storage().ref().child("companyDescriptionImages" + uid);
     ref.getDownloadURL().then(url => setImageUrl(url));
   }, []);
+
+  const onClickOnSubmit = () => {
+    doc.update({ companyDescription: { description: description, unique: unique } })
+    navigation.goBack()
+  }
 
   return (
     <Container>
@@ -79,6 +83,8 @@ export default CompanyDescription = ({ route, navigation }) => {
             <Text>IMAGE</Text>
           </ListItem>
           <Avatar url={imageUrl} onImageChosen={onImageChosen} />
+
+          <Btn text="Submit" onPress={() => onClickOnSubmit()}/>
         </Form>
       </Content>
     </Container>

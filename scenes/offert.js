@@ -19,6 +19,11 @@ export default Offert = ({ route, navigation }) => {
         navigation.goBack();
     }
 
+    const onRightIconClickAndGoBack = () => {
+        onRightIconClick(offer)
+        navigation.goBack();
+    }
+
     //fetch company data
     useEffect(() => {
         firebase.firestore().collection("users").doc(offer.ownerUid).get().then(x => setCompany(x.data()))
@@ -29,7 +34,7 @@ export default Offert = ({ route, navigation }) => {
         <Container>
             <Header>
                 <TopBar onClickGoBack={onClickGoBack} title={"Offert"}
-                    rightIcon='heart' onClickRightIcon={() => onRightIconClick(offer)} />
+                    rightIcon='heart' onClickRightIcon={onRightIconClickAndGoBack} />
             </Header>
             <Content >
                 <ImgInfo

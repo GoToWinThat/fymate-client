@@ -6,6 +6,7 @@ import UserList from "../components/molecules/offerlist";
 import * as firebase from 'firebase'
 import { chunk } from "../globals";
 import { set } from "react-native-reanimated";
+import { useFocusEffect } from '@react-navigation/native';
 
 const defaultFilterState = {
   tags: [],
@@ -26,46 +27,49 @@ export default Favorite = ({ navigation }) => {
     setFilter({ ...filter }) //copy object to force rerender
   }
 
-  //Fetch user data
-  useEffect(() => {
-    firebase.firestore().collection("users")
+
+  useFocusEffect(
+    React.useCallback(() => {
+      firebase.firestore().collection("users")
       .doc(uid)
       .get()
       .then(snap => {
         const data = snap.data()
         setAccountInfo(data);
       });
-  }, [])
+    }, [])
+  );
 
-  //Fetches favourite offers and users
-  useEffect(() => {
-    const store = firebase.firestore();
-
-    if (accountInfo.favouriteOffers !== undefined) {
-      const promises = []
-      for (const offer of accountInfo.favouriteOffers) {
-        promises.push(store.collection("offers").doc(offer).get())
+    //Fetches favourite offers and users
+  useFocusEffect(
+    React.useCallback(() => {
+      const store = firebase.firestore();
+    
+      if (accountInfo?.favouriteOffers !== undefined) {
+        const promises = []
+        for (const offer of accountInfo?.favouriteOffers) {
+          promises.push(store.collection("offers").doc(offer).get())
+        }
+        Promise.all(promises) //Wait for all documents to fetch
+          .then(x => x.map(y => y.data()))
+          .then(x => {
+            setOfferList(x);
+          });
       }
-      Promise.all(promises) //Wait for all documents to fetch
-        .then(x => x.map(y => y.data()))
-        .then(x => {
-          setOfferList(x);
-        });
-    }
-
-    if (accountInfo.favouriteUsers !== undefined) {
-      const promises = []
-      for (const user of accountInfo.favouriteUsers) {
-        promises.push(store.collection("users").doc(user).get())
+  
+      if (accountInfo.favouriteUsers !== undefined) {
+        const promises = []
+        for (const user of accountInfo.favouriteUsers) {
+          promises.push(store.collection("users").doc(user).get())
+        }
+        Promise.all(promises) //Wait for all documents to fetch
+          .then(x => x.map(y => y.data()))
+          .then(x => {
+            setUserList(x);
+          });
       }
-      Promise.all(promises) //Wait for all documents to fetch
-        .then(x => x.map(y => y.data()))
-        .then(x => {
-          setUserList(x);
-        });
-    }
-  }, [accountInfo, filter])
-
+    }, [accountInfo, filter])
+  );
 
   const onClickFilters = () => {
     navigation.navigate("Filters", {

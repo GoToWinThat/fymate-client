@@ -4,19 +4,20 @@ import { Input } from "native-base";
 import BenefitsList from "../molecules/benefitsList";
 import {SCREEN_PADDING, ELEMENT_PADDING} from '../../styles/spacing'
 //In props add array of benefits ["" , "" , ""] , and in onClickAddBenefit return String
-export default BenefitsForm = ({ benefits, onClickAddBenefit }) => {
+export default BenefitsForm = ({ benefits, onClickAddBenefit, onClickDeleteBenefit }) => {
   const [benefit, setBenefit] = useState("");
 
   return (
     <View style={ styles.form}>
         <Input
           onChangeText={setBenefit}
-          onSubmitEditing={() => onClickAddBenefit(benefit)}
+          onSubmitEditing={() => {onClickAddBenefit(benefit); setBenefit("");}}
           placeholder="Feature..."
           style={styles.input}
+          value={benefit}
         />
       <View style={styles.viewList}>
-        <BenefitsList benefits={benefits} />
+        <BenefitsList benefits={benefits} onClickDeleteBenefit={onClickDeleteBenefit}/>
       </View>
     </View>
   );
