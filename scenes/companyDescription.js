@@ -62,7 +62,7 @@ export default CompanyDescription = ({ route, navigation }) => {
           <ListItem itemDivider>
             <Text>IMAGE</Text>
           </ListItem>
-          {/* <Avatar url={imageUrl} /> */}
+          <Avatar url={imageUrl} />
         </Form>
       </Content>
     </Container>

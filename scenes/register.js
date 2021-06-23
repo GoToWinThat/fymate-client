@@ -35,7 +35,7 @@ export default Register = ({ navigation }) => {
           tags: [],
           contacts: {
             phone: "",
-            mail: "",
+            mail: email,
             github: "",
           },
           companyDescription: {
@@ -69,7 +69,7 @@ export default Register = ({ navigation }) => {
             tags: [],
             contacts: {
               phone: "",
-              mail: "",
+              mail: email,
               github: "",
             }
           }

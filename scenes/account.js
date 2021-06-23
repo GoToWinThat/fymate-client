@@ -24,7 +24,7 @@ export default Account = ({ route, navigation }) => {
   const [accountInfo, setAccountInfo] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState("https://safetyaustraliagroup.com.au/wp-content/uploads/2019/05/image-not-found.png");
 
-
+  console.log(`Account : account info ${accountInfo}`)
 
   const onClickGoBack = () => {
     navigation.goBack();
