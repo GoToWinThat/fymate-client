@@ -81,7 +81,7 @@ export default Profile = ({ navigation }) => {
             .catch(e => console.log(e)); //TODO: cancel on unmount
     }, []);
 
-
+    console.log(`@@!#!@@#!GENERAL userOrCompanyAbout: s ${userOrCompany.name}    ${userOrCompany.surname}`)
 
     const companyContent = userOrCompany.type === "Company" ?
         <>
@@ -192,7 +192,9 @@ export default Profile = ({ navigation }) => {
                         site: userOrCompany.contacts?.site,
                         salary: userOrCompany.details?.salary,
                         position: userOrCompany.details?.position,
-                        location: userOrCompany.location
+                        location: userOrCompany.location,
+                        name: userOrCompany.name,
+                        surname: userOrCompany.surname
                     }
                 })}>
                     <Left><Text>General</Text></Left>
