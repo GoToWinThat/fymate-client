@@ -66,8 +66,11 @@ export default Board = ({ navigation }) => {
   const updateListWithUrls = (data) => {
     const storageRef = firebase.storage().ref();
 
+    console.log(data)
+
     const promises = data.map((x) => {
-      return storageRef.child("avatars/" + x.uid).getDownloadURL();
+      const uid = filter.searchType === "Employee" ? x.uid : x.ownerUid;
+      return storageRef.child("avatars/" + uid).getDownloadURL();
     })
 
     const urls = Promise.allSettled(promises)
