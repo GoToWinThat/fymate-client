@@ -11,9 +11,10 @@ export default BenefitsForm = ({ benefits, onClickAddBenefit, onClickDeleteBenef
     <View style={ styles.form}>
         <Input
           onChangeText={setBenefit}
-          onSubmitEditing={() => onClickAddBenefit(benefit)}
+          onSubmitEditing={() => {onClickAddBenefit(benefit); setBenefit("");}}
           placeholder="Feature..."
           style={styles.input}
+          value={benefit}
         />
       <View style={styles.viewList}>
         <BenefitsList benefits={benefits} onClickDeleteBenefit={onClickDeleteBenefit}/>

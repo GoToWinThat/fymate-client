@@ -1,6 +1,6 @@
 import { Button, Container, Content, Text, View, Input } from "native-base";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet,Dimensions } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as firebase from 'firebase';
 import { useState } from "react";
@@ -9,6 +9,7 @@ import Btn from '../components/atoms/btn'
 import education from "./education";
 import companyDescription from "./companyDescription";
 import { formStyle } from '../styles/style'
+import { ScrollView } from "react-native-gesture-handler";
 
 //TODO: Repeat password UI state handling
 export default Register = ({ navigation }) => {
@@ -113,7 +114,8 @@ export default Register = ({ navigation }) => {
 
   return (
     <Container>
-      <Content contentContainerStyle={{ justifyContent: "center", flex: 1 }}>
+      <Content>
+      <ScrollView>
         <View style={styles.screen}>
           <View>
             <Text style={styles.title}>Join</Text>
@@ -156,6 +158,7 @@ export default Register = ({ navigation }) => {
             </Button> */}
           </View>
         </View>
+        </ScrollView>
       </Content>
     </Container>
   );
@@ -171,8 +174,8 @@ const styles = StyleSheet.create({
   screen: {
     justifyContent: "space-evenly",
     alignItems: "center",
-    height: "100%",
-    paddingVertical: "15%",
+    height: Dimensions.get("window").height,
+    paddingTop: "15%",
   },
   featureView: {
     flexDirection: "row",

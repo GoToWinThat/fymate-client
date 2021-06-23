@@ -2,7 +2,7 @@ import { Button, Container, Content, Text, View } from "native-base";
 import React from "react";
 import { StyleSheet } from "react-native";
 import Featurebox from '../components/atoms/featurebox'
-import { Entypo } from "@expo/vector-icons";
+import { Ionicons } from '@expo/vector-icons';
 import Btn from '../components/atoms/btn'
 
 export default Onboarding = ({ navigation }) => {
@@ -21,19 +21,19 @@ export default Onboarding = ({ navigation }) => {
         <View style={styles.screen}>
           <Text style={styles.title}>Fymate</Text>
           <Featurebox
-            title={"Easy Work"}
-            text={tt}
-            icon={<Entypo name="chat" size={50} color="black" />}
+            title={"Search"}
+            text={"for best offerts possible and candidates. Choose from many tech tags available in our application and specify details like time duration or expected experience."}
+            icon={<Ionicons name="search-circle" size={60} color="black" />}
           />
           <Featurebox
-            title={"It's Free"}
-            text={tt}
-            icon={<Entypo name="credit-card" size={50} color="black" />}
+            title={"Save"}
+            text={"you can store your favorites offerts and candidates in application in one place accessible everywhere. Apply for your favorite offerts and don't miss deadline"}
+            icon={<Ionicons name="heart-sharp" size={60} color="black" />}
           />
           <Featurebox
-            title={"Fast and Quick"}
-            text={tt}
-            icon={<Entypo name="back-in-time" size={50} color="black" />}
+            title={"Edit"}
+            text={"create a custom profile with your experience, projects, education and more. Show everyone what you can do. Add offerts for position you are interested in."}
+            icon={<Ionicons name="brush-sharp" size={60} color="black" />}
           />
           {/* <Button style={styles.next} onPress={() => onClickChangeView()}>
             <Text style={styles.text}>Next</Text>
@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
   },
   screen: {
     justifyContent: "space-evenly",
-    paddingHorizontal: 30,
     height: "100%",
     paddingVertical: "15%",
   },
