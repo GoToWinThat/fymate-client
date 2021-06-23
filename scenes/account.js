@@ -122,7 +122,7 @@ export default Account = ({ route, navigation }) => {
         </Header>
         <ImgInfo
           location={accountInfo?.location}
-          size="1500" //TODO: size info
+          size={accountInfo?.details?.companySize} //TODO: size info
           url={avatarUrl}
           title={(accountInfo?.name || "")}
         />
