@@ -47,7 +47,6 @@ export default Account = ({ route, navigation }) => {
       .then(url => setAvatarUrl(url))
       .catch(e => console.log(e));
 
-
     storageRef
       .child("companyDescriptionImages/" + uid)
       .getDownloadURL()
@@ -72,11 +71,11 @@ export default Account = ({ route, navigation }) => {
             />}
         </Header>
         <ImgInfo
-          salary={accountInfo?.details.salary}
+          salary={accountInfo?.details?.salary}
           location={accountInfo?.location}
           url={avatarUrl}
           title={(accountInfo?.name || "") + " " + (accountInfo?.surname || "")}
-          job={accountInfo?.details.position}
+          job={accountInfo?.details?.position}
         />
 
         <About

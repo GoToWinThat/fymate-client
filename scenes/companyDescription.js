@@ -41,7 +41,7 @@ export default CompanyDescription = ({ route, navigation }) => {
   //Fetches image url from firebase
   useEffect(() => {
     const uid = firebase.auth().currentUser.uid;
-    const ref = firebase.storage().ref().child("companyDescriptionImages" + uid);
+    const ref = firebase.storage().ref().child("companyDescriptionImages/" + uid);
     ref.getDownloadURL().then(url => setImageUrl(url));
   }, []);
 

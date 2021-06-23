@@ -1,6 +1,6 @@
 import { Button, Container, Content, Text, View, Input } from "native-base";
 import React from "react";
-import { StyleSheet,Dimensions } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as firebase from 'firebase';
 import { useState } from "react";
@@ -38,6 +38,13 @@ export default Register = ({ navigation }) => {
             phone: "",
             mail: email,
             github: "",
+          },
+          details: {
+            contract: "",
+            jobtime: "",
+            position: "",
+            starttime: "",
+            worktype: "",
           },
           companyDescription: {
             description: "",
@@ -115,49 +122,49 @@ export default Register = ({ navigation }) => {
   return (
     <Container>
       <Content>
-      <ScrollView>
-        <View style={styles.screen}>
-          <View>
-            <Text style={styles.title}>Join</Text>
-            <Text style={styles.title}>Fymate</Text>
-            <Text>Find your first job with us</Text>
-          </View>
+        <ScrollView>
+          <View style={styles.screen}>
+            <View>
+              <Text style={styles.title}>Join</Text>
+              <Text style={styles.title}>Fymate</Text>
+              <Text>Find your first job with us</Text>
+            </View>
 
 
-          <View style={styles.marginHor}>
+            <View style={styles.marginHor}>
 
-            <View style={formStyle.input}>
-              <View style={styles.icon}>
-                <FontAwesome5 name="envelope" size={24} color="black" />
+              <View style={formStyle.input}>
+                <View style={styles.icon}>
+                  <FontAwesome5 name="envelope" size={24} color="black" />
+                </View>
+
+                <Input onChangeText={setEmail} placeholder="Email" />
+              </View>
+              <View style={formStyle.input}>
+                <View style={styles.icon}>
+                  <FontAwesome5 name="lock" size={24} color="black" />
+                </View>
+
+                <Input secureTextEntry={true} onChangeText={setPassword} placeholder="Password" />
+              </View>
+              <View style={formStyle.input}>
+                <View style={styles.icon}>
+                  <FontAwesome5 name="lock" size={24} color="black" />
+                </View>
+                <Input secureTextEntry={true} placeholder="Repeat Password" />
               </View>
 
-              <Input onChangeText={setEmail} placeholder="Email" />
-            </View>
-            <View style={formStyle.input}>
-              <View style={styles.icon}>
-                <FontAwesome5 name="lock" size={24} color="black" />
+              <View style={styles.segmented}>
+                <Segmentbar onClickChange={setType} />
               </View>
-
-              <Input secureTextEntry={true} onChangeText={setPassword} placeholder="Password" />
             </View>
-            <View style={formStyle.input}>
-              <View style={styles.icon}>
-                <FontAwesome5 name="lock" size={24} color="black" />
-              </View>
-              <Input secureTextEntry={true} placeholder="Repeat Password" />
-            </View>
-
-            <View style={styles.segmented}>
-              <Segmentbar onClickChange={setType} />
-            </View>
-          </View>
-          <View style={styles.marginHor}>
-            <Btn text="Sign Up" onPress={onClickSignUp} />
-            {/* <Button style={styles.btn} onPress={() => onClickSignUp()}>
+            <View style={styles.marginHor}>
+              <Btn text="Sign Up" onPress={onClickSignUp} />
+              {/* <Button style={styles.btn} onPress={() => onClickSignUp()}>
               <Text style={styles.btnText}>Sign Up</Text>
             </Button> */}
+            </View>
           </View>
-        </View>
         </ScrollView>
       </Content>
     </Container>

@@ -1,8 +1,8 @@
 import { Container, Content, Header } from "native-base";
 import React, { useEffect, useState } from "react";
 import TopBar from "../components/atoms/topbar";
-import Offerlist from "../components/molecules/offerlist";
-import UserList from "../components/molecules/offerlist";
+import OfferList from "../components/molecules/offerlist";
+import UserList from "../components/molecules/userlist";
 import * as firebase from 'firebase'
 import { chunk } from "../globals";
 import { set } from "react-native-reanimated";
@@ -26,7 +26,6 @@ export default Favorite = ({ navigation }) => {
     filter.searchType = newFilter.searchType;
     setFilter({ ...filter }) //copy object to force rerender
   }
-
 
   useFocusEffect(
     React.useCallback(() => {
@@ -76,7 +75,7 @@ export default Favorite = ({ navigation }) => {
           });
       }
 
-      if (accountInfo.favouriteUsers !== undefined) {
+      if (accountInfo?.favouriteUsers !== undefined) {
         const promises = []
         for (const user of accountInfo.favouriteUsers) {
           promises.push(store.collection("users").doc(user).get())
@@ -92,7 +91,6 @@ export default Favorite = ({ navigation }) => {
       }
     }, [accountInfo, filter])
   );
-
 
 
   const onClickFilters = () => {
@@ -118,7 +116,6 @@ export default Favorite = ({ navigation }) => {
     });
   };
 
-
   return (
     <Container>
       <Header>
@@ -129,11 +126,9 @@ export default Favorite = ({ navigation }) => {
         />
       </Header>
       <Content>
-        {filter.searchType === "Company" ? (
-          <Offerlist onClick={onOfferClicked} list={offerList} />
-        ) : (
-          <UserList onClick={onUserClicked} list={userList} />
-        )}
+        {filter.searchType === "Company" ?
+          <OfferList onClick={onOfferClicked} list={offerList} />
+          : <UserList onClick={onUserClicked} list={userList} />}
       </Content>
     </Container>
   );

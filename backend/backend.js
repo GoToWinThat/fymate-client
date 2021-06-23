@@ -42,3 +42,8 @@ export async function deleteCurrentUser() {
     avatarRef.delete();
     auth.currentUser.delete();
 }
+
+export async function addOrRemoveFromArray()
+{
+
+}
