@@ -16,6 +16,7 @@ export default OfferListBox = ({
   const mode = company === undefined ? false : true;
   const navigateToOffer = onClick === undefined ? null : onClick;
 
+  //TODO: make those elements unclickable if navigate to offer is null/undefined
   return (
     <TouchableOpacity onPress={navigateToOffer} activeOpacity={0.5}>
       <ListItem>

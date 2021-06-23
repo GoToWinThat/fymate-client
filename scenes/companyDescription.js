@@ -8,11 +8,12 @@ import {
   Text,
   Textarea,
 } from "native-base";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TopBar from "../components/atoms/topbar";
 import avatar from "../components/atoms/avatar";
 import { formStyle } from '../styles/style'
 import Btn from '../components/atoms/btn'
+import * as firebase from "firebase";
 
 export default CompanyDescription = ({ route, navigation }) => {
 
@@ -26,15 +27,23 @@ export default CompanyDescription = ({ route, navigation }) => {
   };
 
   const onImageChosen = async (uri) => {
+    const uid = firebase.auth().currentUser.uid;
     const response = await fetch(uri)
     const data = await response.blob();
-    const ref = firebase.storage().ref().child("avatars/" + uid);
+    const ref = firebase.storage().ref().child("companyDescriptionImages/" + uid);
     ref.put(data);
-}
+  }
 
   const [description, setDescription] = useState(initialState?.description || "");
   const [unique, setUnique] = useState(initialState?.unique || "");
-  const [imageUrl, setImageUrl] = useState(initialState?.imageUrl || "")
+  const [imageUrl, setImageUrl] = useState(initialState?.imageUrl || "");
+
+  //Fetches image url from firebase
+  useEffect(() => {
+    const uid = firebase.auth().currentUser.uid;
+    const ref = firebase.storage().ref().child("companyDescriptionImages" + uid);
+    ref.getDownloadURL().then(url => setImageUrl(url));
+  }, []);
 
   return (
     <Container>
@@ -68,7 +77,7 @@ export default CompanyDescription = ({ route, navigation }) => {
           <ListItem itemDivider>
             <Text>IMAGE</Text>
           </ListItem>
-          <Avatar url={imageUrl} onImageChosen={onImageChosen}/>
+          <Avatar url={imageUrl} onImageChosen={onImageChosen} />
         </Form>
       </Content>
     </Container>

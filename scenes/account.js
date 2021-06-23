@@ -14,7 +14,6 @@ import { acc } from "react-native-reanimated";
 
 export default Account = ({ route, navigation }) => {
   //Employee , Company 
-  //TODO: fetch type from firebase
   const userOrCompany = route.params.type;
   const uid = route.params.uid;
   const onRightIconClick = route?.params?.rightIconCallback;
@@ -23,6 +22,7 @@ export default Account = ({ route, navigation }) => {
   //TODO: get this from profile if this screen was accessed via "See your profile" (since we already fetch data in previous screen)
   const [accountInfo, setAccountInfo] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState("https://safetyaustraliagroup.com.au/wp-content/uploads/2019/05/image-not-found.png");
+  const [companyDescriptionImageUrl, setCompanyDescriptionImageUrl] = useState("https://safetyaustraliagroup.com.au/wp-content/uploads/2019/05/image-not-found.png");
 
   console.log(`Account : account info ${accountInfo}`)
 
@@ -31,6 +31,8 @@ export default Account = ({ route, navigation }) => {
   };
 
   useEffect(() => {
+    const storageRef = firebase.storage().ref();
+
     firebase.firestore().collection('users').doc(uid).get().then((data) => {
       const d = data.data()
       setAccountInfo(
@@ -41,10 +43,17 @@ export default Account = ({ route, navigation }) => {
       );
     });
 
-    firebase.storage().ref()
+    storageRef
       .child("avatars/" + uid)
       .getDownloadURL()
       .then(url => setAvatarUrl(url))
+      .catch(e => console.log(e));
+
+
+    storageRef
+      .child("companyDescriptionImages/" + uid)
+      .getDownloadURL()
+      .then(url => setCompanyDescriptionImageUrl(url))
       .catch(e => console.log(e));
   }, []);
 
@@ -85,7 +94,7 @@ export default Account = ({ route, navigation }) => {
           color={"blue"}
         />
 
-        <DetailsList details={accountInfo?.details} type={accountInfo?.type}/>
+        <DetailsList details={accountInfo?.details} type={accountInfo?.type} />
         <ExperienceList experience={accountInfo?.experience} />
         <ProjectList projects={accountInfo?.projects} />
         <EducationList education={accountInfo?.education} />
@@ -109,7 +118,7 @@ export default Account = ({ route, navigation }) => {
               title="Company"
               rightIcon="heart"
               onClickRightIcon={() => onRightIconClick(accountInfo)}
-          />}
+            />}
         </Header>
         <ImgInfo
           location={accountInfo?.location}
@@ -130,13 +139,9 @@ export default Account = ({ route, navigation }) => {
 
         <About //TODO: Add company description
           title="Our Company"
-          desciption={
-            "Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi"
-          }
-          img="https://i.insider.com/5faede1a402d49001924ee13?format=jpeg"
-          desciption2={
-            "Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi Lorem ipsum hi my friends elo elo hi hi hi ale śmieszny koperek hiishidshadi"
-          }
+          desciption={accountInfo?.companyDescription?.desciption}
+          img={companyDescriptionImageUrl}
+          desciption2={accountInfo?.companyDescription?.unique}
         />
 
         <Contact contacts={accountInfo?.contacts} color="black" />
