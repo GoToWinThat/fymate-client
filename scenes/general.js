@@ -12,7 +12,6 @@ export default General = ({ route, navigation }) => {
     }
 
     const submitCallback = (r) => {
-        console.log(r)
         doc.update({
             name: r.name,
             surname: r.surname,
@@ -29,7 +28,7 @@ export default General = ({ route, navigation }) => {
         )
     }
 
-    console.log(`General :  ${general}`)
+
 
     return (
         <Container>

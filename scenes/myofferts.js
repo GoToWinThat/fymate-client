@@ -33,7 +33,6 @@ export default MyOfferts = ({ navigation }) => {
     const newElement = result;
     const docId = result.docId
     delete newElement.docId; //get rid of redudant field
-    console.log(docId)
     offerColl.doc(docId).update(result)
   }
 

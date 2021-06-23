@@ -34,7 +34,9 @@ export default AddOffer = ({ route, navigation }) => {
   const [description, setDescription] = useState(defaults?.description !== undefined ? defaults.description : "");
   const [howTo, setHowTo] = useState(defaults?.howTo !== undefined ? defaults.howTo : "");
   const [benefits, setBenefits] = useState(defaults?.benefits !== undefined ? defaults.benefits : []);
-  const [tags, setTags] = useState(defaults?.tags !== undefined ? defaults.tags : [])
+  const [tags, setTags] = useState(defaults?.tags !== undefined ? {
+    
+  } : {})
 
 
   const addBenefit = (benefit) => {

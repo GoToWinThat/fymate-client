@@ -11,6 +11,7 @@ export default ProfileTags = ({ route, navigation }) => {
     const onClickGoBack = () => {
         navigation.goBack();
     }
+    console.log(tags)
 
     const onTagsChanged = (newTags) => {
 
@@ -18,6 +19,8 @@ export default ProfileTags = ({ route, navigation }) => {
         let jobtime = undefined;
         let worktype = undefined;
         let level = undefined;
+
+        console.log(newTags)
 
         if (newTags?.contract !== undefined)
             contract = newTags.contract[0]
@@ -64,6 +67,12 @@ export default ProfileTags = ({ route, navigation }) => {
                         jobtime: "Jobtime",
                         worktype: "Agreement",
                         level: "Level"
+                    }}
+                    singleChoices={{
+                        contract: true,
+                        jobtime: true,
+                        worktype: true,
+                        level: true,
                     }}
                 />
             </Content>

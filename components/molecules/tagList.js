@@ -9,25 +9,19 @@ const TagList = ({ tags, color, title, clickable, initialTags, activeTagsChanged
   const [activeTags, setActiveTags] = useState(initialTags !== undefined ? new Set(initialTags) : new Set());
 
   const AddRemoveFromActiveSet = (tag) => {
-    if (!singleChoice) {
-      if (activeTags.has(tag)) {
-        activeTags.delete(tag)
-      }
-      else {
-        activeTags.add(tag)
-      }
-      setActiveTags(new Set(activeTags));
-      if (activeTagsChangedCallback !== undefined && activeTagsChangedCallback !== null) {
-        activeTagsChangedCallback(Array.from(activeTags));
-      }
+    if (activeTags.has(tag)) {
+      activeTags.delete(tag)
+    }
+    else if (!singleChoice) {
+      activeTags.add(tag)
     }
     else {
-      if (activeTags.has(tag)) {
-        setActiveTags(new Set())
-      }
-      else {
-        setActiveTags(new Set([tag]));
-      }
+      activeTags.clear()
+      activeTags.add(tag)
+    }
+    setActiveTags(new Set(activeTags));
+    if (activeTagsChangedCallback !== undefined && activeTagsChangedCallback !== null) {
+      activeTagsChangedCallback(Array.from(activeTags));
     }
   }
 

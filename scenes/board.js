@@ -87,9 +87,6 @@ export default Board = ({ navigation }) => {
   //Fetches avatar urls
   const updateListWithUrls = (data) => {
     const storageRef = firebase.storage().ref();
-
-    console.log(data)
-
     const promises = data.map((x) => {
       const uid = filter.searchType === "Employee" ? x.uid : x.ownerUid;
       return storageRef.child("avatars/" + uid).getDownloadURL();
