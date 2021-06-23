@@ -1,8 +1,8 @@
 import { Container, Content, Header } from "native-base";
 import React, { useEffect, useState } from "react";
 import TopBar from "../components/atoms/topbar";
-import Offerlist from "../components/molecules/offerlist";
-import UserList from "../components/molecules/offerlist";
+import OfferList from "../components/molecules/offerlist";
+import UserList from "../components/molecules/userlist";
 import * as firebase from 'firebase'
 import { chunk } from "../globals";
 import { set } from "react-native-reanimated";
@@ -27,49 +27,71 @@ export default Favorite = ({ navigation }) => {
     setFilter({ ...filter }) //copy object to force rerender
   }
 
-
   useFocusEffect(
     React.useCallback(() => {
       firebase.firestore().collection("users")
-      .doc(uid)
-      .get()
-      .then(snap => {
-        const data = snap.data()
-        setAccountInfo(data);
-      });
+        .doc(uid)
+        .get()
+        .then(snap => {
+          const data = snap.data()
+          setAccountInfo(data);
+        });
     }, [])
   );
 
-    //Fetches favourite offers and users
+  //Fetches favourite offers and users
   useFocusEffect(
     React.useCallback(() => {
       const store = firebase.firestore();
-    
+
+      const PassOrDelete = (field, y) => {
+
+        const data = y.data();
+        if (data !== undefined)
+          return data;
+
+        const idx = accountInfo[field].indexOf(y.id)
+        const offers = accountInfo[field]
+        offers.splice(idx, 1)
+        const updateObject = {}
+        updateObject[field] = offers
+        store.collection("users").doc(uid).update(updateObject)
+        return undefined;
+      }
+
+
       if (accountInfo?.favouriteOffers !== undefined) {
         const promises = []
         for (const offer of accountInfo?.favouriteOffers) {
           promises.push(store.collection("offers").doc(offer).get())
         }
         Promise.all(promises) //Wait for all documents to fetch
-          .then(x => x.map(y => y.data()))
+          .then(x => x.map(y =>
+            PassOrDelete("favouriteOffers", y)
+          ))
           .then(x => {
-            setOfferList(x);
+            const arr = x.filter(x => x !== undefined)
+            setOfferList(arr);
           });
       }
-  
-      if (accountInfo.favouriteUsers !== undefined) {
+
+      if (accountInfo?.favouriteUsers !== undefined) {
         const promises = []
         for (const user of accountInfo.favouriteUsers) {
           promises.push(store.collection("users").doc(user).get())
         }
         Promise.all(promises) //Wait for all documents to fetch
-          .then(x => x.map(y => y.data()))
+          .then(x => x.map(y =>
+            PassOrDelete("favouriteUsers", y)
+          ))
           .then(x => {
-            setUserList(x);
+            const arr = x.filter(x => x !== undefined)
+            setUserList(arr);
           });
       }
     }, [accountInfo, filter])
   );
+
 
   const onClickFilters = () => {
     navigation.navigate("Filters", {
@@ -94,7 +116,6 @@ export default Favorite = ({ navigation }) => {
     });
   };
 
-
   return (
     <Container>
       <Header>
@@ -105,11 +126,9 @@ export default Favorite = ({ navigation }) => {
         />
       </Header>
       <Content>
-        {filter.searchType === "Company" ? (
-          <Offerlist onClick={onOfferClicked} list={offerList} />
-        ) : (
-          <UserList onClick={onUserClicked} list={userList} />
-        )}
+        {filter.searchType === "Company" ?
+          <OfferList onClick={onOfferClicked} list={offerList} />
+          : <UserList onClick={onUserClicked} list={userList} />}
       </Content>
     </Container>
   );

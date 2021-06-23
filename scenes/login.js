@@ -1,6 +1,6 @@
 import { Button, Container, Content, Text, View, Input } from "native-base";
 import React from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity, Dimensions, ScrollView } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as firebase from 'firebase'
 import { useState } from "react";
@@ -51,6 +51,7 @@ export default Login = ({ navigation }) => {
   return (
     <Container>
       <Content contentContainerStyle={{ justifyContent: "center", flex: 1 }}>
+      <ScrollView>
         <View style={styles.screen}>
           <View>
             <Text style={styles.title}>Find</Text>
@@ -83,6 +84,7 @@ export default Login = ({ navigation }) => {
             <Btn text="Sign In" onPress={onClickSignIn} />
           </View>
         </View>
+      </ScrollView>
       </Content>
     </Container>
   );
@@ -105,8 +107,8 @@ const styles = StyleSheet.create({
   screen: {
     justifyContent: "space-evenly",
     alignItems: "center",
-    height: "100%",
-    paddingVertical: "15%",
+    height: Dimensions.get("window").height,
+    paddingTop: "15%",
   },
   featureView: {
     flexDirection: "row",
