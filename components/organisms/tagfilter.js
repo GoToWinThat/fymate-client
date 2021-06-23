@@ -9,6 +9,11 @@ export default TagFilter = ({ activeTagsChangedCallback, tags, colors, labels, i
 
   const tagsChangedCallback = (prop, tags) => {
     activeTags[prop] = tags
+    //make sure that active tags has all the required fields
+    for (const prop in tags) {
+      if (activeTags[prop] === undefined)
+        activeTags[prop] = []
+    }
     setActiveTags({ ...activeTags });
     activeTagsChangedCallback(activeTags)
   }

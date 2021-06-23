@@ -18,10 +18,10 @@ import BenefitsForm from "../components/organisms/benefitsForm";
 import Btn from "../components/atoms/btn";
 import * as firebase from 'firebase'
 import { formStyle } from '../styles/style'
+import { allContractTags, allJobtimeTags, allLevelTags, allTechstackTags, allWorktypeTags } from '../globals'
 
 export default AddOffer = ({ route, navigation }) => {
   const defaults = route?.params?.defaults;
-
 
   const firestore = firebase.firestore();
   const onClickGoBack = () => {
@@ -51,7 +51,7 @@ export default AddOffer = ({ route, navigation }) => {
 
   const deleteBenefit = (benefit) => {
     let arr = benefits
-    arr = arr.filter( e => e !== benefit)
+    arr = arr.filter(e => e !== benefit)
     setBenefits(arr)
   }
 
@@ -97,11 +97,33 @@ export default AddOffer = ({ route, navigation }) => {
           <Text>TAGS</Text>
         </ListItem>
 
-        <TagFilter initialTags={tags} activeTagsChangedCallback={setTags} />
+        <TagFilter initialTags={tags} activeTagsChangedCallback={setTags}
+          tags={{
+            techstack: allTechstackTags,
+            contract: allContractTags,
+            jobtime: allJobtimeTags,
+            worktype: allWorktypeTags,
+            level: allLevelTags
+          }}
+          colors={{
+            techstack: "blue",
+            contract: "purple",
+            jobtime: "green",
+            worktype: "orange",
+            level: "red"
+          }}
+          labels={{
+            techstack: "Techstack",
+            contract: "Contract",
+            jobtime: "Jobtime",
+            worktype: "Agreement",
+            level: "Level"
+          }}
+        />
         <ListItem itemDivider>
           <Text>BENEFITS</Text>
         </ListItem>
-        <BenefitsForm benefits={benefits} onClickAddBenefit={addBenefit} onClickDeleteBenefit={deleteBenefit}/>
+        <BenefitsForm benefits={benefits} onClickAddBenefit={addBenefit} onClickDeleteBenefit={deleteBenefit} />
 
         <ListItem itemDivider>
           <Text>DESCRIPTION</Text>

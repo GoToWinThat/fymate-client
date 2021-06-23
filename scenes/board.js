@@ -35,6 +35,20 @@ export default Board = ({ navigation }) => {
 
   useEffect(() => {
     let queryRef = null;
+    let contract = undefined;
+    let jobtime = undefined;
+    let worktype = undefined;
+    let level = undefined;
+
+    if (filter?.tags?.contract !== undefined)
+      contract = filter?.tags?.contract[0]
+    if (filter?.tags?.jobtime !== undefined)
+      jobtime = filter?.tags?.jobtime[0]
+    if (filter?.tags?.worktype !== undefined)
+      worktype = filter?.tags?.worktype[0]
+    if (filter?.tags?.level !== undefined)
+      level = filter?.tags?.level[0]
+
     if (filter.searchType === "Company") {
       queryRef = firebase.firestore()
         .collection("offers")
@@ -43,11 +57,21 @@ export default Board = ({ navigation }) => {
 
     }
     else {
+
+
       queryRef = firebase.firestore()
         .collection("users")
         .where("type", "==", "Employee")
-      if (filter.tags.length !== 0)
-        queryRef = queryRef.where("tags", "array-contains-any", filter.tags) //TODO: this only supports up to 10 elements
+      if (contract !== undefined)
+        queryRef = queryRef.where("details.contract", "==", contract)
+      if (jobtime !== undefined)
+        queryRef = queryRef.where("details.jobtime", "==", jobtime)
+      if (worktype !== undefined)
+        queryRef = queryRef.where("details.worktype", "==", worktype)
+      if (level !== undefined)
+        queryRef = queryRef.where("details.level", "==", level)
+      if (filter?.tags?.techstack?.length !== 0 && filter?.tags?.techstack !== undefined)
+        queryRef = queryRef.where("tags", "array-contains", filter?.tags?.techstack || [])
     }
     queryRef.limit(20).get().then(snapshot => {
       let data = snapshot.docs.map(x => {
@@ -146,8 +170,6 @@ export default Board = ({ navigation }) => {
       rightIconCallback: onClickFav
     });
   };
-
-
 
   return (
     <Container>
