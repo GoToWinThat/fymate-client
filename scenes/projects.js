@@ -30,12 +30,14 @@ export default Projects = ({ route, navigation }) => {
         projects[idx] = newElement;
         doc.update({ projects: projects })
         setProjects([...projects])
+        navigation.goBack()
     }
 
     const deleteCallback = (idx) => {
         projects.splice(idx, 1)
         doc.update({ projects: projects })
         setProjects([...projects])
+        navigation.goBack()
     }
 
     const onClickGoBack = () => {

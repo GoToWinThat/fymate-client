@@ -22,12 +22,13 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
   const [position, setPosition] = useState(defaults?.position !== undefined ? defaults.position : "");
   const [company, setCompany] = useState(defaults?.company !== undefined ? defaults.company : "");
 
+  console.log(defaults?.type)
   return (
     <Form>
       <ListItem itemDivider>
         <Text>INFO</Text>
       </ListItem>
-      {defaults?.type === "Emploee" ? <>
+      {defaults?.type === "Employee" ? <>
       <View style={formStyle.input}>
         <Input
           placeholder={"Name..."}

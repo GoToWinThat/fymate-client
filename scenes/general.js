@@ -23,7 +23,9 @@ export default General = ({ route, navigation }) => {
             "details.position": r.position,
             "details.salary": r.salary,
             "details.company": r.company
-        })
+        }).then(
+            navigation.goBack()
+        )
     }
 
     return (

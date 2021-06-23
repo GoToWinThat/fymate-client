@@ -36,12 +36,14 @@ export default Experience = ({ route, navigation }) => {
         experience[idx] = newElement;
         doc.update({ experience: experience })
         setExperience([...experience])
+        navigation.goBack();
     }
 
     const deleteCallback = (idx) => {
         experience.splice(idx, 1)
         doc.update({ experience: experience })
         setExperience([...experience])
+        navigation.goBack()
     }
 
     const onClickGoBack = () => {

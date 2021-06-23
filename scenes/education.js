@@ -32,12 +32,14 @@ export default Education = ({ route, navigation }) => {
         education[idx] = newElement;
         doc.update({ education: education })
         setEducation([...education])
+        navigation.goBack()
     }
 
     const deleteCallback = (idx) => {
         education.splice(idx, 1)
         doc.update({ education: education })
         setEducation([...education])
+        navigation.goBack()
     }
 
     const onClickGoBack = () => {
