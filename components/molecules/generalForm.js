@@ -12,6 +12,8 @@ import { formStyle } from '../../styles/style'
 
 export default GeneralForm = ({ submitCallback, defaults }) => {
 
+  const [name, setName] = useState(defaults?.name !== undefined ? defaults.name : "");
+  const [surname, setSurname] = useState(defaults?.surname !== undefined ? defaults.surname : "");
   const [phone, setPhone] = useState(defaults?.phone !== undefined ? defaults.phone : "");
   const [location, setLocation] = useState(defaults?.location !== undefined ? defaults.location : "");
   const [site, setSite] = useState(defaults?.site !== undefined ? defaults.site : "");
@@ -25,6 +27,21 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
       <ListItem itemDivider>
         <Text>INFO</Text>
       </ListItem>
+      {defaults?.type === "Emploee" ? <>
+      <View style={formStyle.input}>
+        <Input
+          placeholder={"Name..."}
+          value={name}
+          onChangeText={setName}
+        />
+      </View>
+      <View style={formStyle.input}>
+        <Input
+          placeholder={"Surname..."}
+          value={surname}
+          onChangeText={setSurname}
+        />
+      </View></> : null }
       <View style={formStyle.input}>
         <Input
           placeholder={"Phone number..."}
@@ -82,6 +99,8 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
       </View>
 
       <Btn text="Submit" onPress={() => submitCallback({
+        name: name,
+        surname: surname,
         phone: phone,
         location: location,
         site: site,

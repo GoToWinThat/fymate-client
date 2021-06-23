@@ -186,6 +186,7 @@ export default Profile = ({ navigation }) => {
                 <ListItem onPress={() => navigation.navigate("General", {
                     doc: currentProfileDocumentRef,
                     info: {
+                        type: userOrCompany.type,
                         description: userOrCompany.about,
                         phone: userOrCompany.contacts?.phone,
                         site: userOrCompany.contacts?.site,

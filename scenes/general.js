@@ -14,6 +14,8 @@ export default General = ({ route, navigation }) => {
     const submitCallback = (r) => {
         console.log(r)
         doc.update({
+            name: r.name,
+            surname: r.surname,
             about: r.description,
             location: r.location,
             "contacts.phone": r.phone,
