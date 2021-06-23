@@ -46,7 +46,6 @@ export default Account = ({ route, navigation }) => {
       .getDownloadURL()
       .then(url => setAvatarUrl(url))
       .catch(e => console.log(e));
-    console.log(prevScreen)
   }, []);
 
   const userContent =
@@ -100,12 +99,17 @@ export default Account = ({ route, navigation }) => {
     userOrCompany === "Company" ? (
       <>
         <Header>
-          <TopBar
-            onClickGoBack={onClickGoBack}
-            title="Company"
-            rightIcon="heart"
-            onClickRightIcon={() => console.log("Added to favorites !! TODO")}
-          />
+          {prevScreen === "profile" ?
+            <TopBar
+              onClickGoBack={onClickGoBack}
+              title="Company"
+            /> :
+            <TopBar
+              onClickGoBack={onClickGoBack}
+              title="Company"
+              rightIcon="heart"
+              onClickRightIcon={() => onRightIconClick(accountInfo)}
+          />}
         </Header>
         <ImgInfo
           location={accountInfo?.location}

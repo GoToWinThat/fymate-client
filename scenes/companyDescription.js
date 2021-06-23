@@ -25,6 +25,12 @@ export default CompanyDescription = ({ route, navigation }) => {
     navigation.goBack();
   };
 
+  const onImageChosen = async (uri) => {
+    const response = await fetch(uri)
+    const data = await response.blob();
+    const ref = firebase.storage().ref().child("avatars/" + uid);
+    ref.put(data);
+}
 
   const [description, setDescription] = useState(initialState?.description || "");
   const [unique, setUnique] = useState(initialState?.unique || "");
@@ -62,7 +68,7 @@ export default CompanyDescription = ({ route, navigation }) => {
           <ListItem itemDivider>
             <Text>IMAGE</Text>
           </ListItem>
-          <Avatar url={imageUrl} />
+          <Avatar url={imageUrl} onImageChosen={onImageChosen}/>
         </Form>
       </Content>
     </Container>
