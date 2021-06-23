@@ -9,8 +9,9 @@ import MainTab from './scenes/tabs/mainTabs';
 import './firebaseConfig'
 import * as firebase from 'firebase';
 import { StyleProvider } from 'native-base';
+import { LogBox } from 'react-native';
 
-
+LogBox.ignoreLogs(['Setting a timer']);
 export default function App() {
 
   const Stack = createStackNavigator();

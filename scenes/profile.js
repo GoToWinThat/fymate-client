@@ -134,8 +134,8 @@ export default Profile = ({ navigation }) => {
                         name: userOrCompany?.name,
                         surname: userOrCompany?.surname,
                         companySize: userOrCompany.details?.companySize
-                    } 
-                    })}>
+                    }
+                })}>
                     <Left><Text>General</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
@@ -145,7 +145,15 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("ProfileTags", { doc: currentProfileDocumentRef, info: userOrCompany.tags })}>
+                <ListItem onPress={() => navigation.navigate("ProfileTags", {
+                    doc: currentProfileDocumentRef, info: {
+                        techstack: userOrCompany?.tags,
+                        worktime: [userOrCompany?.details?.worktime],
+                        jobtime: [userOrCompany?.details?.jobtime],
+                        level: [userOrCompany?.details?.level],
+                        contract: [userOrCompany?.details?.contract],
+                    }
+                })}>
                     <Left><Text>Tags</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
@@ -246,7 +254,15 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("ProfileTags", { doc: currentProfileDocumentRef, info: userOrCompany.tags })}>
+                <ListItem onPress={() => navigation.navigate("ProfileTags", {
+                    doc: currentProfileDocumentRef, info: {
+                        techstack: userOrCompany?.tags,
+                        worktype: [userOrCompany?.details?.worktype],
+                        jobtime: [userOrCompany?.details?.jobtime],
+                        level: [userOrCompany?.details?.level],
+                        contract: [userOrCompany?.details?.contract],
+                    }
+                })}>
                     <Left><Text>Tags</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
