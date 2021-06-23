@@ -56,7 +56,7 @@ export default Board = ({ navigation }) => {
     else {
       queryRef = firebase.firestore()
         .collection("users")
-       // .where("type", "==", "Employee")
+      // .where("type", "==", "Employee")
     }
     if (contract !== undefined)
       queryRef = queryRef.where("details.contract", "==", contract)
@@ -67,7 +67,8 @@ export default Board = ({ navigation }) => {
     if (level !== undefined)
       queryRef = queryRef.where("details.level", "==", level)
     if (filter?.tags?.techstack?.length !== 0 && filter?.tags?.techstack !== undefined)
-      queryRef = queryRef.where("tags", "array-contains", filter?.tags?.techstack)
+      queryRef = queryRef.where("tags", "array-contains-any", filter?.tags?.techstack)
+
 
 
 
@@ -92,7 +93,7 @@ export default Board = ({ navigation }) => {
       return storageRef.child("avatars/" + uid).getDownloadURL();
     })
 
-    const urls = Promise.allSettled(promises)
+    Promise.allSettled(promises)
       .then(x => {
         const urls = x.map(y => {
           if (y.status === "rejected")
