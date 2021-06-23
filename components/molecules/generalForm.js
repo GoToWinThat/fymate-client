@@ -21,6 +21,7 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
   const [salary, setSalary] = useState(defaults?.salary !== undefined ? defaults.salary : "");
   const [position, setPosition] = useState(defaults?.position !== undefined ? defaults.position : "");
   const [company, setCompany] = useState(defaults?.company !== undefined ? defaults.company : "");
+  const [companySize, setCompanySize] = useState(defaults?.companySize !== undefined ? defaults.companySize : "");
 
   console.log(defaults?.type)
   return (
@@ -42,7 +43,18 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
           value={surname}
           onChangeText={setSurname}
         />
-      </View></> : null }
+      </View></>
+       : 
+        <>
+          <View style={formStyle.input}>
+            <Input
+              placeholder={"Company name..."}
+              value={name}
+              onChangeText={setName}
+            />
+          </View>
+        </>
+       }
       <View style={formStyle.input}>
         <Input
           placeholder={"Phone number..."}
@@ -64,27 +76,40 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
           onChangeText={setSite}
         />
       </View>
-      <View style={formStyle.input}>
-        <Input
-          placeholder={"Your current company"}
-          value={company}
-          onChangeText={setCompany}
-        />
-      </View>
-      <View style={formStyle.input}>
-        <Input
-          placeholder={"Your salary"}
-          value={salary}
-          onChangeText={setSalary}
-        />
-      </View>
-      <View style={formStyle.input}>
-        <Input
-          placeholder={"Your current position"}
-          value={position}
-          onChangeText={setPosition}
-        />
-      </View>
+      {defaults?.type === "Employee" ?
+        <>
+        <View style={formStyle.input}>
+          <Input
+            placeholder={"Your current company"}
+            value={company}
+            onChangeText={setCompany}
+          />
+        </View>
+        <View style={formStyle.input}>
+          <Input
+            placeholder={"Your salary"}
+            value={salary}
+            onChangeText={setSalary}
+          />
+        </View>
+        <View style={formStyle.input}>
+          <Input
+            placeholder={"Your current position"}
+            value={position}
+            onChangeText={setPosition}
+          />
+        </View>
+      </> : 
+      <>
+        <View style={formStyle.input}>
+          <Input
+            placeholder={"Company size..."}
+            value={companySize}
+            onChangeText={setCompanySize}
+          />
+        </View>
+      </>
+      }
 
       <ListItem itemDivider>
         <Text>DESCRIPTION</Text>
@@ -108,7 +133,8 @@ export default GeneralForm = ({ submitCallback, defaults }) => {
         description: description,
         salary: salary,
         position: position,
-        company: company
+        company: company,
+        companySize: companySize
       })} />
     </Form>
   );
