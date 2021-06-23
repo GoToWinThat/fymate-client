@@ -52,27 +52,25 @@ export default Board = ({ navigation }) => {
     if (filter.searchType === "Company") {
       queryRef = firebase.firestore()
         .collection("offers")
-      if (filter.tags.length !== 0)
-        queryRef = queryRef.where("tags", "array-contains-any", filter.tags) //TODO: this only supports up to 10 elements
-
     }
     else {
-
-
       queryRef = firebase.firestore()
         .collection("users")
         .where("type", "==", "Employee")
-      if (contract !== undefined)
-        queryRef = queryRef.where("details.contract", "==", contract)
-      if (jobtime !== undefined)
-        queryRef = queryRef.where("details.jobtime", "==", jobtime)
-      if (worktype !== undefined)
-        queryRef = queryRef.where("details.worktype", "==", worktype)
-      if (level !== undefined)
-        queryRef = queryRef.where("details.level", "==", level)
-      if (filter?.tags?.techstack?.length !== 0 && filter?.tags?.techstack !== undefined)
-        queryRef = queryRef.where("tags", "array-contains", filter?.tags?.techstack || [])
     }
+    if (contract !== undefined)
+      queryRef = queryRef.where("details.contract", "==", contract)
+    if (jobtime !== undefined)
+      queryRef = queryRef.where("details.jobtime", "==", jobtime)
+    if (worktype !== undefined)
+      queryRef = queryRef.where("details.worktype", "==", worktype)
+    if (level !== undefined)
+      queryRef = queryRef.where("details.level", "==", level)
+    if (filter?.tags?.techstack?.length !== 0 && filter?.tags?.techstack !== undefined)
+      queryRef = queryRef.where("tags", "array-contains", filter?.tags?.techstack)
+
+
+
     queryRef.limit(20).get().then(snapshot => {
       let data = snapshot.docs.map(x => {
         let d = x.data();
@@ -83,7 +81,7 @@ export default Board = ({ navigation }) => {
       })
       setList(data);
       updateListWithUrls(data);
-    }) //get 20 posts
+    }).catch(e => console.log(e)) //get 20 posts
   }, [filter])
 
   //Fetches avatar urls
