@@ -142,7 +142,7 @@ export default Board = ({ navigation }) => {
       rightIconCallback: onClickFav
     });
   };
-
+console.log(list)
   return (
     <Container>
       <Header searchBar rounded>

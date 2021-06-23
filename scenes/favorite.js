@@ -96,7 +96,8 @@ export default Favorite = ({ navigation }) => {
           ))
           .then(x => {
             const arr = x.filter(x => x !== undefined)
-            setOfferList(arr);
+            setUserList(arr);
+            updateListWithUrls(arr, setOfferList)
           });
       }
 
@@ -106,7 +107,7 @@ export default Favorite = ({ navigation }) => {
           promises.push(store.collection("users").doc(user).get())
         }
         Promise.all(promises) //Wait for all documents to fetch
-          .then(x => x.map(y => 
+          .then(x => x.map(y =>
             PassOrDelete("favouriteUsers", y)
           ))
           .then(x => {
@@ -153,6 +154,7 @@ export default Favorite = ({ navigation }) => {
       rightIconCallback: onClickFav
     });
   };
+
   return (
     <Container>
       <Header>
