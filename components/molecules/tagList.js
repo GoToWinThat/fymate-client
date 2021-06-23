@@ -4,23 +4,36 @@ import Tagbox from "../atoms/tagbox";
 import { FONT_SIZE_LABEL } from '../../styles/typography'
 import { SCREEN_PADDING } from '../../styles/spacing'
 
-const TagList = ({ tags, color, title, clickable, initialTags, activeTagsChangedCallback }) => {
+const TagList = ({ tags, color, title, clickable, initialTags, activeTagsChangedCallback, singleChoice }) => {
 
-  const [activeTags, setActiveTags] = useState(initialTags !== undefined ? initialTags : []);
-  const initialTagsSet = new Set(initialTags) //O(n)
+  const [activeTags, setActiveTags] = useState(initialTags !== undefined ? new Set(initialTags) : new Set());
 
-  const AddRemoveFromActiveList = (tag) => {
-    let arr = activeTags;
-    if (arr.includes(tag)) {
-      const index = arr.indexOf(tag);
-      arr.splice(index, 1);
-    } else {
-      arr.push(tag);
+
+  const AddRemoveFromActiveSet = (tag) => {
+    if (!singleChoice) {
+      if (activeTags.has(tag)) {
+        activeTags.delete(tag)
+      }
+      else {
+        activeTags.add(tag)
+      }
+      setActiveTags(new Set(activeTags));
+      if (activeTagsChangedCallback !== undefined && activeTagsChangedCallback !== null) {
+        activeTagsChangedCallback(activeTags);
+      }
     }
-    setActiveTags(arr);
-    if (activeTagsChangedCallback !== undefined && activeTagsChangedCallback !== null) {
-      activeTagsChangedCallback(arr);
+    else {
+      if (activeTags.has(tag)) {
+        setActiveTags(new Set())
+      }
+      else {
+        setActiveTags(new Set([tag]));
+      }
     }
+  }
+
+  const onTagClicked = (tag) => {
+    AddRemoveFromActiveSet(tag);
   }
 
   const list = tags?.map((tag) => {
@@ -29,9 +42,8 @@ const TagList = ({ tags, color, title, clickable, initialTags, activeTagsChanged
         key={tag}
         text={tag}
         color={color}
-        clickable={clickable}
-        selectTag={AddRemoveFromActiveList}
-        initialActive={initialTagsSet.has(tag)} //O(1)
+        onClick={clickable ? onTagClicked : null}
+        active={activeTags.has(tag)}
       />
     )
   });

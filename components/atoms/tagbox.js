@@ -2,14 +2,11 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { TAG } from "../../styles/colors";
 
-const Tagbox = ({ color, text, clickable, selectTag, initialActive }) => {
-  const [active, setActive] = useState(initialActive !== undefined ? initialActive : false);
+const Tagbox = ({ color, text, onClick, active }) => {
 
   const tagClick = () => {
-    if (clickable === true) {
-      setActive(!active);
-      selectTag(text);
-    }
+    if (onClick)
+      onClick(text)
   }
 
   const themeColor = color === undefined ? TAG : color;
@@ -20,7 +17,7 @@ const Tagbox = ({ color, text, clickable, selectTag, initialActive }) => {
   const boxStyle = [
     styles.box,
     { borderColor: themeColor },
-    active
+    active === true
       ? { backgroundColor: themeColor }
       : { backgroundColor: "transparent" },
   ];
