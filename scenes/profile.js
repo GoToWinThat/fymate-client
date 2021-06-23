@@ -1,5 +1,5 @@
 import { Container, Header, Left, Right, Icon, Content, List, ListItem, Text, Switch, View, Toast, Thumbnail } from 'native-base';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Alert } from 'react-native';
 import React from 'react'
 import TopBar from '../components/atoms/topbar'
 import Avatar from '../components/atoms/avatar'
@@ -81,9 +81,25 @@ export default Profile = ({ navigation }) => {
             .catch(e => console.log(e));
     }, []);
 
-    console.log(`@@!#!@@#!GENERAL userOrCompanyName: s ${JSON.stringify(userOrCompany)}    about    :${userOrCompany.about}`)
+    const createDeleteAlert = () => {
+        Alert.alert(
+            "Delete account",
+            "Do you wanna delete account ?",
+            [
+                {
+                    text: "Cancel",
+                    onPress: () => console.log("Canceled"),
+                    style: "cancel"
+                },
+                {
+                    text: "Ok",
+                    onPress: () => onClickDelete()
+                }
+            ]
+        )
+    }
 
-    const companyContent = userOrCompany.type === "Company" ?
+    const companyContent = userOrCompany?.type === "Company" ?
         <>
             <View style={styles.view}>
                 <Avatar url={avatarUrl} onImageChosen={onImageChosen} />
@@ -108,16 +124,16 @@ export default Profile = ({ navigation }) => {
                 <ListItem onPress={() => navigation.navigate("General", {
                     doc: currentProfileDocumentRef,
                     info: {
-                        type: userOrCompany.type,
-                        description: userOrCompany.about,
+                        type: userOrCompany?.type,
+                        description: userOrCompany?.about,
                         phone: userOrCompany.contacts?.phone,
                         site: userOrCompany.contacts?.site,
                         salary: userOrCompany.details?.salary,
                         position: userOrCompany.details?.position,
-                        location: userOrCompany.location,
-                        name: userOrCompany.name,
-                        surname: userOrCompany.surname,
-                        companySize: userOrCompany.details.companySize
+                        location: userOrCompany?.location,
+                        name: userOrCompany?.name,
+                        surname: userOrCompany?.surname,
+                        companySize: userOrCompany.details?.companySize
                     } 
                     })}>
                     <Left><Text>General</Text></Left>
@@ -161,7 +177,7 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem onPress={onClickDelete}>
+                <ListItem onPress={() => createDeleteAlert()}>
                     <Left><Text>Delete Account</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
@@ -175,7 +191,7 @@ export default Profile = ({ navigation }) => {
         : null
 
 
-    const userContent = userOrCompany.type === 'Employee' ?
+    const userContent = userOrCompany?.type === 'Employee' ?
         <>
             <View style={styles.view}>
                 <Avatar url={avatarUrl} onImageChosen={onImageChosen} />
@@ -200,15 +216,15 @@ export default Profile = ({ navigation }) => {
                 <ListItem onPress={() => navigation.navigate("General", {
                     doc: currentProfileDocumentRef,
                     info: {
-                        type: userOrCompany.type,
-                        description: userOrCompany.about,
+                        type: userOrCompany?.type,
+                        description: userOrCompany?.about,
                         phone: userOrCompany.contacts?.phone,
                         site: userOrCompany.contacts?.site,
                         salary: userOrCompany.details?.salary,
                         position: userOrCompany.details?.position,
-                        location: userOrCompany.location,
-                        name: userOrCompany.name,
-                        surname: userOrCompany.surname
+                        location: userOrCompany?.location,
+                        name: userOrCompany?.name,
+                        surname: userOrCompany?.surname
                     }
                 })}>
                     <Left><Text>General</Text></Left>
@@ -248,7 +264,7 @@ export default Profile = ({ navigation }) => {
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
 
-                <ListItem >
+                <ListItem onPress={() => createDeleteAlert()}>
                     <Left><Text>Delete Account</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>
@@ -267,7 +283,7 @@ export default Profile = ({ navigation }) => {
                 <TopBar title="Fymate" />
             </Header>
             <Content>
-                {userOrCompany.type === 'Company' ? companyContent : userContent}
+                {userOrCompany?.type === 'Company' ? companyContent : userContent}
             </Content>
         </Container>
     )
