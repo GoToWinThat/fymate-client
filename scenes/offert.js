@@ -47,7 +47,7 @@ export default Offert = ({ route, navigation }) => {
                 />
                 <About title="About" desciption={offer.description} />
                 <TagList tags={offer.tags} title={"Tech Stack"} color={'blue'} />
-                <DetailsList details={[]} />
+                <DetailsList details={offer.details} />
                 <BenefitsDoubleList benefits={offer.benefits} />
                 <About title="How To Apply" desciption={offer.howtoapply} />
 

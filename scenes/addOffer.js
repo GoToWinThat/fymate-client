@@ -159,7 +159,13 @@ export default AddOffer = ({ route, navigation }) => {
           benefits: benefits,
           howTo: howTo,
           place: place,
-          tags: tags
+          details: {
+            contract: tags.contract[0] || "",
+            worktype: tags.worktype[0] || "",
+            level: tags.level[0] || "",
+            jobtime: tags.jobtime[0] || ""
+          },
+          tags: tags.techstack
         })} />
 
       </Content>

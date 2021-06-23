@@ -56,7 +56,7 @@ export default Board = ({ navigation }) => {
     else {
       queryRef = firebase.firestore()
         .collection("users")
-        .where("type", "==", "Employee")
+       // .where("type", "==", "Employee")
     }
     if (contract !== undefined)
       queryRef = queryRef.where("details.contract", "==", contract)
