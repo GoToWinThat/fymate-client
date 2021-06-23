@@ -40,7 +40,7 @@ export default Favorite = ({ navigation }) => {
   //Fetches favourite offers and users
   useEffect(() => {
     const store = firebase.firestore();
-    
+
     if (accountInfo.favouriteOffers !== undefined) {
       const promises = []
       for (const offer of accountInfo.favouriteOffers) {

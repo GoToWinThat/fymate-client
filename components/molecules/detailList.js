@@ -24,7 +24,7 @@ export default DetailsList = ({details, type}) => {
                 {type !== "Employee" ? <Detail icon="calendar-outline" text={details?.starttime}/> : null}
             </View>
             <View>
-                <Detail icon="briefcase" text={details?.position}/>
+                <Detail icon="briefcase" text={details?.level}/>
                 <Detail icon="time-outline" text={details?.jobtime}/>
             </View>
         </View>

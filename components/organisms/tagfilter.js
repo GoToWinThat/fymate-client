@@ -1,46 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "native-base";
 import TagList from "../molecules/tagList";
-import { useEffect, useState } from "react/cjs/react.production.min";
 
-export default TagFilter = ({ initialTags, activeTagsChangedCallback, tags, colors, labels }) => {
+//TODO: single choice xd
+export default TagFilter = ({ activeTagsChangedCallback, tags, colors, labels, initialTags }) => {
 
-  const tagsArr = tags || [
-    ["SQL", "Oracle", "C#", "Python", "Javascript", "Ruby", "Linux"],
-    ["Full", "Office", "Partly"],
-    ["Junior", "Mid", "Senior"],
-    ["1/4", "1/8", "1/2", "Full"],
-    ["B2B", "Job"],
-  ];
-  const colorsArr = colors || ["blue", "purple", "green", "orange", "red"];
-  const labelsArr = labels || [
-    "Tech Stack",
-    "Work Remote",
-    "Experience",
-    "Work Time",
-    "Agreement",
-  ];
+  const [activeTags, setActiveTags] = useState(initialTags)
 
-  const initialTagsState = initialTags !== undefined ? initialTags : []; //Force TagLists to use the same array
+  const tagsChangedCallback = (prop, tags) => {
+    activeTags[prop] = tags
+    setActiveTags({ ...activeTags });
+    activeTagsChangedCallback(activeTags)
+  }
 
-
-  const allTags = tagsArr.map((list, index) => {
-    return (
+  const tagLists = []
+  for (const prop in tags) {
+    tagLists.push(
       <TagList
-        key={index}
-        tags={list}
-        color={colorsArr[index]}
+        key={prop}
+        tags={tags[prop]}
+        color={colors[prop]}
+        title={labels[prop]}
+        activeTagsChangedCallback={(tags) => {
+          tagsChangedCallback(prop, tags)
+        }}
+        initialTags={initialTags[prop]}
         clickable={true}
-        title={labelsArr[index]}
-        activeTagsChangedCallback={activeTagsChangedCallback}
-        initialTags={initialTagsState}
-      />
-    );
-  });
+      />)
+  }
 
   return (
     <View>
-      {allTags}
+      {tagLists}
     </View>
   );
 };

@@ -38,13 +38,7 @@ export async function deleteCurrentUser() {
         batch.delete(ref);
     }
 
-    try {
-        await batch.commit();
-        avatarRef.delete();
-        auth.currentUser.delete();
-    }
-    catch (e) {
-        console.log(e)
-    }
-
+    batch.commit();
+    avatarRef.delete();
+    auth.currentUser.delete();
 }

@@ -12,7 +12,7 @@ export default Login = ({ navigation }) => {
 
   //Check if we are already logged in
   if (firebase.auth().currentUser != null) {
-    navigation.navigate("MainTab", { screen: "MainTab" });
+    //navigation.navigate("MainTab", { screen: "MainTab" });
   }
 
 

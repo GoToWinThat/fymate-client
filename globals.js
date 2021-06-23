@@ -1,4 +1,9 @@
 export const notFoundImageUrl = "https://safetyaustraliagroup.com.au/wp-content/uploads/2019/05/image-not-found.png"
+export const allTechstackTags = ["SQL", "Oracle", "C#", "Python", "Javascript", "Ruby", "Linux"]
+export const allLevelTags = ["Junior", "Mid", "Senior"]
+export const allContractTags = ["B2B", "Job"]
+export const allJobtimeTags = ["1/4", "1/8", "1/2", "Full"]
+export const allWorktypeTags = ["Full", "Office", "Partly"]
 
 //Chunks array into arrays of n elements
 export function chunk(array, n) {
@@ -16,8 +21,6 @@ export function chunk(array, n) {
     }
     result.push(a)
     return result
-    //append last elements
-
 }
 
 

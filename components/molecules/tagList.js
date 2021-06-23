@@ -8,7 +8,6 @@ const TagList = ({ tags, color, title, clickable, initialTags, activeTagsChanged
 
   const [activeTags, setActiveTags] = useState(initialTags !== undefined ? new Set(initialTags) : new Set());
 
-
   const AddRemoveFromActiveSet = (tag) => {
     if (!singleChoice) {
       if (activeTags.has(tag)) {
@@ -19,7 +18,7 @@ const TagList = ({ tags, color, title, clickable, initialTags, activeTagsChanged
       }
       setActiveTags(new Set(activeTags));
       if (activeTagsChangedCallback !== undefined && activeTagsChangedCallback !== null) {
-        activeTagsChangedCallback(activeTags);
+        activeTagsChangedCallback(Array.from(activeTags));
       }
     }
     else {
