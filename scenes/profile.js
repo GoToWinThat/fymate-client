@@ -163,7 +163,7 @@ export default Profile = ({ navigation }) => {
                     <Text>OFFERS</Text>
                 </ListItem>
 
-                <ListItem onPress={() => navigation.navigate("MyOfferts")}>
+                <ListItem onPress={() => navigation.navigate("MyOfferts", {url: avatarUrl})}>
                     <Left><Text>Your Offers</Text></Left>
                     <Right><Icon name="arrow-forward" /></Right>
                 </ListItem>

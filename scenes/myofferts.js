@@ -9,7 +9,8 @@ import * as firebase from 'firebase'
 import { useState } from 'react'
 
 
-export default MyOfferts = ({ navigation }) => {
+export default MyOfferts = ({ navigation, route }) => {
+  const url = route.params.url;
   const offerColl = firebase.firestore().collection("offers");
   const [offerList, setOfferList] = useState([])
 
@@ -18,8 +19,9 @@ export default MyOfferts = ({ navigation }) => {
     offerColl.where("ownerUid", "==", uid).get().then(snap => {
       const arr = snap.docs.map((x) => {
         let data = x.data();
-        return { docId: x.id, ...data }
+        return { docId: x.id, url: url, ...data }
       })
+      console.log(arr)
       setOfferList(arr)
     })
   }, [])
@@ -45,7 +47,7 @@ export default MyOfferts = ({ navigation }) => {
     navigation.navigate("AddOffer", { defaults: offer, submitCallback: updateCallback, deleteCallback: deleteCallback })
   }
 
-
+console.log(offerList)
   return (
     <Container>
       <Header>
