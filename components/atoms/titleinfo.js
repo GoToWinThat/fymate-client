@@ -7,13 +7,12 @@ import { isNotUndefinedOrEmpty } from "../../globals";
 const TitleInfo = ({ title, company, salary, location, email, web, phone, time }) => {
   const iconSize = 18;
   const color = "gray";
-  var formatedTime = "placeholder"
+  var formatedTime = time
   if(isNotUndefinedOrEmpty(time)){
     let timeArr = time.split(" ")
-    formatedTime = `${timeArr[2]} ${timeArr[1]} ${timeArr[3]}`
+    timeArr.length === 7 ? formatedTime = `${timeArr[2]} ${timeArr[1]} ${timeArr[3]}` : null
   }
  
-
   return (
     <View style={styles.box}>
       <Text style={styles.title}>{title}</Text>
