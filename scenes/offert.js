@@ -7,6 +7,7 @@ import DetailsList from '../components/molecules/detailList'
 import BenefitsDoubleList from '../components/organisms/benefitsDoubleList'
 import ImgInfo from '../components/atoms/imginfo'
 import * as firebase from 'firebase'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 ///Read only offer 
 export default Offert = ({ route, navigation }) => {
@@ -14,7 +15,6 @@ export default Offert = ({ route, navigation }) => {
     const onRightIconClick = route?.params?.rightIconCallback;
     const [company, setCompany] = useState(null)
 
-    console.log(offer)
     const onClickGoBack = () => {
         navigation.goBack();
     }
@@ -23,6 +23,14 @@ export default Offert = ({ route, navigation }) => {
         onRightIconClick(offer)
         navigation.goBack();
     }
+
+    const onClickUser = () => {
+        navigation.navigate("Account", {
+            screen: "Account",
+            type: "Company",
+            uid: offer.ownerUid,
+        });
+    };
 
     //fetch company data
     useEffect(() => {
@@ -37,14 +45,16 @@ export default Offert = ({ route, navigation }) => {
                     rightIcon='heart' onClickRightIcon={onRightIconClickAndGoBack} />
             </Header>
             <Content >
-                <ImgInfo
-                    salary={offer.salary}
-                    location={offer.place}
-                    url={offer.url}
-                    title={offer.position}
-                    company={company?.name}
-                    size={company?.details?.companySize}
-                />
+                <TouchableOpacity onPress={onClickUser}>
+                    <ImgInfo
+                        salary={offer.salary}
+                        location={offer.place}
+                        url={offer.url}
+                        title={offer.position}
+                        company={company?.name}
+                        size={company?.details?.companySize}
+                    />
+                </TouchableOpacity>
                 <About title="About" desciption={offer.description} />
                 <TagList tags={offer.tags} title={"Tech Stack"} color={'blue'} />
                 <DetailsList details={offer.details} />
