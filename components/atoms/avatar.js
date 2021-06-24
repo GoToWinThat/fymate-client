@@ -20,6 +20,10 @@ export default Avatar = ({ url, onImageChosen }) => {
 
   const [image, setImage] = useState(url);
 
+  useEffect(() => {
+    setImage(url)
+  }, [url])
+
 
   useEffect(() => {
     if (Platform.OS !== "web") {
@@ -30,7 +34,6 @@ export default Avatar = ({ url, onImageChosen }) => {
       });
     }
   }, []);
-
 
 
   const PickImage = async () => {
@@ -51,7 +54,7 @@ export default Avatar = ({ url, onImageChosen }) => {
     <View style={styles.view}>
       <TouchableOpacity onPress={PickImage}>
         <ImageBackground
-          source={{ uri: url }}
+          source={{ uri: image }}
           style={{ width: 120, height: 120 }}
           imageStyle={{ borderRadius: 100 }}
         >
