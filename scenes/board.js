@@ -57,7 +57,7 @@ export default Board = ({ navigation }) => {
     else {
       queryRef = firebase.firestore()
         .collection("users")
-      // .where("type", "==", "Employee")
+       .where("type", "==", "Employee")
     }
     if (contract !== undefined)
       queryRef = queryRef.where("details.contract", "==", contract)
@@ -142,7 +142,7 @@ export default Board = ({ navigation }) => {
       rightIconCallback: onClickFav
     });
   };
-console.log(list)
+
   return (
     <Container>
       <Header searchBar rounded>
