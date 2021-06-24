@@ -45,7 +45,8 @@ export default Filters = ({ route, navigation }) => {
             contract: allContractTags,
             jobtime: allJobtimeTags,
             worktype: allWorktypeTags,
-            level: allLevelTags
+            level: allLevelTags,
+            nexttype: lalalala,
           }}
           colors={{
             techstack: "blue",
