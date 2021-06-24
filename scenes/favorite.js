@@ -123,6 +123,7 @@ export default Favorite = ({ navigation }) => {
   const onClickFilters = () => {
     navigation.navigate("Filters", {
       screen: "Filters",
+      pervScreen: "Favorites",
       onGoBackCallback: onReceivedNewFilter,
       initialFilterState: filter
     });

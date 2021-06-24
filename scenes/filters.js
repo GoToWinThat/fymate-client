@@ -12,6 +12,7 @@ import { allContractTags, allJobtimeTags, allLevelTags, allTechstackTags, allWor
 export default Filters = ({ route, navigation }) => {
   const onGoBack = route?.params?.onGoBackCallback
   const initialFilterState = route?.params?.initialFilterState;
+  const pervScreen = route?.params?.pervScreen;
 
   const [tags, setTags] = useState(initialFilterState?.tags !== undefined ? initialFilterState.tags : {});
   const [searchType, setSearchType] = useState(initialFilterState?.searchType !== undefined ? initialFilterState.searchType : "Company");
@@ -29,6 +30,8 @@ export default Filters = ({ route, navigation }) => {
   };
 
   //TODO: setting initial value of segment bar
+  // console.log(pervScreen)
+  console.log(JSON.stringify(route?.params))
   return (
     <Container>
       <Header>
@@ -39,35 +42,38 @@ export default Filters = ({ route, navigation }) => {
           <Text style={styles.title}>Range</Text>
           <Segmentbar initialState={searchType} onClickChange={(v) => setSearchType(v)} />
         </View>
-        <TagFilter initialTags={tags} activeTagsChangedCallback={setTags}
-          tags={{
-            techstack: allTechstackTags,
-            contract: allContractTags,
-            jobtime: allJobtimeTags,
-            worktype: allWorktypeTags,
-            level: allLevelTags,
-          }}
-          colors={{
-            techstack: "blue",
-            contract: "purple",
-            jobtime: "green",
-            worktype: "orange",
-            level: "red"
-          }}
-          labels={{
-            techstack: "Techstack",
-            contract: "Contract",
-            jobtime: "Jobtime",
-            worktype: "Agreement",
-            level: "Level"
-          }}
-          singleChoices={{
-            contract: true,
-            jobtime: true,
-            worktype: true,
-            level: true,
-          }}
-        />
+        {
+          pervScreen !== "Favorites" ? 
+            <TagFilter initialTags={tags} activeTagsChangedCallback={setTags}
+              tags={{
+                techstack: allTechstackTags,
+                contract: allContractTags,
+                jobtime: allJobtimeTags,
+                worktype: allWorktypeTags,
+                level: allLevelTags,
+              }}
+              colors={{
+                techstack: "blue",
+                contract: "purple",
+                jobtime: "green",
+                worktype: "orange",
+                level: "red"
+              }}
+              labels={{
+                techstack: "Techstack",
+                contract: "Contract",
+                jobtime: "Jobtime",
+                worktype: "Agreement",
+                level: "Level"
+              }}
+              singleChoices={{
+                contract: true,
+                jobtime: true,
+                worktype: true,
+                level: true,
+              }}
+            /> : null
+        }
       </Content>
     </Container>
   );
