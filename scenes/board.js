@@ -143,6 +143,7 @@ export default Board = ({ navigation }) => {
     });
   };
 
+
   return (
     <Container>
       <Header searchBar rounded>

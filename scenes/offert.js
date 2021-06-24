@@ -33,11 +33,11 @@ export default Offert = ({ route, navigation }) => {
     };
 
     //fetch company data
-    useEffect(() => {
-        firebase.firestore().collection("users").doc(offer.ownerUid).get().then(x => setCompany(x.data()))
-    }, [])
+    // useEffect(() => {
+    //     firebase.firestore().collection("users").doc(offer.ownerUid).get().then(x => setCompany(x.data()))
+    // }, [])
 
-
+    console.log(JSON.stringify(offer))
     return (
         <Container>
             <Header>
@@ -59,7 +59,7 @@ export default Offert = ({ route, navigation }) => {
                 <TagList tags={offer.tags} title={"Tech Stack"} color={'blue'} />
                 <DetailsList details={offer.details} />
                 <BenefitsDoubleList benefits={offer.benefits} />
-                <About title="How To Apply" desciption={offer.howtoapply} />
+                <About title="How To Apply" desciption={offer.howTo} />
 
             </Content>
         </Container>
