@@ -4,7 +4,6 @@ export const allLevelTags = ["Junior", "Mid", "Senior"]
 export const allContractTags = ["B2B", "Job"]
 export const allJobtimeTags = ["1/4", "1/8", "1/2", "Full"]
 export const allWorktypeTags = ["Full", "Office", "Partly"]
-export const lalalala = ["Full1", "Office2", "Partly3"]
 
 //Chunks array into arrays of n elements
 export function chunk(array, n) {
