@@ -152,7 +152,6 @@ export default Board = ({ navigation }) => {
           rightIcon="filter"
         />
       </Header>
-      <Searchbar />
       <Content>
         {filter.searchType === "Company" ? <OfferList onClick={onClickOffer} list={list} />
           : <UserList onClick={onClickUser} list={list} />}
