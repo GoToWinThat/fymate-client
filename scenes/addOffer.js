@@ -33,6 +33,7 @@ export default AddOffer = ({ route, navigation }) => {
   const [salary, setSalary] = useState(defaults?.salary !== undefined ? defaults.salary : "");
   const [description, setDescription] = useState(defaults?.description !== undefined ? defaults.description : "");
   const [howTo, setHowTo] = useState(defaults?.howTo !== undefined ? defaults.howTo : "");
+  const [deadline, setDeadline] = useState(defaults?.deadline !== undefined ? defaults.deadline : "");
   const [benefits, setBenefits] = useState(defaults?.benefits !== undefined ? defaults.benefits : []);
   const [tags, setTags] = useState(defaults?.tags !== undefined ? {
     techstack: defaults.tags,
@@ -97,6 +98,13 @@ export default AddOffer = ({ route, navigation }) => {
             placeholder={"Salary"}
             value={salary}
             onChangeText={setSalary}
+          />
+        </View>
+        <View style={formStyle.input}>
+          <Input
+            placeholder={"Deadline"}
+            value={deadline}
+            onChangeText={setDeadline}
           />
         </View>
         <ListItem itemDivider>
@@ -166,6 +174,7 @@ export default AddOffer = ({ route, navigation }) => {
           ownerUid: firebase.auth().currentUser.uid,
           date: firebase.firestore.FieldValue.serverTimestamp(),
           position: position,
+          deadline: deadline,
           salary: salary,
           description: description,
           benefits: benefits,

@@ -60,6 +60,9 @@ export default Offert = ({ route, navigation }) => {
                 <DetailsList details={offer.details} />
                 <BenefitsDoubleList benefits={offer.benefits} />
                 <About title="How To Apply" desciption={offer.howTo} />
+                {offer.deadline !== undefined ? 
+                    <About title={`Deadline: ${offer.deadline}`}/> : null
+                }
 
             </Content>
         </Container>

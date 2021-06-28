@@ -44,6 +44,7 @@ export default MyOfferts = ({ navigation, route }) => {
   }
 
   const onClickListElement = (offer) => {
+    console.log(offer)
     navigation.navigate("AddOffer", { defaults: offer, submitCallback: updateCallback, deleteCallback: deleteCallback })
   }
 
