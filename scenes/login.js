@@ -10,12 +10,6 @@ import { formStyle } from '../styles/style'
 //TODO: Handle login failure
 export default Login = ({ navigation }) => {
 
-  //Check if we are already logged in
-  if (firebase.auth().currentUser != null) {
-    //navigation.navigate("MainTab", { screen: "MainTab" });
-  }
-
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
