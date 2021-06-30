@@ -10,7 +10,7 @@ import * as firebase from 'firebase';
 import { notFoundImageUrl } from "../globals"
 import 'allsettled-polyfill';
 import { addOrRemoveFromArray } from "../backend/backend"
-
+import RecentlyAdded from "../components/organisms/recentlyAdded";
 
 const defaultFilterState = {
   tags: [],
@@ -69,9 +69,6 @@ export default Board = ({ navigation }) => {
       queryRef = queryRef.where("details.level", "==", level)
     if (filter?.tags?.techstack?.length !== 0 && filter?.tags?.techstack !== undefined)
       queryRef = queryRef.where("tags", "array-contains-any", filter?.tags?.techstack)
-
-
-
 
     queryRef.limit(20).get().then(snapshot => {
       let data = snapshot.docs.map(x => {
@@ -143,6 +140,14 @@ export default Board = ({ navigation }) => {
     });
   };
 
+  const dayDifferenceFromNow = (date) => {
+    var nowInSeconds = new Date().getTime() / 1000;
+    let diff = Math.floor((nowInSeconds - date.seconds) / (60*60)) 
+    console.log(diff)
+    return diff
+  }//18 070 420 Now, 1 624 532 467, 1 625 044 717
+  var recentlyAddedList = list.filter(offer => dayDifferenceFromNow(offer.date) < 24)
+  var olderList = list.filter(offer => dayDifferenceFromNow(offer.date) > 24)
 
   return (
     <Container>
@@ -154,8 +159,9 @@ export default Board = ({ navigation }) => {
         />
       </Header>
       <Content>
-        {filter.searchType === "Company" ? <OfferList onClick={onClickOffer} list={list} />
-          : <UserList onClick={onClickUser} list={list} />}
+      {filter.searchType === "Company" ? <RecentlyAdded list={recentlyAddedList}/> : null}
+      {filter.searchType === "Company" ? <OfferList onClick={onClickOffer} list={olderList} />
+        : <UserList onClick={onClickUser} list={list} />}
       </Content>
     </Container>
   );

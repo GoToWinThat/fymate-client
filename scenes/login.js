@@ -21,7 +21,11 @@ export default Login = ({ navigation }) => {
 
   const onClickSignIn = () => {
     //"tester@mail.com", "1q2w3e4r"
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    // john@mail.com, "1q2w3e4r"
+    // monica@mail.com
+    // angela@mial.com
+    // itpro@mail.com
+    firebase.auth().signInWithEmailAndPassword("itpro@mail.com", "1q2w3e4r")
       .then((results) => {
         navigation.navigate("MainTab", {
           screen: "MainTab",
